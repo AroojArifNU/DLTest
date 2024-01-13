@@ -61,25 +61,26 @@
     
 
 \end{abstract}
+
 \section{Introduction}
+
 As artificial intelligence continues to advance quickly, protecting deep learning models
 from adversarial attacks has emerged as a key area of concern. These adversarial attacks, 
 which change the raw data in small but deliberate ways, are a big problem for the security 
 and dependability of AI systems. Deep learning models, especially Convolutional Neural 
 Networks (CNNs), are easy targets for these attacks, even though they are very powerful 
 in other ways. Because of this weakness, strong defences need to be built to protect these 
-systems from these kinds of threats \cite {Akhtar}.
-We present a new method that combines the best features of pre-trained CNNs with advanced 
-adversarial simulations, SHAP (SHapley Additive exPlanations) analysis, and Explainable AI (XAI) 
-signatures in our work. The goal of this multifaceted approach is to not only make deep learning 
-models more reliable, but also to show how they make decisions. In this way, it meets the very 
-important need for systems that are safe from malicious risks and also clear about how they work \cite {Lee, Morris, Croce}.
-Putting SHAP analysis and XAI together is very important in this case. These techniques make it possible 
-to understand complex models more nuancedly, making them clearer. This is becoming more and more important 
-in high-stakes situations, like healthcare, where AI choices must be accurate and easy to understand, as well
- as in self-driving systems, where safety and dependability are very important \cite {Zhou}. 
-Recent study by \cite {Zhou}, which looks at adversarial attacks in the context of IoT network intrusion
- detection, is very similar to what we're doing because it focuses on AI systems that are strong and easy to understand.
+systems from these kinds of threats \cite {Akhtar}.We present a new method that combines the best 
+features of pre-trained CNNs with advanced adversarial simulations, SHAP (SHapley Additive exPlanations) 
+analysis, and Explainable AI (XAI) signatures in our work. The goal of this multifaceted approach is 
+to not only make deep learning models more reliable, but also to show how they make decisions. In this way, 
+it meets the very important need for systems that are safe from malicious risks and also clear about how they 
+work \cite {Lee, Morris, Croce}. Putting SHAP analysis and XAI together is very important in this case. 
+These techniques make it possible to understand complex models more nuancedly, making them clearer. 
+This is becoming more and more important in high-stakes situations, like healthcare, where AI choices must be 
+accurate and easy to understand, as well as in self-driving systems, where safety and dependability are very 
+important \cite {Zhou}. Recent study by \cite {Zhou}, which looks at adversarial attacks in the context of IoT network intrusion
+detection, is very similar to what we're doing because it focuses on AI systems that are strong and easy to understand.
 In addition, our suggested method is rigorously tested using a number of case studies. It is clear from these 
 studies that the method works to find and reduce adversarial risks, which is a big step forward in the field of AI security. 
 Our study helps us understand how to make AI systems both safe and easy to understand, which is a balance that is hard to achieve 
@@ -87,6 +88,8 @@ but necessary for AI technologies to be widely used. It does this by pointing ou
 A summary of this research shows that it not only addresses the problems that \cite {Akhtar} and \cite {Dong} 
 pointed out in AI security, but it also builds on recent progress in the field, like the work of \cite {Morris} and 
 \cite {Croce} , to suggest a new, useful way to make deep learning systems more reliable and clear.
+
+
 \section{Proposed Methodology:}
 
 \begin{figure*}[!ht]
@@ -261,7 +264,8 @@ how the model's decision-making process is altered under various input condition
     model's predictions. This step is essential for gaining a deeper understanding of the model's behavior and developing effective strategies 
     to make it more resilient to adversarial attacks.
     The process involves:
-    \subsubsection{Attack Generation Pixel Analysis}
+
+ \subsubsection{Attack Generation Pixel Analysis}
 We first analyze the SHAP values for adversarial image pixels. This step is crucial to identify which pixels, when altered, are most effective 
 in generating successful adversarial attacks. By understanding the pixels that significantly influence the model's erroneous decisions, we can 
 uncover how adversarial perturbations are guided and how they can be strategically crafted.
@@ -279,11 +283,12 @@ reference point, helping us to better interpret the changes observed in the adve
 
 Through this comprehensive methodology, we aim to provide a deep understanding of how pixel-level manipulations affect AI decision-making, 
 both in generating and detecting adversarial attacks, as well as understanding the inherent behavior of the model under normal conditions.
+
 \subsection{Statistical Validation of Critical Pixels}
 To substantiate the distinction between critical and non-critical pixels identified in our analysis, we conducted a statistical t-test on the
  SHAP values. This test helps validate the significance of the differences observed in the SHAP values between critical and non-critical pixels.
   The implementation of a t-test ensures that the observed disparities are not due to random chance, thereby lending statistical rigor to our 
-  findings and confirming the reliability of our pixel importance assessments.
+  findinßgs and confirming the reliability of our pixel importance assessments.
 
 
     \begin{figure}[h]
@@ -321,7 +326,7 @@ To substantiate the distinction between critical and non-critical pixels identif
     
     
 
-    % In Stage 5 of our research, we focused on the development of a binary classification model that could effectively differentiate between original and adversarial examples. The crux of this stage was the utilization of XAI signatures, particularly SHAP values, instead of raw data. The choice of XAI signatures was strategic and stemmed from the need for deeper insights into the decision-making processes of neural networks. These signatures, unlike raw data, provide a nuanced understanding of feature importance and contributions, making them immensely valuable in identifying subtle manipulations in adversarial examples.
+% In Stage 5 of our research, we focused on the development of a binary classification model that could effectively differentiate between original and adversarial examples. The crux of this stage was the utilization of XAI signatures, particularly SHAP values, instead of raw data. The choice of XAI signatures was strategic and stemmed from the need for deeper insights into the decision-making processes of neural networks. These signatures, unlike raw data, provide a nuanced understanding of feature importance and contributions, making them immensely valuable in identifying subtle manipulations in adversarial examples.
 
 % This approach aligns with the broader objective of enhancing the interpretability and trustworthiness of deep learning models. By using XAI signatures, we aim to gain a more transparent view into how and why models make certain decisions, especially under adversarial conditions. This transparency is crucial for identifying potential vulnerabilities and strengthening the model's defenses against sophisticated attacks.
 
@@ -335,6 +340,7 @@ To substantiate the distinction between critical and non-critical pixels identif
 This section outlines various case studies to validate the methodology.
 
 \subsection{Case Study 1: Evaluating Model Robustness Against Different Adversarial Attacks}
+
 The main objective of this case study is to evaluate the robustness of the MNIST classification model 
 against different kinds of adversarial attacks such as Basic Iterative Method (BIM), Fast Gradient Sign Method (FGSM), 
 DeepFool, and Projected Gradient Descent (PGD). The focus of the study is to compare the performance of the MNIST model
@@ -370,7 +376,8 @@ This trend of decreasing robust accuracy is observed for all types of attacks.
     \end{tabular}
 \end{table}
 
-The findings emphasize the importance of implementing advanced defensive measures to enhance the robustness of machine learning models against adversarial attacks. The observations made in this case study can help in the creation of such defenses, especially in addressing the weaknesses exposed by BIM and PGD when dealing with smaller perturbations, and the slower but eventual impact of FGSM and DeepFool when dealing with higher perturbations.
+The findings emphasize the importance of implementing advanced defensive measures to enhance the robustness of machine learning models against 
+adversarial attacks. The observations made in this case study can help in the creation of such defenses, especially in addressing the weaknesses exposed by BIM and PGD when dealing with smaller perturbations, and the slower but eventual impact of FGSM and DeepFool when dealing with higher perturbations.
 
 \subsection{Critical Analysis of Class-Specific Metrics}
 
@@ -470,6 +477,7 @@ In conclusion, the comprehensive evaluation of the model's robustness provided b
     \end{table}
 
   \subsection{Pixel-Level Analysis for Enhancing AI Security Against Adversarial Attacks}
+  
   \subsubsection{Analysis of Individual Pixels}
 
   We first applied the SHAP values analysis to individual examples, focusing on the difference between normal 
@@ -484,7 +492,7 @@ In conclusion, the comprehensive evaluation of the model's robustness provided b
   
   \subsubsection{Implications of the Findings}
   
-  The comparison between individual and aggregate analysis underscores the multifaceted nature of AI vulnerabilities. While individual analysis offers a deep dive into specific instances, providing precise insights for tailored defenses, aggregate analysis exposes widespread trends, guiding more general strategies for enhancing AI robustness. These complementary perspectives are crucial in developing comprehensive defense mechanisms against adversarial attacks in AI systems.
+  ß
   \begin{figure}[h]
     \centering
     \begin{subfigure}{.45\textwidth}

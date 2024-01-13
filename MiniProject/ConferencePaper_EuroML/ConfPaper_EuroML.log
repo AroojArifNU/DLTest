@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.6)  13 JAN 2024 13:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.6)  13 JAN 2024 13:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -655,7 +655,7 @@ pdfTeX warning: pdflatex (file ./paper_images/papermodel_v2.pdf): PDF inclusion:
 <paper_images/papermodel_v2.pdf, id=1, 1184.17406pt x 494.59781pt>
 File: paper_images/papermodel_v2.pdf Graphic file (type pdf)
 <use paper_images/papermodel_v2.pdf>
-Package pdftex.def Info: paper_images/papermodel_v2.pdf  used on input line 94.
+Package pdftex.def Info: paper_images/papermodel_v2.pdf  used on input line 97.
 (pdftex.def)             Requested size: 452.9679pt x 189.19435pt.
 [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
@@ -663,12 +663,12 @@ Package pdftex.def Info: paper_images/papermodel_v2.pdf  used on input line 94.
 ] (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 136--138
+Underfull \hbox (badness 10000) in paragraph at lines 139--141
 []\OT1/ptm/b/n/10 (+20) Lower Ep-silon Val-ues ($\OML/cmm/m/it/10 " \OT1/cmr/m/n/10 =
  []
 
 
-Underfull \hbox (badness 5696) in paragraph at lines 136--138
+Underfull \hbox (badness 5696) in paragraph at lines 139--141
 \OT1/ptm/m/n/10 (+20) ef-fec-tive per-tur-ba-tions, test-ing the model's
  []
 
@@ -676,74 +676,74 @@ Underfull \hbox (badness 5696) in paragraph at lines 136--138
 <paper_images/UMAP_mnist.png, id=50, 389.455pt x 345.29pt>
 File: paper_images/UMAP_mnist.png Graphic file (type png)
 <use paper_images/UMAP_mnist.png>
-Package pdftex.def Info: paper_images/UMAP_mnist.png  used on input line 157.
+Package pdftex.def Info: paper_images/UMAP_mnist.png  used on input line 160.
 (pdftex.def)             Requested size: 140.41893pt x 124.49397pt.
 <paper_images/UMAP_adv.png, id=52, 428.60126pt x 349.305pt>
 File: paper_images/UMAP_adv.png Graphic file (type png)
 <use paper_images/UMAP_adv.png>
-Package pdftex.def Info: paper_images/UMAP_adv.png  used on input line 164.
+Package pdftex.def Info: paper_images/UMAP_adv.png  used on input line 167.
 (pdftex.def)             Requested size: 154.00742pt x 125.51518pt.
 <paper_images/UMAP_adversary.png, id=53, 555.07375pt x 559.08875pt>
 File: paper_images/UMAP_adversary.png Graphic file (type png)
 <use paper_images/UMAP_adversary.png>
-Package pdftex.def Info: paper_images/UMAP_adversary.png  used on input line 171.
+Package pdftex.def Info: paper_images/UMAP_adversary.png  used on input line 174.
 (pdftex.def)             Requested size: 126.83044pt x 127.74313pt.
 <paper_images/correctshap.png, id=54, 1134.639pt x 486.3771pt>
 File: paper_images/correctshap.png Graphic file (type png)
 <use paper_images/correctshap.png>
-Package pdftex.def Info: paper_images/correctshap.png  used on input line 220.
+Package pdftex.def Info: paper_images/correctshap.png  used on input line 223.
 (pdftex.def)             Requested size: 220.48395pt x 94.5129pt.
 <paper_images/adversarial.png, id=55, 834.11626pt x 355.3275pt>
 File: paper_images/adversarial.png Graphic file (type png)
 <use paper_images/adversarial.png>
-Package pdftex.def Info: paper_images/adversarial.png  used on input line 228.
+Package pdftex.def Info: paper_images/adversarial.png  used on input line 231.
 (pdftex.def)             Requested size: 220.48395pt x 93.92276pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--243
+Underfull \hbox (badness 10000) in paragraph at lines 245--246
 []|\OT1/ptm/m/n/8 (+20) Recognize changes
  []
 
 
-Underfull \hbox (badness 3291) in paragraph at lines 244--245
+Underfull \hbox (badness 3291) in paragraph at lines 247--248
 \OT1/ptm/m/n/8 (+20) tion dif-fer-ences be-
  []
 
 
-Overfull \hbox (1.31082pt too wide) in paragraph at lines 246--246
+Overfull \hbox (1.31082pt too wide) in paragraph at lines 249--249
 []|\OT1/ptm/b/n/8 (-20) Methodology| 
  []
 
 
-Underfull \hbox (badness 4621) in paragraph at lines 247--247
+Underfull \hbox (badness 4621) in paragraph at lines 250--250
 []|\OT1/ptm/b/n/8 (+20) SHAP Val-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 247--248
+Underfull \hbox (badness 10000) in paragraph at lines 250--251
 []|\OT1/ptm/m/n/8 (+20) The dif-fer-ence
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 247--248
+Underfull \hbox (badness 10000) in paragraph at lines 250--251
 \OT1/ptm/m/n/8 (+20) in SHAP val-ues
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--250
+Underfull \hbox (badness 10000) in paragraph at lines 253--253
 []|\OT1/ptm/b/n/8 (+20) Insight
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--250
+Underfull \hbox (badness 10000) in paragraph at lines 253--253
 []|\OT1/ptm/m/n/8 (+20) Reveals decision-
  []
 
 
-Overfull \hbox (2.05891pt too wide) in paragraph at lines 239--253
+Overfull \hbox (2.05891pt too wide) in paragraph at lines 242--256
  [][] 
  []
 
@@ -751,16 +751,16 @@ Overfull \hbox (2.05891pt too wide) in paragraph at lines 239--253
 <paper_images/criticalpixels.png, id=60, 598.235pt x 196.735pt>
 File: paper_images/criticalpixels.png Graphic file (type png)
 <use paper_images/criticalpixels.png>
-Package pdftex.def Info: paper_images/criticalpixels.png  used on input line 291.
+Package pdftex.def Info: paper_images/criticalpixels.png  used on input line 294.
 (pdftex.def)             Requested size: 220.48395pt x 72.50862pt.
  [4 <./paper_images/UMAP_mnist.png> <./paper_images/UMAP_adv.png> <./paper_images/UMAP_adversary.png> <./paper_images/correctshap.png> <./paper_images/adversarial.png> <./paper_images/criticalpixels.png>]
 <paper_images/robust.png, id=70, 867.24pt x 650.43pt>
 File: paper_images/robust.png Graphic file (type png)
 <use paper_images/robust.png>
-Package pdftex.def Info: paper_images/robust.png  used on input line 352.
+Package pdftex.def Info: paper_images/robust.png  used on input line 356.
 (pdftex.def)             Requested size: 220.48395pt x 165.35625pt.
 
-Overfull \hbox (1.56367pt too wide) in paragraph at lines 362--371
+Overfull \hbox (1.56367pt too wide) in paragraph at lines 366--375
  [][] 
  []
 
@@ -768,23 +768,30 @@ Overfull \hbox (1.56367pt too wide) in paragraph at lines 362--371
 <paper_images/individual.png, id=76, 634.37pt x 163.61125pt>
 File: paper_images/individual.png Graphic file (type png)
 <use paper_images/individual.png>
-Package pdftex.def Info: paper_images/individual.png  used on input line 492.
+Package pdftex.def Info: paper_images/individual.png  used on input line 498.
 (pdftex.def)             Requested size: 203.83417pt x 52.57137pt.
 <paper_images/aggregate.png, id=77, 634.37pt x 163.61125pt>
 File: paper_images/aggregate.png Graphic file (type png)
 <use paper_images/aggregate.png>
-Package pdftex.def Info: paper_images/aggregate.png  used on input line 499.
+Package pdftex.def Info: paper_images/aggregate.png  used on input line 505.
 (pdftex.def)             Requested size: 203.83417pt x 52.57137pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [6]
 <paper_images/bar_chart.png, id=81, 258.0039pt x 184.5294pt>
 File: paper_images/bar_chart.png Graphic file (type png)
 <use paper_images/bar_chart.png>
-Package pdftex.def Info: paper_images/bar_chart.png  used on input line 519.
+Package pdftex.def Info: paper_images/bar_chart.png  used on input line 525.
 (pdftex.def)             Requested size: 203.83417pt x 145.78789pt.
 <paper_images/histograms.png, id=82, 499.3857pt x 174.1707pt>
 File: paper_images/histograms.png Graphic file (type png)
 <use paper_images/histograms.png>
-Package pdftex.def Info: paper_images/histograms.png  used on input line 526.
+Package pdftex.def Info: paper_images/histograms.png  used on input line 532.
 (pdftex.def)             Requested size: 220.48395pt x 76.89844pt.
  [7 <./paper_images/individual.png> <./paper_images/aggregate.png> <./paper_images/bar_chart.png> <./paper_images/histograms.png>]
 
@@ -819,7 +826,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  79i,13n,93p,1167b,502s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ConfPaper_EuroML.pdf (8 pages, 3546697 bytes).
+Output written on ConfPaper_EuroML.pdf (8 pages, 3546511 bytes).
 PDF statistics:
  140 PDF objects out of 1000 (max. 8388607)
  65 compressed objects within 1 object stream
