@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.6)  13 JAN 2024 13:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.6)  13 JAN 2024 14:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -751,16 +751,16 @@ Overfull \hbox (2.05891pt too wide) in paragraph at lines 242--256
 <paper_images/criticalpixels.png, id=60, 598.235pt x 196.735pt>
 File: paper_images/criticalpixels.png Graphic file (type png)
 <use paper_images/criticalpixels.png>
-Package pdftex.def Info: paper_images/criticalpixels.png  used on input line 294.
+Package pdftex.def Info: paper_images/criticalpixels.png  used on input line 296.
 (pdftex.def)             Requested size: 220.48395pt x 72.50862pt.
  [4 <./paper_images/UMAP_mnist.png> <./paper_images/UMAP_adv.png> <./paper_images/UMAP_adversary.png> <./paper_images/correctshap.png> <./paper_images/adversarial.png> <./paper_images/criticalpixels.png>]
 <paper_images/robust.png, id=70, 867.24pt x 650.43pt>
 File: paper_images/robust.png Graphic file (type png)
 <use paper_images/robust.png>
-Package pdftex.def Info: paper_images/robust.png  used on input line 356.
+Package pdftex.def Info: paper_images/robust.png  used on input line 358.
 (pdftex.def)             Requested size: 220.48395pt x 165.35625pt.
 
-Overfull \hbox (1.56367pt too wide) in paragraph at lines 366--375
+Overfull \hbox (1.56367pt too wide) in paragraph at lines 368--377
  [][] 
  []
 
@@ -768,12 +768,12 @@ Overfull \hbox (1.56367pt too wide) in paragraph at lines 366--375
 <paper_images/individual.png, id=76, 634.37pt x 163.61125pt>
 File: paper_images/individual.png Graphic file (type png)
 <use paper_images/individual.png>
-Package pdftex.def Info: paper_images/individual.png  used on input line 498.
+Package pdftex.def Info: paper_images/individual.png  used on input line 500.
 (pdftex.def)             Requested size: 203.83417pt x 52.57137pt.
 <paper_images/aggregate.png, id=77, 634.37pt x 163.61125pt>
 File: paper_images/aggregate.png Graphic file (type png)
 <use paper_images/aggregate.png>
-Package pdftex.def Info: paper_images/aggregate.png  used on input line 505.
+Package pdftex.def Info: paper_images/aggregate.png  used on input line 507.
 (pdftex.def)             Requested size: 203.83417pt x 52.57137pt.
 
 
@@ -786,12 +786,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <paper_images/bar_chart.png, id=81, 258.0039pt x 184.5294pt>
 File: paper_images/bar_chart.png Graphic file (type png)
 <use paper_images/bar_chart.png>
-Package pdftex.def Info: paper_images/bar_chart.png  used on input line 525.
+Package pdftex.def Info: paper_images/bar_chart.png  used on input line 527.
 (pdftex.def)             Requested size: 203.83417pt x 145.78789pt.
 <paper_images/histograms.png, id=82, 499.3857pt x 174.1707pt>
 File: paper_images/histograms.png Graphic file (type png)
 <use paper_images/histograms.png>
-Package pdftex.def Info: paper_images/histograms.png  used on input line 532.
+Package pdftex.def Info: paper_images/histograms.png  used on input line 534.
 (pdftex.def)             Requested size: 220.48395pt x 76.89844pt.
  [7 <./paper_images/individual.png> <./paper_images/aggregate.png> <./paper_images/bar_chart.png> <./paper_images/histograms.png>]
 
@@ -826,7 +826,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  79i,13n,93p,1167b,502s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ConfPaper_EuroML.pdf (8 pages, 3546511 bytes).
+Output written on ConfPaper_EuroML.pdf (8 pages, 3546513 bytes).
 PDF statistics:
  140 PDF objects out of 1000 (max. 8388607)
  65 compressed objects within 1 object stream
