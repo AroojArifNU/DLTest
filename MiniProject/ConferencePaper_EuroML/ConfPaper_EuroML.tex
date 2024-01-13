@@ -46,48 +46,37 @@
 \maketitle % This command creates the title
 
 
-\begin{abstract}
-    Deep learning researchers are currently facing challenges related to transparency and interpretability in AI models, 
-    especially in the context of adversarial attacks. Previous studies have explored the utility of SHAP signatures, but 
-    our research takes a fresh approach by utilizing these tools in a unique way. We aim to identify the essential pixels 
-    in images that play a crucial role in AI models' decision-making, particularly in scenarios where the models are under 
-    deceptive attack. Our method offers a new perspective on Explainable AI (XAI), and to the best of our knowledge, it is 
-    the first of its kind. By focusing on these critical pixels that we identify through SHAP analysis, we gain unprecedented 
-    insights into the vulnerabilities of deep learning models. This method enables us to understand and enhance the robustness 
-    of AI models against sophisticated manipulations. Our research opens up new avenues in the AI field and significantly contributes 
-    to the development of more secure, transparent, and reliable AI systems. This advancement is particularly critical in areas where 
-    the precision and dependability of AI decisions are crucial. Our work not only addresses the existing challenges in AI security 
-    but also establishes a precedent for future explorations in making AI systems more interpretable and trustworthy.
-    
-
+\begin{abstract}    
+    Adversarial attacks in the deep learning domain significantly threaten model transparency and robustness. In this research, we present a new way to use SHAP (SHapley Additive exPlanations) to analyze image pixels at a finer level, especially in adverse conditions. We thoroughly investigate four adversarial attacks, carefully studying their effects on model vulnerability by analyzing their impact at different epsilon values. Our approach focuses on identifying crucial pixels in image-based models, uncovering vulnerabilities, and enhancing model robustness through SHAP analysis. This extensive study provides valuable insights for the development of AI systems that are more secure and transparent. These findings have important implications in critical healthcare and autonomous driving areas. Our research solves existing problems with AI security and establishes new benchmarks for how AI systems can combine robustness with interpretability.
 \end{abstract}
 
 \section{Introduction}
 
-As artificial intelligence continues to advance quickly, protecting deep learning models
-from adversarial attacks has emerged as a key area of concern. These adversarial attacks, 
-which change the raw data in small but deliberate ways, are a big problem for the security 
-and dependability of AI systems. Deep learning models, especially Convolutional Neural 
-Networks (CNNs), are easy targets for these attacks, even though they are very powerful 
-in other ways. Because of this weakness, strong defences need to be built to protect these 
-systems from these kinds of threats \cite {Akhtar}.We present a new method that combines the best 
-features of pre-trained CNNs with advanced adversarial simulations, SHAP (SHapley Additive exPlanations) 
-analysis, and Explainable AI (XAI) signatures in our work. The goal of this multifaceted approach is 
-to not only make deep learning models more reliable, but also to show how they make decisions. In this way, 
-it meets the very important need for systems that are safe from malicious risks and also clear about how they 
-work \cite {Lee, Morris, Croce}. Putting SHAP analysis and XAI together is very important in this case. 
-These techniques make it possible to understand complex models more nuancedly, making them clearer. 
-This is becoming more and more important in high-stakes situations, like healthcare, where AI choices must be 
-accurate and easy to understand, as well as in self-driving systems, where safety and dependability are very 
-important \cite {Zhou}. Recent study by \cite {Zhou}, which looks at adversarial attacks in the context of IoT network intrusion
-detection, is very similar to what we're doing because it focuses on AI systems that are strong and easy to understand.
-In addition, our suggested method is rigorously tested using a number of case studies. It is clear from these 
-studies that the method works to find and reduce adversarial risks, which is a big step forward in the field of AI security. 
-Our study helps us understand how to make AI systems both safe and easy to understand, which is a balance that is hard to achieve 
-but necessary for AI technologies to be widely used. It does this by pointing out the inherent link between model robustness and explainability.
-A summary of this research shows that it not only addresses the problems that \cite {Akhtar} and \cite {Dong} 
-pointed out in AI security, but it also builds on recent progress in the field, like the work of \cite {Morris} and 
-\cite {Croce} , to suggest a new, useful way to make deep learning systems more reliable and clear.
+The field of deep learning is currently experiencing a golden era and has become pivotal for modern computational applications. Deep learning is a type of machine learning that uses multiple layers to process data and build computational models. It has introduced various algorithms, including generative adversarial networks, convolutional neural networks, and model transfers. These algorithms have revolutionized the way we process information. Deep learning has shown significant progress in various domains, such as visual, audio, and text processing, social network analysis, and natural language processing. It has also successfully tackled challenges in machine learning, such as unsupervised and online learning. Deep learning's ability to handle massive and complex datasets has made it a critical tool for big data analysis. Compared to traditional machine learning approaches, its state-of-the-art performance has led to its widespread adoption in fields like image processing, computer vision, speech recognition, machine translation, medical imaging, and many others \cite {Saad, Md}. In the present scenario of widespread technological advancements and adoption, it has become essential to concentrate on the robustness of deep learning models. These models are increasingly utilized in safety-critical and socially significant applications such as autonomous driving, face recognition, and malware detection, where their reliability and performance are of utmost importance. The deep neural networks have shown to be vulnerable to both adversarial and natural image corruptions that can substantially reduce their efficiency. By exploring and enhancing the robustness of these models, we can ensure their effectiveness and reliability in real-world situations \cite {Numair, Aleksandar}.
+
+Adversarial attacks present a unique challenge for deep learning models. They exploit subtle weaknesses, causing misclassification of examples with imperceptible changes. Such attacks can have a severe impact on the reliability and safety of deep learning models, especially in safety-critical applications like autonomous driving. Adversarial examples can lead to incorrect decisions, potentially resulting in severe consequences. Therefore, it is crucial to analyze the robustness and reliability of deep learning models to ensure their safety in real-world deployments \cite {Samuel, Muhammad}. 
+Explainable Artificial Intelligence (XAI) is a critical component in addressing the challenges of deep learning. It helps to enhance the understanding and trustworthiness of AI by providing interpretable and human-understandable explanations of AI decisions. The techniques, tools, and algorithms used in XAI generate explanations that help build trustworthy and interpretable deep learning models. These explanations improve trust by providing insights into the model's decision-making process, addressing challenges of trust, transparency, bias understanding, and fairness, and promoting a more robust and impartial decision-making process \cite {Mohammed, Aha, Tamer}. 
+
+Despite recent advancements in deep learning models, research has identified gaps and shortcomings in making these models robust against adversarial attacks. It has been observed that there is an overly disproportionate focus on adversarial machine learning compared to non-adversarial robustness. Additionally, there is a significant gap in model performance when faced with naturally-induced image corruptions or alterations, which can result in performance degradation similar to that seen in adversarial conditions. This vulnerability to natural image corruptions suggests that understanding model performance on natural data should be prioritized before focusing on resilience to adversarial attack scenarios \cite {Numair, Tianhang, Wei}. 
+
+We conducted a research to explore the challenges posed by adversarial attacks on deep learning models. Our primary focus was on understanding and quantifying the impacts of different pixels. To achieve this, we used SHAP (SHapley Additive exPlanations) within the realm of Explainable Artificial Intelligence (XAI) to unravel the complex dynamics of how deep learning models respond to adversarial manipulations. Our goal was not only to identify vulnerabilities but also to enhance the robustness and transparency of these models. The stakes are high in critical applications such as healthcare and autonomous systems. Therefore, our research strives to fortify these models against adversarial threats while simultaneously improving their interpretability and trustworthiness. Through this work, we aim to bridge the existing gap between robustness and transparency in AI, offering novel insights and methodologies that could significantly advance the field.
+
+\section{Contributions of the Paper}
+
+This paper introduces several significant contributions to the field of AI, particularly in enhancing the robustness and transparency of deep learning models against adversarial threats:
+
+\begin{itemize}
+    \item \textbf{Novel Integration of SHAP-based XAI in Adversarial Analysis:} Our work pioneers the application of SHAP-based critical pixel analysis, offering a new perspective in understanding and mitigating these threats at a pixel level.
+    
+    \item \textbf{Comprehensive Evaluation of Model Behavior:} By employing the MNIST dataset across a range of adversarial intensities, our research provides a detailed assessment of model vulnerabilities, crucial for developing more resilient AI systems.
+    
+    \item \textbf{Insightful Analysis through Advanced Visualization:} Utilizing UMAP visualizations, our study reveals intricate patterns and impacts of adversarial attacks, enhancing the interpretability of complex model behaviors in a user-friendly manner.
+    
+    \item \textbf{In-depth Contrastive Analysis of SHAP Values:} Our research conducts a thorough comparison of SHAP values between normal and adversarial examples, shedding light on the subtle ways adversarial attacks influence model decision-making.
+    
+    \item \textbf{Statistical Validation of Model Vulnerabilities:} We introduce a rigorous statistical approach to validate the significance of identified vulnerabilities, thereby strengthening the reliability of our findings and setting a new standard in adversarial robustness research.
+
+\end{itemize}
 
 
 \section{Proposed Methodology:}
@@ -578,6 +567,23 @@ This research conducted a thorough investigation into adversarial attack simulat
 
 
 \begin{thebibliography}{01}
+
+    \bibitem{Saad}S. Saad, Y. Yilin, T. Haiman, T. Yudong, P. R. Maria, S. Mei-Ling, C. Shu-Ching, and S. Iyengar. "A survey on deep learning: A. Sundaraja, “ACM Computing Surveys CSUR 51 no,” 2018.
+    \bibitem{Md} Z. Md, M. T. Tarek, Y. Chris, W. Stefan, S. Paheding, S. N. Mst, H. Mahmudul, C. V. E. Brian, 
+    \bibitem{Numair}S. Numair, S. Ilya, and U. Mathias, “A systematic review of robustness in deep learning for computer vision Mind the gap,” 2021.
+    \bibitem{Aleksandar}M. Aleksandar, S. Ludwig, T. Dimitris, and V. Adrian, “Towards deep learning models resistant to adversarial attacks,” 2017.
+    \bibitem{Samuel}H. Samuel and N. Peyman, “Opportunities and challenges in deep learning adversarial robustness A survey,” 2020.
+    \bibitem{Muhammad}U. Muhammad, Q. Junaid, U. J. Muhammad, A.-F. Ala, T. H. Dinh, and Niyato. "Challenges and countermeasures for adversarial attacks on deep reinforcement learning Dusit, “IEEE Transactions on Artificial Intelligence 3 no,” 2021.
+    \bibitem{Mohammed}B. Mohammed, “Peeking inside the blackbox a survey on explainable artificial intelligence XAI,” 2018.
+    \bibitem{Aha}Aha. "DARPA’s explainable artificial intelligence (XAI) program David, “AI magazine 40 no,” 2019.
+    \bibitem{Tamer}A. Tamer, E.-S. Shaker, M. Khan, M. A.-M. Jose, C. Roberto, G. Riccardo, D. S. Javier, D.-R. Natalia, and H. Francisco, “Explainable Artificial Intelligence XAI What we know and what is left to attain Trustworthy Artificial Intelligence,” 2023.
+    \bibitem{Tianhang}Z. Tianhang, Q. Zhan, and Liu. "Adversarial attacks and defenses in deep learning Xue, “Engineering 6 no,” 2020.
+    \bibitem{Wei}E. Wei, Z. S. Quan, A. Ahoud, and Li. "Adversarial attacks on deep-learning models in natural language processing: A. survey Chenliang, “ACM Transactions on Intelligent Systems and Technology TIST 11 no,” 2020.
+
+
+
+
+
     \bibitem{Akhtar}
     Akhtar, N., Mian, A. (2018). Threat of Adversarial Attacks on Deep Learning in Computer Vision: A Survey. IEEE Access. Link
     \bibitem{Dong}
