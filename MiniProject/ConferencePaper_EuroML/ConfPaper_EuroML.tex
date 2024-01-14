@@ -47,7 +47,7 @@
 
 
 \begin{abstract}    
-    Adversarial attacks in the deep learning domain significantly threaten model transparency and robustness. In this research, we present a new way to use SHAP (SHapley Additive exPlanations) to analyze image pixels at a finer level, especially in adverse conditions. We thoroughly investigate four adversarial attacks, carefully studying their effects on model vulnerability by analyzing their impact at different epsilon values. Our approach focuses on identifying crucial pixels in image-based models, uncovering vulnerabilities, and enhancing model robustness through SHAP analysis. This extensive study provides valuable insights for the development of AI systems that are more secure and transparent. These findings have important implications in critical healthcare and autonomous driving areas. Our research solves existing problems with AI security and establishes new benchmarks for how AI systems can combine robustness with interpretability.
+    Adversarial attacks in the deep learning domain significantly threaten model transparency and robustness. Adversarial perturbations are unnoticeable for humans. Hence, it is necessary to develop methods of counteracting these attacks. In this research, we present a new way to use SHAP (SHapley Additive exPlanations) to analyze image pixels at a finer level. We thoroughly investigate four adversarial attacks, carefully studying their effects on model vulnerability by analyzing their impact at different epsilon values. Our approach focuses on identifying crucial pixels in image-based model, uncovering vulnerabilities, and enhancing model robustness through SHAP analysis. This extensive study provides valuable insights for the development of AI systems that are more secure and transparent. These findings have important implications in critical healthcare and autonomous driving areas. Our research solves existing problems with AI security and establishes new benchmarks for how AI systems can combine robustness with interpretability.
 \end{abstract}
 
 \section{Introduction}
@@ -78,6 +78,16 @@ This paper introduces several significant contributions to the field of AI, part
 
 \end{itemize}
 
+\section{Related Work}
+In the evolving landscape of Explainable Artificial Intelligence (XAI) and its application in mitigating adversarial attacks on AI models, a collective review of prominent research reveals a tapestry of distinct methodologies, objectives, and contributions. These studies not only underscore the diversity in approaches but also highlight the dynamic nature of the field, each carving out its unique niche.
+
+The study "Explainable AI for Inspecting Adversarial Attacks on DNNs" offers a comprehensive analysis of the impact of adversarial attacks on deep neural networks, focusing on enhancing the overall interpretability of models. It contrasts with "Attack-agnostic Adversarial Detection on Medical Data Using Explainable ML," which zeroes in on the medical domain, combining advanced machine learning techniques with explainability to detect adversarial threats. While both employ XAI, their domain-specific applications showcase the versatility of explainable techniques in different contexts.
+
+"PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning," on the other hand, diverges by exploring the generation of texture-based adversarial attacks. This study delves into a more focused aspect of adversarial methodology, utilizing reinforcement learning for attack generation, thus contributing a new dimension to understanding and crafting adversarial strategies.
+
+"Deep Learning under Privileged Information Using Heteroscedastic Dropout" ventures into another specialized domain, addressing the challenges of handling privileged information in deep learning models. This study's innovative application of heteroscedastic dropout highlights the ongoing efforts to adapt AI models to complex, real-world data scenarios.
+
+Against this backdrop, your paper, "Analyzing Adversarial Vulnerabilities in Deep Learning: Unveiling Shapley Insights for Fine-Grained Pixel Analysis," emerges with a unique proposition. It delves deeper into the granularity of image data, employing SHAP analysis to unravel the influence of individual pixels in adversarial contexts. This microscopic approach is pioneering, as it not only broadens the understanding of adversarial vulnerabilities but also paves the way for developing AI models that are robust and secure against nuanced adversarial tactics. Your work stands as a testament to the innovative fusion of XAI with AI security, underscoring the importance of detailed analysis in enhancing both transparency and resilience in AI systems.
 
 \section{Proposed Methodology:}
 
@@ -144,29 +154,22 @@ and LinfProjectedGradientDescentAttack (PGD). Systematically collected and analy
 
 \begin{figure*}[!ht]
     \centering
-    \begin{subfigure}{.31\textwidth}
+    \begin{subfigure}{.50\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{paper_images/UMAP_mnist.png}
+        \includegraphics[width=\linewidth]{paper_images/1.png}
         \caption{Original MNIST digit classes}
         \label{fig:umap_original}
     \end{subfigure}%
     \hfill
-    \begin{subfigure}{.34\textwidth}
+    \begin{subfigure}{.50\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{paper_images/UMAP_adv.png}
+        \includegraphics[width=\linewidth]{paper_images/2.png}
         \caption{Original and PGD attack}
         \label{fig:umap_pgd}
-    \end{subfigure}%
-    \hfill
-    \begin{subfigure}{.28\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{paper_images/UMAP_adversary.png}
-        \caption{Original and 4 attacks}
-        \label{fig:umap_additional_adv}
     \end{subfigure}
     \caption{UMAP projections illustrating the separation of digit classes within the MNIST dataset and the integration of adversarial examples.
-     The left panel (\ref{fig:umap_original}) shows the natural clustering of MNIST digits, the middle panel (\ref{fig:umap_pgd}) overlays PGD 
-     adversarial examples, and the right panel (\ref{fig:umap_additional_adv}) displays additional adversarial examples for comparison.}
+     The left panel (\ref{fig:umap_original}) shows the natural clustering of MNIST digits, and the right panel panel (\ref{fig:umap_pgd}) overlays PGD 
+     adversarial examples.}
     \label{fig:umap}
 \end{figure*}
 
@@ -209,17 +212,34 @@ how the model's decision-making process is altered under various input condition
     \centering
     \begin{subfigure}{\columnwidth}
         \centering
-        \includegraphics[width=\linewidth]{paper_images/correctshap.png}
-        \caption{SHAP heatmap for correct classifications highlighting influential pixels for the model's accurate predictions.
-        Red indicates pixels increasing model confidence, and blue shows those decreasing it in correct classifications.}
+        \includegraphics[width=\linewidth]{paper_images/normal.png}
+        \caption{correct classifications}
         \label{fig:correct_shap}
     \end{subfigure}
     \par\medskip % Adds space between the two subfigures
     \begin{subfigure}{\columnwidth}
         \centering
-        \includegraphics[width=\linewidth]{paper_images/adversarial.png}
-        \caption{SHAP heatmap for adversarial samples showing how attacks distort the model's focus, leading to potential misclassifications.}
-        \label{fig:adversarial}
+        \includegraphics[width=\linewidth]{paper_images/pgd.png}
+        \caption{pdg sample}
+        \label{fig:pgd}
+    \end{subfigure}
+    \begin{subfigure}{\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{paper_images/fgsm.png}
+        \caption{fgsm sample}
+        \label{fig:fgsm}
+    \end{subfigure}
+    \begin{subfigure}{\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{paper_images/deep.png}
+        \caption{deep sample}
+        \label{fig:deep}
+    \end{subfigure}
+    \begin{subfigure}{\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{paper_images/basic.png}
+        \caption{basic sample}
+        \label{fig:basic}
     \end{subfigure}
     \caption{SHAP heatmaps contrast the pixel influence on the model's decisions between normal and adversarial examples, underlining the adversarial impact.}
     \label{fig:both_shap_figures}
@@ -280,14 +300,39 @@ To substantiate the distinction between critical and non-critical pixels identif
   findinßgs and confirming the reliability of our pixel importance assessments.
 
 
+    
     \begin{figure}[h]
         \centering
-        \includegraphics[width=\linewidth]{paper_images/criticalpixels.png}
+        \begin{subfigure}{\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{paper_images/fgsm_c.png}
+            \caption{FGSM}
+            \label{fig:fgsm_c}
+        \end{subfigure}
+        \par\medskip % Adds space between the two subfigures
+        \begin{subfigure}{\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{paper_images/deep_c.png}
+            \caption{Deepfool}
+            \label{fig:deep_c}
+        \end{subfigure}
+        \begin{subfigure}{\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{paper_images/basic_c.png}
+            \caption{Basic Iterative Method}
+            \label{fig:fgsm}
+        \end{subfigure}
+        \begin{subfigure}{\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{paper_images/pgd_c.png}
+            \caption{PGD}
+            \label{fig:deep}
+        \end{subfigure}
+     
         \caption{Visualization of critical pixels in adversarial samples.}
-        \label{fig:adversarial}
+        \label{fig:both_shap_figures}
     \end{figure}
     
-
     \begin{table*}[t]
         \centering
         \begin{tabular}{|p{3cm}|p{6cm}|}
@@ -345,7 +390,7 @@ This trend of decreasing robust accuracy is observed for all types of attacks.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\linewidth]{paper_images/robust.png}
-    \caption{Robust Accuracy for PGD, FGSM, BIM, Deepfool Attacks}
+    \caption{Relation between attacks (PGD, FGSM, BIM, Deepfool) success rate and Perturbation size}
     \label{fig:robust_accuracy_attacks}
 \end{figure}
 
@@ -511,23 +556,54 @@ In conclusion, the comprehensive evaluation of the model's robustness provided b
     
     \begin{figure}[h]
         \centering
-        \begin{subfigure}{.45\textwidth}
+        \begin{subfigure}{.25\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{paper_images/bar_chart.png}
-            \caption{Comparison of Mean SHAP Values. The bar chart illustrates a comparison between the mean SHAP values for 'Critical' and 'Non-Critical' groups. Error bars represent standard deviations. This graph is essential for assessing the significance of the differences between these groups.}
-            \label{fig:bar_chart}
+            \includegraphics[width=\linewidth]{paper_images/Originalbar_chart.png}
+            \caption{Origianl image for 'Critical' and 'Non-Critical' groups}        
+        \end{subfigure}
+   
+        \begin{subfigure}{.25\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{paper_images/Detectionbar_chart.png}
+            \caption{'Critical' and 'Non-Critical' pixels for attack detecion groups}
+        \end{subfigure}\ 
+        \begin{subfigure}{.25\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{paper_images/Generationbar_chart.png}
+            \caption{'Critical' and 'Non-Critical' pixels for attack genration groups}     
+        \end{subfigure}
+        \label{fig:bar_chart}
+        \caption{The bar chart illustrates a comparison between the mean SHAP values  for 'Critical' and 'Non-Critical' groups. Error bars represent standard deviations. This graph is essential for assessing the significance of the differences between these groups. }
+    \end{figure}
+
+    \begin{figure}[h]
+        \centering
+     
+        \begin{subfigure}{\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{paper_images/Originalhistograms.png}
+            \caption{ Orginal image for both 'Critical' (in blue) and 'Non-Critical' (in green) groups.}
+           
+        \end{subfigure}
+        \par\medskip % Adds space between the two subfigures
+
+        \begin{subfigure}{\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{paper_images/Detectionhistograms.png}
+            \caption{'Critical' (in blue) and 'Non-Critical' (in green) pixels for attack detecion group.}
         \end{subfigure}
         \par\medskip % Adds space between the two subfigures
         \begin{subfigure}{\columnwidth}
             \centering
-            \includegraphics[width=\linewidth]{paper_images/histograms.png}
-            \caption{Histograms of SHAP Values. In the left subplot, the histogram depicts the distribution of SHAP values for both 'Critical' (in blue) and 'Non-Critical' (in green) groups. The right subplot zooms in on the 'Critical' group's SHAP values. These histograms provide insights into the data distribution and its impact on statistical tests}
-            \label{fig:histograms}
+            \includegraphics[width=\linewidth]{paper_images/Generationhistograms.png}
+            \caption{Adversarial image for both 'Critical' (in blue) and 'Non-Critical' (in green) pixels for attack genration groups.}
+          
         \end{subfigure}
-        \caption{ SHAP values into critical and non-critical groups}
+        \label{fig:histograms}
+        \caption{ In the left subplot, the histogram depicts the distribution of SHAP values of Adversarial image for both 'Critical' (in blue) and 'Non-Critical' (in green) groups. The right subplot zooms in on the 'Critical' group's SHAP values. These histograms provide insights into the data distribution and its impact on statistical tests}
     \end{figure}
 
-
+    
 % \section{Future Directions}
 
 % By leveraging our pixel-level analysis methodology, we have identified several critical areas for future research that can extend and enhance our understanding of AI's robustness and interpretability:
@@ -584,22 +660,7 @@ This research conducted a thorough investigation into adversarial attack simulat
 
 
 
-    \bibitem{Akhtar}
-    Akhtar, N., Mian, A. (2018). Threat of Adversarial Attacks on Deep Learning in Computer Vision: A Survey. IEEE Access. Link
-    \bibitem{Dong}
-    Dong, Y., Liao, F., Pang, T., Su, H., Zhu, J., Hu, X.,  Li, J. (2017). Boosting Adversarial Attacks with Momentum. IEEE/CVF Conference on Computer Vision and Pattern Recognition. Link
-    \bibitem{Lee}
-    Lee, K., Lee, K., Lee, H.,  Shin, J. (2018). A Simple Unified Framework for Detecting Out-of-Distribution Samples and Adversarial Attacks. ArXiv. Link
-    \bibitem{Morris}
-    Morris, J. X., Lifland, E., Yoo, J. Y., Grigsby, J., Jin, D.,  Qi, Y. (2020). TextAttack: A Framework for Adversarial Attacks, Data Augmentation, and Adversarial Training in NLP. Conference on Empirical Methods in Natural Language Processing. Link
-    \bibitem{Croce}
-    Croce, F., Hein, M. (2020). Reliable evaluation of adversarial robustness with an ensemble of diverse parameter-free attacks. International Conference on Machine Learning. Link
-    \bibitem{Zhou}
-    Zhou, X., Liang, W., Li, W., Yan, K., Shimizu, S.,  Wang, K. (2022). Hierarchical Adversarial Attacks Against Graph-Neural-Network-Based IoT Network Intrusion Detection System. IEEE Internet of Things Journal. Link
-    \bibitem{Entezari}
-    Entezari, N., Al-Sayouri, S. A., Darvishzadeh, A.,  Papalexakis, E. (2020). All You Need Is Low (Rank): Defending Against Adversarial Attacks on Graphs. Web Search and Data Mining. Link
-
-\bibitem{McInnes.}
+    \bibitem{McInnes.}
 	L. McInnes, J. Healy, and J. Melville, “UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction,” ArXiv e- prints, Feb. 2018.
    
 

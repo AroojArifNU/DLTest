@@ -14,61 +14,75 @@
 \providecommand \oddpage@label [2]{}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {II}Contributions of the Paper}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {III}Proposed Methodology:}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {IV}Stage 1: Data and Model Preparation}{2}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of the Proposed Model}}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}Related Work}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Proposed Methodology:}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {V}Stage 1: Data and Model Preparation}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Stage 2: Adversarial Attack Simulation}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Inclusion of the UMAP visualization:}{3}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of the Proposed Model}}{4}{}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{overview}{{1}{3}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Stage 2: Adversarial Attack Simulation}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Inclusion of the UMAP visualization:}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Stage 3: Extraction of XAI Signatures}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Exploring Model Decision-Making}{3}{}\protected@file@percent }
+\newlabel{overview}{{1}{4}{}{}{}}
 \newlabel{fig:umap_original}{{2a}{4}{}{}{}}
 \newlabel{sub@fig:umap_original}{{a}{4}{}{}{}}
 \newlabel{fig:umap_pgd}{{2b}{4}{}{}{}}
 \newlabel{sub@fig:umap_pgd}{{b}{4}{}{}{}}
-\newlabel{fig:umap_additional_adv}{{2c}{4}{}{}{}}
-\newlabel{sub@fig:umap_additional_adv}{{c}{4}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces UMAP projections illustrating the separation of digit classes within the MNIST dataset and the integration of adversarial examples. The left panel (\ref {fig:umap_original}) shows the natural clustering of MNIST digits, the middle panel (\ref {fig:umap_pgd}) overlays PGD adversarial examples, and the right panel (\ref {fig:umap_additional_adv}) displays additional adversarial examples for comparison.}}{4}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces UMAP projections illustrating the separation of digit classes within the MNIST dataset and the integration of adversarial examples. The left panel (\ref {fig:umap_original}) shows the natural clustering of MNIST digits, and the right panel panel (\ref {fig:umap_pgd}) overlays PGD adversarial examples.}}{4}{}\protected@file@percent }
 \newlabel{fig:umap}{{2}{4}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {VII}Stage 4: Identification and Validation of Critical Pixels}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-A}}SHAP Values for Critical Pixel Analysis}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-A}1}Attack Generation Pixel Analysis}{4}{}\protected@file@percent }
-\newlabel{fig:correct_shap}{{3a}{4}{}{}{}}
-\newlabel{sub@fig:correct_shap}{{a}{4}{}{}{}}
-\newlabel{fig:adversarial}{{3b}{4}{}{}{}}
-\newlabel{sub@fig:adversarial}{{b}{4}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces SHAP heatmaps contrast the pixel influence on the model's decisions between normal and adversarial examples, underlining the adversarial impact.}}{4}{}\protected@file@percent }
-\newlabel{fig:both_shap_figures}{{3}{4}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-A}2}Attack Detection Pixel Analysis}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Stage 3: Extraction of XAI Signatures}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-A}}Exploring Model Decision-Making}{4}{}\protected@file@percent }
+\newlabel{fig:correct_shap}{{3a}{5}{}{}{}}
+\newlabel{sub@fig:correct_shap}{{a}{5}{}{}{}}
+\newlabel{fig:pgd}{{3b}{5}{}{}{}}
+\newlabel{sub@fig:pgd}{{b}{5}{}{}{}}
+\newlabel{fig:fgsm}{{3c}{5}{}{}{}}
+\newlabel{sub@fig:fgsm}{{c}{5}{}{}{}}
+\newlabel{fig:deep}{{3d}{5}{}{}{}}
+\newlabel{sub@fig:deep}{{d}{5}{}{}{}}
+\newlabel{fig:basic}{{3e}{5}{}{}{}}
+\newlabel{sub@fig:basic}{{e}{5}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces SHAP heatmaps contrast the pixel influence on the model's decisions between normal and adversarial examples, underlining the adversarial impact.}}{5}{}\protected@file@percent }
+\newlabel{fig:both_shap_figures}{{3}{5}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Stage 4: Identification and Validation of Critical Pixels}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-A}}SHAP Values for Critical Pixel Analysis}{5}{}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Key Differences Between Attack Generation and Detection Using SHAP Values}}{5}{}\protected@file@percent }
 \newlabel{table:attack-gen-det}{{I}{5}{}{}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-A}3}Original Image Pixel Importance}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-B}}Statistical Validation of Critical Pixels}{5}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Visualization of critical pixels in adversarial samples.}}{5}{}\protected@file@percent }
-\newlabel{fig:adversarial}{{4}{5}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {VIII}Case Studies:}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-A}}Case Study 1: Evaluating Model Robustness Against Different Adversarial Attacks}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-B}}Critical Analysis of Class-Specific Metrics}{5}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Interpretations of SHAP Values Based on Proximity to Zero}}{6}{}\protected@file@percent }
-\newlabel{table:shap-value-interpretation}{{II}{6}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Robust Accuracy for PGD, FGSM, BIM, Deepfool Attacks}}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VIII-A}1}Attack Generation Pixel Analysis}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VIII-A}2}Attack Detection Pixel Analysis}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VIII-A}3}Original Image Pixel Importance}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-B}}Statistical Validation of Critical Pixels}{6}{}\protected@file@percent }
+\newlabel{fig:fgsm_c}{{4a}{6}{}{}{}}
+\newlabel{sub@fig:fgsm_c}{{a}{6}{}{}{}}
+\newlabel{fig:deep_c}{{4b}{6}{}{}{}}
+\newlabel{sub@fig:deep_c}{{b}{6}{}{}{}}
+\newlabel{fig:fgsm}{{4c}{6}{}{}{}}
+\newlabel{sub@fig:fgsm}{{c}{6}{}{}{}}
+\newlabel{fig:deep}{{4d}{6}{}{}{}}
+\newlabel{sub@fig:deep}{{d}{6}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Visualization of critical pixels in adversarial samples.}}{6}{}\protected@file@percent }
+\newlabel{fig:both_shap_figures}{{4}{6}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IX}Case Studies:}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IX-A}}Case Study 1: Evaluating Model Robustness Against Different Adversarial Attacks}{6}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Relation between attacks (PGD, FGSM, BIM, Deepfool) success rate and Perturbation size}}{6}{}\protected@file@percent }
 \newlabel{fig:robust_accuracy_attacks}{{5}{6}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Summary of Total Misclassifications for Various Adversarial Attacks}}{6}{}\protected@file@percent }
-\newlabel{tab:misclassifications}{{III}{6}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Class-Specific Performance Metrics under Adversarial Attacks: This table delineates the F1-Score, Precision, and Recall for each MNIST class (0 through 9) across a spectrum of adversarial attacks at varying levels of epsilon perturbations. The metrics provide insights into the differential impact of each attack (BIM, Deepfool, FGSM, and PGD) on the classifier's ability to robustly identify each digit, underscoring the nuanced vulnerabilities and resilience of the model on a class-by-class basis.}}{7}{}\protected@file@percent }
-\newlabel{table2}{{IV}{7}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-C}}Pixel-Level Analysis for Enhancing AI Security Against Adversarial Attacks}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VIII-C}1}Analysis of Individual Pixels}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VIII-C}2}Aggregate Analysis across Multiple Examples}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VIII-C}3}Implications of the Findings}{7}{}\protected@file@percent }
-\newlabel{fig:individual_analysis}{{6a}{7}{}{}{}}
-\newlabel{sub@fig:individual_analysis}{{a}{7}{}{}{}}
-\newlabel{fig:aggregate_analysis}{{6b}{7}{}{}{}}
-\newlabel{sub@fig:aggregate_analysis}{{b}{7}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Comparative Visualization of Individual and Aggregate Pixel Analysis.}}{7}{}\protected@file@percent }
-\newlabel{fig:pixel_analysis}{{6}{7}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-D}}Case Study 3: Validation of Identified Critical Pixels}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IX-B}}Critical Analysis of Class-Specific Metrics}{6}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Interpretations of SHAP Values Based on Proximity to Zero}}{7}{}\protected@file@percent }
+\newlabel{table:shap-value-interpretation}{{II}{7}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Summary of Total Misclassifications for Various Adversarial Attacks}}{7}{}\protected@file@percent }
+\newlabel{tab:misclassifications}{{III}{7}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IX-C}}Pixel-Level Analysis for Enhancing AI Security Against Adversarial Attacks}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IX-C}1}Analysis of Individual Pixels}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IX-C}2}Aggregate Analysis across Multiple Examples}{7}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Class-Specific Performance Metrics under Adversarial Attacks: This table delineates the F1-Score, Precision, and Recall for each MNIST class (0 through 9) across a spectrum of adversarial attacks at varying levels of epsilon perturbations. The metrics provide insights into the differential impact of each attack (BIM, Deepfool, FGSM, and PGD) on the classifier's ability to robustly identify each digit, underscoring the nuanced vulnerabilities and resilience of the model on a class-by-class basis.}}{8}{}\protected@file@percent }
+\newlabel{table2}{{IV}{8}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IX-C}3}Implications of the Findings}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IX-D}}Case Study 3: Validation of Identified Critical Pixels}{8}{}\protected@file@percent }
+\newlabel{fig:individual_analysis}{{6a}{8}{}{}{}}
+\newlabel{sub@fig:individual_analysis}{{a}{8}{}{}{}}
+\newlabel{fig:aggregate_analysis}{{6b}{8}{}{}{}}
+\newlabel{sub@fig:aggregate_analysis}{{b}{8}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Comparative Visualization of Individual and Aggregate Pixel Analysis.}}{8}{}\protected@file@percent }
+\newlabel{fig:pixel_analysis}{{6}{8}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {X}Conclusion:}{8}{}\protected@file@percent }
 \bibcite{Saad}{1}
 \bibcite{Md}{2}
 \bibcite{Numair}{3}
@@ -76,23 +90,14 @@
 \bibcite{Samuel}{5}
 \bibcite{Muhammad}{6}
 \bibcite{Mohammed}{7}
+\newlabel{fig:bar_chart}{{\caption@xref {fig:bar_chart}{ on input line 575}}{9}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The bar chart illustrates a comparison between the mean SHAP values for 'Critical' and 'Non-Critical' groups. Error bars represent standard deviations. This graph is essential for assessing the significance of the differences between these groups. }}{9}{}\protected@file@percent }
+\newlabel{fig:histograms}{{\caption@xref {fig:histograms}{ on input line 602}}{9}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  In the left subplot, the histogram depicts the distribution of SHAP values of Adversarial image for both 'Critical' (in blue) and 'Non-Critical' (in green) groups. The right subplot zooms in on the 'Critical' group's SHAP values. These histograms provide insights into the data distribution and its impact on statistical tests}}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{9}{}\protected@file@percent }
 \bibcite{Aha}{8}
 \bibcite{Tamer}{9}
 \bibcite{Tianhang}{10}
 \bibcite{Wei}{11}
-\bibcite{Akhtar}{12}
-\bibcite{Dong}{13}
-\@writefile{toc}{\contentsline {section}{\numberline {IX}Conclusion:}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{References}{8}{}\protected@file@percent }
-\newlabel{fig:bar_chart}{{7a}{8}{}{}{}}
-\newlabel{sub@fig:bar_chart}{{a}{8}{}{}{}}
-\newlabel{fig:histograms}{{7b}{8}{}{}{}}
-\newlabel{sub@fig:histograms}{{b}{8}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  SHAP values into critical and non-critical groups}}{8}{}\protected@file@percent }
-\bibcite{Lee}{14}
-\bibcite{Morris}{15}
-\bibcite{Croce}{16}
-\bibcite{Zhou}{17}
-\bibcite{Entezari}{18}
-\bibcite{McInnes.}{19}
-\gdef \@abspage@last{9}
+\bibcite{McInnes.}{12}
+\gdef \@abspage@last{10}

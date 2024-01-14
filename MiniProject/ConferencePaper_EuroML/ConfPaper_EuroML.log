@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.6)  13 JAN 2024 23:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.6)  14 JAN 2024 23:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -554,7 +554,19 @@ Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count332
 ) (./ConfPaper_EuroML.aux
 
-LaTeX Warning: Label `fig:adversarial' multiply defined.
+LaTeX Warning: Label `fig:fgsm' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:fgsm' multiply defined.
+
+
+LaTeX Warning: Label `fig:deep' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:deep' multiply defined.
+
+
+LaTeX Warning: Label `fig:both_shap_figures' multiply defined.
 
 )
 \openout1 = `ConfPaper_EuroML.aux'.
@@ -657,145 +669,235 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ] (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
-)
+) [2]
 
 pdfTeX warning: pdflatex (file ./paper_images/papermodel_v2.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<paper_images/papermodel_v2.pdf, id=9, 1184.17406pt x 494.59781pt>
+<paper_images/papermodel_v2.pdf, id=13, 1184.17406pt x 494.59781pt>
 File: paper_images/papermodel_v2.pdf Graphic file (type pdf)
 <use paper_images/papermodel_v2.pdf>
-Package pdftex.def Info: paper_images/papermodel_v2.pdf  used on input line 86.
+Package pdftex.def Info: paper_images/papermodel_v2.pdf  used on input line 96.
 (pdftex.def)             Requested size: 452.9679pt x 189.19435pt.
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 128--130
+
+Underfull \hbox (badness 10000) in paragraph at lines 138--140
 []\OT1/ptm/b/n/10 (+20) Lower Ep-silon Val-ues ($\OML/cmm/m/it/10 " \OT1/cmr/m/n/10 =
  []
 
 
-Underfull \hbox (badness 5696) in paragraph at lines 128--130
+Underfull \hbox (badness 5696) in paragraph at lines 138--140
 \OT1/ptm/m/n/10 (+20) ef-fec-tive per-tur-ba-tions, test-ing the model's
  []
 
-<paper_images/UMAP_mnist.png, id=14, 389.455pt x 345.29pt>
-File: paper_images/UMAP_mnist.png Graphic file (type png)
-<use paper_images/UMAP_mnist.png>
-Package pdftex.def Info: paper_images/UMAP_mnist.png  used on input line 149.
-(pdftex.def)             Requested size: 140.41893pt x 124.49397pt.
-<paper_images/UMAP_adv.png, id=16, 428.60126pt x 349.305pt>
-File: paper_images/UMAP_adv.png Graphic file (type png)
-<use paper_images/UMAP_adv.png>
-Package pdftex.def Info: paper_images/UMAP_adv.png  used on input line 156.
-(pdftex.def)             Requested size: 154.00742pt x 125.51518pt.
-<paper_images/UMAP_adversary.png, id=17, 555.07375pt x 559.08875pt>
-File: paper_images/UMAP_adversary.png Graphic file (type png)
-<use paper_images/UMAP_adversary.png>
-Package pdftex.def Info: paper_images/UMAP_adversary.png  used on input line 163.
-(pdftex.def)             Requested size: 126.83044pt x 127.74313pt.
-[3 <./paper_images/papermodel_v2.pdf>]
-<paper_images/correctshap.png, id=58, 1134.639pt x 486.3771pt>
-File: paper_images/correctshap.png Graphic file (type png)
-<use paper_images/correctshap.png>
-Package pdftex.def Info: paper_images/correctshap.png  used on input line 212.
-(pdftex.def)             Requested size: 220.48395pt x 94.5129pt.
-<paper_images/adversarial.png, id=59, 834.11626pt x 355.3275pt>
-File: paper_images/adversarial.png Graphic file (type png)
-<use paper_images/adversarial.png>
-Package pdftex.def Info: paper_images/adversarial.png  used on input line 220.
-(pdftex.def)             Requested size: 220.48395pt x 93.92276pt.
+<paper_images/1.png, id=14, 578.16pt x 578.16pt>
+File: paper_images/1.png Graphic file (type png)
+<use paper_images/1.png>
+Package pdftex.def Info: paper_images/1.png  used on input line 159.
+(pdftex.def)             Requested size: 226.48395pt x 226.47838pt.
+<paper_images/2.png, id=16, 578.16pt x 578.16pt>
+File: paper_images/2.png Graphic file (type png)
+<use paper_images/2.png>
+Package pdftex.def Info: paper_images/2.png  used on input line 166.
+(pdftex.def)             Requested size: 226.48395pt x 226.47838pt.
+[3]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
+ [4 <./paper_images/papermodel_v2.pdf> <./paper_images/1.png> <./paper_images/2.png>]
+<paper_images/normal.png, id=62, 1053.9375pt x 145.54375pt>
+File: paper_images/normal.png Graphic file (type png)
+<use paper_images/normal.png>
+Package pdftex.def Info: paper_images/normal.png  used on input line 215.
+(pdftex.def)             Requested size: 220.48395pt x 30.44737pt.
+<paper_images/pgd.png, id=63, 1053.9375pt x 145.54375pt>
+File: paper_images/pgd.png Graphic file (type png)
+<use paper_images/pgd.png>
+Package pdftex.def Info: paper_images/pgd.png  used on input line 222.
+(pdftex.def)             Requested size: 220.48395pt x 30.44737pt.
+<paper_images/fgsm.png, id=64, 1066.98625pt x 145.54375pt>
+File: paper_images/fgsm.png Graphic file (type png)
+<use paper_images/fgsm.png>
+Package pdftex.def Info: paper_images/fgsm.png  used on input line 228.
+(pdftex.def)             Requested size: 220.48395pt x 30.07428pt.
+<paper_images/deep.png, id=65, 1066.98625pt x 145.54375pt>
+File: paper_images/deep.png Graphic file (type png)
+<use paper_images/deep.png>
+Package pdftex.def Info: paper_images/deep.png  used on input line 234.
+(pdftex.def)             Requested size: 220.48395pt x 30.07428pt.
+<paper_images/basic.png, id=66, 1066.98625pt x 145.54375pt>
+File: paper_images/basic.png Graphic file (type png)
+<use paper_images/basic.png>
+Package pdftex.def Info: paper_images/basic.png  used on input line 240.
+(pdftex.def)             Requested size: 220.48395pt x 30.07428pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 234--235
+Underfull \hbox (badness 10000) in paragraph at lines 254--255
 []|\OT1/ptm/m/n/8 (+20) Recognize changes
  []
 
 
-Underfull \hbox (badness 3291) in paragraph at lines 236--237
+Underfull \hbox (badness 3291) in paragraph at lines 256--257
 \OT1/ptm/m/n/8 (+20) tion dif-fer-ences be-
  []
 
 
-Overfull \hbox (1.31082pt too wide) in paragraph at lines 238--238
+Overfull \hbox (1.31082pt too wide) in paragraph at lines 258--258
 []|\OT1/ptm/b/n/8 (-20) Methodology| 
  []
 
 
-Underfull \hbox (badness 4621) in paragraph at lines 239--239
+Underfull \hbox (badness 4621) in paragraph at lines 259--259
 []|\OT1/ptm/b/n/8 (+20) SHAP Val-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 239--240
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
 []|\OT1/ptm/m/n/8 (+20) The dif-fer-ence
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 239--240
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
 \OT1/ptm/m/n/8 (+20) in SHAP val-ues
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--242
+Underfull \hbox (badness 10000) in paragraph at lines 262--262
 []|\OT1/ptm/b/n/8 (+20) Insight
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--242
+Underfull \hbox (badness 10000) in paragraph at lines 262--262
 []|\OT1/ptm/m/n/8 (+20) Reveals decision-
  []
 
 
-Overfull \hbox (2.05891pt too wide) in paragraph at lines 231--245
+Overfull \hbox (2.05891pt too wide) in paragraph at lines 251--265
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4 <./paper_images/UMAP_mnist.png> <./paper_images/UMAP_adv.png> <./paper_images/UMAP_adversary.png> <./paper_images/correctshap.png> <./paper_images/adversarial.png>]
-<paper_images/criticalpixels.png, id=68, 598.235pt x 196.735pt>
-File: paper_images/criticalpixels.png Graphic file (type png)
-<use paper_images/criticalpixels.png>
-Package pdftex.def Info: paper_images/criticalpixels.png  used on input line 285.
-(pdftex.def)             Requested size: 220.48395pt x 72.50862pt.
-<paper_images/robust.png, id=69, 867.24pt x 650.43pt>
+[5 <./paper_images/normal.png> <./paper_images/pgd.png> <./paper_images/fgsm.png> <./paper_images/deep.png> <./paper_images/basic.png>]
+<paper_images/fgsm_c.png, id=75, 804.00375pt x 205.76875pt>
+File: paper_images/fgsm_c.png Graphic file (type png)
+<use paper_images/fgsm_c.png>
+Package pdftex.def Info: paper_images/fgsm_c.png  used on input line 308.
+(pdftex.def)             Requested size: 220.48395pt x 56.42801pt.
+<paper_images/deep_c.png, id=76, 804.00375pt x 205.76875pt>
+File: paper_images/deep_c.png Graphic file (type png)
+<use paper_images/deep_c.png>
+Package pdftex.def Info: paper_images/deep_c.png  used on input line 315.
+(pdftex.def)             Requested size: 220.48395pt x 56.42801pt.
+<paper_images/basic_c.png, id=77, 804.00375pt x 205.76875pt>
+File: paper_images/basic_c.png Graphic file (type png)
+<use paper_images/basic_c.png>
+Package pdftex.def Info: paper_images/basic_c.png  used on input line 321.
+(pdftex.def)             Requested size: 220.48395pt x 56.42801pt.
+<paper_images/pgd_c.png, id=78, 804.00375pt x 205.76875pt>
+File: paper_images/pgd_c.png Graphic file (type png)
+<use paper_images/pgd_c.png>
+Package pdftex.def Info: paper_images/pgd_c.png  used on input line 327.
+(pdftex.def)             Requested size: 220.48395pt x 56.42801pt.
+<paper_images/robust.png, id=79, 867.24pt x 650.43pt>
 File: paper_images/robust.png Graphic file (type png)
 <use paper_images/robust.png>
-Package pdftex.def Info: paper_images/robust.png  used on input line 347.
+Package pdftex.def Info: paper_images/robust.png  used on input line 392.
 (pdftex.def)             Requested size: 220.48395pt x 165.35625pt.
 
-Overfull \hbox (1.56367pt too wide) in paragraph at lines 357--366
+Overfull \hbox (1.56367pt too wide) in paragraph at lines 402--411
  [][] 
  []
 
-[5 <./paper_images/criticalpixels.png>] [6 <./paper_images/robust.png>]
-<paper_images/individual.png, id=79, 634.37pt x 163.61125pt>
+[6 <./paper_images/fgsm_c.png> <./paper_images/deep_c.png> <./paper_images/basic_c.png> <./paper_images/pgd_c.png> <./paper_images/robust.png>] [7]
+<paper_images/individual.png, id=93, 634.37pt x 163.61125pt>
 File: paper_images/individual.png Graphic file (type png)
 <use paper_images/individual.png>
-Package pdftex.def Info: paper_images/individual.png  used on input line 489.
+Package pdftex.def Info: paper_images/individual.png  used on input line 534.
 (pdftex.def)             Requested size: 203.83417pt x 52.57137pt.
-<paper_images/aggregate.png, id=80, 634.37pt x 163.61125pt>
+<paper_images/aggregate.png, id=94, 634.37pt x 163.61125pt>
 File: paper_images/aggregate.png Graphic file (type png)
 <use paper_images/aggregate.png>
-Package pdftex.def Info: paper_images/aggregate.png  used on input line 496.
+Package pdftex.def Info: paper_images/aggregate.png  used on input line 541.
 (pdftex.def)             Requested size: 203.83417pt x 52.57137pt.
- [7 <./paper_images/individual.png> <./paper_images/aggregate.png>]
-<paper_images/bar_chart.png, id=87, 258.0039pt x 184.5294pt>
-File: paper_images/bar_chart.png Graphic file (type png)
-<use paper_images/bar_chart.png>
-Package pdftex.def Info: paper_images/bar_chart.png  used on input line 516.
-(pdftex.def)             Requested size: 203.83417pt x 145.78789pt.
-<paper_images/histograms.png, id=88, 499.3857pt x 174.1707pt>
-File: paper_images/histograms.png Graphic file (type png)
-<use paper_images/histograms.png>
-Package pdftex.def Info: paper_images/histograms.png  used on input line 523.
-(pdftex.def)             Requested size: 220.48395pt x 76.89844pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8 <./paper_images/bar_chart.png> <./paper_images/histograms.png>]
+
+Package caption Warning: \label without proper reference on input line 578.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:bar_chart' on page 8 undefined on input line 553.
+
+
+Package caption Warning: \label without proper reference on input line 605.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:histograms' on page 8 undefined on input line 554.
+
+
+Package caption Warning: \label without proper reference on input line 578.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:bar_chart' on page 8 undefined on input line 555.
+
+
+Package caption Warning: \label without proper reference on input line 605.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:histograms' on page 8 undefined on input line 555.
+
+<paper_images/Originalbar_chart.png, id=95, 260.172pt x 185.7339pt>
+File: paper_images/Originalbar_chart.png Graphic file (type png)
+<use paper_images/Originalbar_chart.png>
+Package pdftex.def Info: paper_images/Originalbar_chart.png  used on input line 561.
+(pdftex.def)             Requested size: 113.24197pt x 80.84177pt.
+<paper_images/Detectionbar_chart.png, id=96, 275.1078pt x 185.7339pt>
+File: paper_images/Detectionbar_chart.png Graphic file (type png)
+<use paper_images/Detectionbar_chart.png>
+Package pdftex.def Info: paper_images/Detectionbar_chart.png  used on input line 567.
+(pdftex.def)             Requested size: 113.24197pt x 76.45464pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 568--568
+\OT1/ptm/m/n/9 (+20) pix-els for at-tack de-te-cion
+ []
+
+<paper_images/Generationbar_chart.png, id=97, 266.6763pt x 185.7339pt>
+File: paper_images/Generationbar_chart.png Graphic file (type png)
+<use paper_images/Generationbar_chart.png>
+Package pdftex.def Info: paper_images/Generationbar_chart.png  used on input line 572.
+(pdftex.def)             Requested size: 113.24197pt x 78.86926pt.
+
+Underfull \hbox (badness 4765) in paragraph at lines 573--573
+\OT1/ptm/m/n/9 (+20) pix-els for at-tack gen-ra-tion
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<paper_images/Originalhistograms.png, id=98, 498.1812pt x 173.448pt>
+File: paper_images/Originalhistograms.png Graphic file (type png)
+<use paper_images/Originalhistograms.png>
+Package pdftex.def Info: paper_images/Originalhistograms.png  used on input line 584.
+(pdftex.def)             Requested size: 220.48395pt x 76.76462pt.
+<paper_images/Detectionhistograms.png, id=99, 498.4221pt x 173.448pt>
+File: paper_images/Detectionhistograms.png Graphic file (type png)
+<use paper_images/Detectionhistograms.png>
+Package pdftex.def Info: paper_images/Detectionhistograms.png  used on input line 592.
+(pdftex.def)             Requested size: 220.48395pt x 76.72757pt.
+<paper_images/Generationhistograms.png, id=100, 498.663pt x 173.448pt>
+File: paper_images/Generationhistograms.png Graphic file (type png)
+<use paper_images/Generationhistograms.png>
+Package pdftex.def Info: paper_images/Generationhistograms.png  used on input line 598.
+(pdftex.def)             Requested size: 220.48395pt x 76.69052pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8 <./paper_images/individual.png> <./paper_images/aggregate.png>]
+Underfull \vbox (badness 4467) has occurred while \output is active []
+
+ [9 <./paper_images/Originalbar_chart.png> <./paper_images/Detectionbar_chart.png> <./paper_images/Generationbar_chart.png> <./paper_images/Originalhistograms.png> <./paper_images/Detectionhistograms.png> <./paper_images/Generationhistograms.png>]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -807,7 +909,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[9
+[10
 
 ] (./ConfPaper_EuroML.aux)
  ***********
@@ -816,22 +918,25 @@ L3 programming layer <2023-12-11>
  ***********
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 11588 strings out of 474181
- 198802 string characters out of 5745948
- 2050457 words of memory out of 5000000
- 33439 multiletter control sequences out of 15000+600000
- 605727 words of font info for 292 fonts, out of 8000000 for 9000
+ 11641 strings out of 474181
+ 200696 string characters out of 5745948
+ 2054457 words of memory out of 5000000
+ 33501 multiletter control sequences out of 15000+600000
+ 605373 words of font info for 286 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  79i,13n,93p,1917b,502s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ConfPaper_EuroML.pdf (9 pages, 3551309 bytes).
+Output written on ConfPaper_EuroML.pdf (10 pages, 1949572 bytes).
 PDF statistics:
- 143 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 164 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 45629 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 45674 words of extra memory for PDF output out of 51595 (max. 10000000)
 
