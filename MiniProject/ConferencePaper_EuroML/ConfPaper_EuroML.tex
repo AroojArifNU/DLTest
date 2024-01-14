@@ -37,7 +37,7 @@
 \usepackage{xcolor}
 \usepackage{subcaption}
 
-\title{Analyzing Adversarial Vulnerabilities in Deep Learning: Unveiling Shapley Insights for Fine-Grained Pixel Analysis}
+\title{Uncovering Adversarial Vulnerabilities in Deep Learning: A Shapley Value-Based Approach for Detailed Pixel Analysis}
 \author{Arooj Arif}
 \date{\today} % You can also specify a date manually
 
@@ -93,7 +93,7 @@ Against this backdrop, your paper, "Analyzing Adversarial Vulnerabilities in Dee
 
 \begin{figure*}[!ht]
     \centering
-    \includegraphics[width=1\textwidth]{paper_images/papermodel_v2.pdf}
+    \includegraphics[width=1\textwidth]{paper_images/model.pdf}
     \caption{Overview of the Proposed Model}
     \label{overview}
 \end{figure*}
@@ -554,28 +554,28 @@ In conclusion, the comprehensive evaluation of the model's robustness provided b
     Figure \ref{fig:histograms} shows histograms of SHAP values that provide a closer look at the distribution of SHAP values for both 'Critical' and 'Non-Critical' pixels. These histograms help us to understand the data distribution and its impact on statistical tests.    
     The validation of our study primarily depends on the comparison of two groups using statistical analysis. We used the two-sample t-test, a well-known method for identifying significant differences between two sets of data. Our results were significant with a computed t-statistic of 11.5968 and an extremely low p-value of $1.34 \times 10^{-30}$. Figures \ref{fig:bar_chart} and \ref{fig:histograms} show the statistical indicators that confirm the crucial role of critical pixels in our model's behavior. These pixels influence both the generation and detection of adversarial attacks.
     
-    \begin{figure}[h]
+    \begin{figure*}[ht!]
         \centering
-        \begin{subfigure}{.25\textwidth}
+        \begin{subfigure}{.30\textwidth}
             \centering
             \includegraphics[width=\linewidth]{paper_images/Originalbar_chart.png}
-            \caption{Origianl image for 'Critical' and 'Non-Critical' groups}        
+            \caption{Original image}
         \end{subfigure}
-   
-        \begin{subfigure}{.25\textwidth}
+        \begin{subfigure}{.32\textwidth}
             \centering
             \includegraphics[width=\linewidth]{paper_images/Detectionbar_chart.png}
-            \caption{'Critical' and 'Non-Critical' pixels for attack detecion groups}
-        \end{subfigure}\ 
-        \begin{subfigure}{.25\textwidth}
+            \caption{Attack detection groups}
+        \end{subfigure}
+        \begin{subfigure}{.31\textwidth}
             \centering
             \includegraphics[width=\linewidth]{paper_images/Generationbar_chart.png}
-            \caption{'Critical' and 'Non-Critical' pixels for attack genration groups}     
+            \caption{Attack generation groups}
         \end{subfigure}
+        \caption{The bar chart illustrates a comparison between the mean SHAP values for 'Critical' and 'Non-Critical' groups. Error bars represent standard deviations. This graph is essential for assessing the significance of the differences between these groups.}
         \label{fig:bar_chart}
-        \caption{The bar chart illustrates a comparison between the mean SHAP values  for 'Critical' and 'Non-Critical' groups. Error bars represent standard deviations. This graph is essential for assessing the significance of the differences between these groups. }
-    \end{figure}
-
+    \end{figure*}
+    
+    
     \begin{figure}[h]
         \centering
      
