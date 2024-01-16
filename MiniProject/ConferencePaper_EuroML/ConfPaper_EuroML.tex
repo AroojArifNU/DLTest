@@ -5,7 +5,7 @@
 
 % For better formatting of lists
 \usepackage{enumitem}
-
+\usepackage{amssymb}
 % Optional for improved typography
 \usepackage{microtype}
 \usepackage[margin=1in]{geometry} % Adjust margins as needed
@@ -78,16 +78,127 @@ This paper introduces several significant contributions to the field of AI, part
 
 \end{itemize}
 
-\section{Related Work}
-In the evolving landscape of Explainable Artificial Intelligence (XAI) and its application in mitigating adversarial attacks on AI models, a collective review of prominent research reveals a tapestry of distinct methodologies, objectives, and contributions. These studies not only underscore the diversity in approaches but also highlight the dynamic nature of the field, each carving out its unique niche.
+\section{Background and Related Work}
 
-The study "Explainable AI for Inspecting Adversarial Attacks on DNNs" offers a comprehensive analysis of the impact of adversarial attacks on deep neural networks, focusing on enhancing the overall interpretability of models. It contrasts with "Attack-agnostic Adversarial Detection on Medical Data Using Explainable ML," which zeroes in on the medical domain, combining advanced machine learning techniques with explainability to detect adversarial threats. While both employ XAI, their domain-specific applications showcase the versatility of explainable techniques in different contexts.
+\subsection{Model Architecture and Output Formulation of Deep Neural Networks}
 
-"PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning," on the other hand, diverges by exploring the generation of texture-based adversarial attacks. This study delves into a more focused aspect of adversarial methodology, utilizing reinforcement learning for attack generation, thus contributing a new dimension to understanding and crafting adversarial strategies.
 
-"Deep Learning under Privileged Information Using Heteroscedastic Dropout" ventures into another specialized domain, addressing the challenges of handling privileged information in deep learning models. This study's innovative application of heteroscedastic dropout highlights the ongoing efforts to adapt AI models to complex, real-world data scenarios.
 
-Against this backdrop, your paper, "Analyzing Adversarial Vulnerabilities in Deep Learning: Unveiling Shapley Insights for Fine-Grained Pixel Analysis," emerges with a unique proposition. It delves deeper into the granularity of image data, employing SHAP analysis to unravel the influence of individual pixels in adversarial contexts. This microscopic approach is pioneering, as it not only broadens the understanding of adversarial vulnerabilities but also paves the way for developing AI models that are robust and secure against nuanced adversarial tactics. Your work stands as a testament to the innovative fusion of XAI with AI security, underscoring the importance of detailed analysis in enhancing both transparency and resilience in AI systems.
+The following is an explanation of a deep neural network classification model denoted by \( F(\cdot) : \mathbb{R}^d \rightarrow [0, 1]^{C} \). Its purpose is to take an image with dimensions \( d = h \times w \times c \) and classify it into one of several categories (output labels) with a probability vector \( F(x) \) of dimensions \( C \). The input to the model is an image vector, and the output is a probability distribution of all possible labels, where \( F(x)_i \)  is the probability that the input vector \( x \)  is labeled with \( i \). 
+
+The Logits of the final layer of a Deep Neural Network (DNN) is represented by \(L(\cdot)\), and the model output is calculated by using the softmax activation function on Logits. This can be expressed as \cite {ZhangS.}:
+
+\begin{equation}
+    F(x) = \text{softmax}(L(x)).
+    \end{equation}
+
+The label with the highest probability in \( F(x) \) is the predicted label of an input image \( x \), and it looks like this \cite {ZhangS.}: 
+\begin{equation}
+    \hat{y} = \arg\max_i (F(x)_i).
+    \end{equation}
+
+Let's assume that the deep neural network has \( l + 1 \) layers, with the input layer being the 0-th layer and the output layer being the \( l \)-th layer. The output of the \( i \)-th neural network layer is denoted as \( F_i(\cdot) \).
+
+\subsection{Adversarial Attacks and Defense Mechanisms} 
+
+The process used to create adversarial samples is called an adversarial attack model. It involves using a model, denoted by  \( F(\cdot) \), and an original input image, denoted by \( x \), to create an adversarial sample, denoted by \( x' = x + d \) , by introducing a specific perturbation to \( x \). This perturbation, denoted by \( d \), causes the model to predict a different label for the adversarial sample \( x' \) than it would for the original sample \( x \) \cite {ZhangS.}.
+
+\begin{align}
+    \hat{y}' &\neq \hat{y}, \\
+    \text{where } \hat{y} &= \arg\max_i (F(x)_i) \text{and} \\
+    \hat{y}'&= \arg\max_i (F(x')_i),
+\end{align}
+
+The perturbation \( \|d\| < \epsilon \) must have an absolute value less than epsilon, where epsilon represents the maximum perturbation size. The distance metric, denoted by  \( \|\cdot\| \) , is used to measure the perturbation, which can be quantified by three norms: \( l_0 \), \( l_2 \), and 
+\( l_{\infty} \). The \( l_0 \) norm counts the number of altered non-zero elements, or the number of pixels that have been modified by the adversarial attack in the original image. The \( l_2 \) norm refers to the conventional Euclidean distance, which is obtained by summing the squares of the modified elements and then taking the square root. The \( l_{\infty} \) norm represents the highest value among all the elements of the perturbation. Recently, Wang et al. (34) used a novel distance metric that relies on Just Noticeable Distortion (JND) to more accurately assess the perceptual similarity and provide adversarial instances that are more visually realistic. By default, this article uses the 
+\( l_{\infty} \) norm to quantify the magnitude of the disturbance.
+
+Several techniques for generating adversarial examples have been developed in recent years. Some of the most prominent options that we utilize for our assessment include:
+
+
+\subsubsection{Fast Gradient Sign Method (FGSM) \cite {Goodfellow.}}
+
+Adversarial samples are generated by the Fast Gradient Sign Method (FGSM), which utilizes the linear properties of deep neural networks. In this method, the adversarial example \( x' \) is obtained by :
+\begin{equation}
+    x' = x + \epsilon \cdot \text{sign}(\nabla_x J(x, y));
+\end{equation}
+
+Here, \( x \) represents the original image, \( x' \) represents the adversarial example, \( J \) refers to the loss function, and \( \epsilon \) is the perturbation limit. This technique modifies the pixels uniformly based on the gradient of the loss function.
+
+
+
+\subsubsection{Basic Iterative Method (BIM) \cite {Kurakin., Madry.}}
+
+The Basic Iterative Method (BIM), proposed by Alexey and colleagues, is an extension of the FGSM method that progressively improves upon it. In each step, a minor disturbance is introduced by the following equation: 
+\begin{equation}
+    x'_{i} = \text{clip}_{x, \epsilon} \left( x'_{i-1} + \epsilon \cdot \text{sign}(\nabla_{x'_{i-1}} L(x'_{i-1}, y)) \right);
+    \end{equation}
+The BIM algorithm starts with an initial value of \( x'_0 = x \), and a clipping function is applied to ensure that the modified image remains within specified boundaries. The iterative nature of this method enables more precise fine-tuning compared to the FGSM method.
+
+
+\subsubsection{Projected Gradient Descent (PGD) \cite {Stiff}}
+
+PGD, an extension of FGSM, adopts a multi-step approach:
+\begin{equation}
+x'_0 = x \quad 
+\end{equation}
+\begin{equation}
+x'_{t+1} = \text{clip}_{[0,1]} \left( x'_t + \alpha \cdot \text{sign}(\nabla J_\theta(x'_t, l)) \right)
+\end{equation}
+The \(\text{clip}_{[0,1]}(\cdot)\) function ensures the perturbed image remains within [0, 1]. PGD is computationally intensive but offers a stronger and more precise attack than FGSM.
+
+
+
+Projected Gradient Descent (PGD) is a technique that is derived from the Fast Gradient Sign Method (FGSM).
+\begin{equation}
+    x'_0 = x \quad 
+    \end{equation}
+    \begin{equation}
+    x'_{t+1} = \text{clip}_{[0,1]} \left( x'_t + \alpha \cdot \text{sign}(\nabla J(\theta, x'_t, l)) \right)
+    \end{equation}
+
+The perturbed image is then clipped to the range of [0,1] using the function \(\text{clip}_{[0,1]}(\cdot)\). This process is performed until a certain number of iterations is reached. The PGD algorithm requires a significant amount of computational resources, but it provides a more robust and accurate method of attack compared to the FGSM.
+
+
+\subsubsection{DeepFool}
+
+DeepFool \cite {Moosavi} is an algorithm that aims to generate adversarial examples with minimal perturbation. The algorithm minimizes the \(L_2\) norm and iteratively applies small perturbations to an input image using a linear neural network. 
+
+The objective of DeepFool is to find the smallest perturbation required to change the classification of an input image. The algorithm computes the perturbation by solving the following optimization problem:
+
+\begin{equation}
+r^*(x_0) = \arg\min_r \|r\| \quad \text{s.t.} \quad \text{sign}(f(x_0 + r)) \neq \text{sign}(f(x_0)),
+\end{equation}
+
+The solution to this problem can be approximated using the gradient of the neural network. When the gradient is not available, DeepFool uses an approximation based on the linearization of the neural network. The perturbation is computed as follows:
+
+\begin{equation}
+r^*(x_0) = \frac{|f(x_0)|}{\|w\|^2} w.
+\end{equation}
+
+DeepFool can also be used to generate targeted adversarial examples. In this case, the algorithm solves the following optimization problem:
+
+\begin{equation}
+\arg\min_{r_i} \|r_i\|^2 \quad \text{s.t.} \quad f(x_i) + \nabla f(x_i)^T r_i = 0.
+\end{equation}
+
+DeepFool has been shown to be effective in generating adversarial examples with comparable accuracy to FGSM but with less perturbation.
+
+According to the research \cite {Ilyas.}, the existence of adversarial examples in a dataset is an intrinsic property. The authors introduce the concept of robust and non-robust characteristics to classify dataset features. Non-robust features exhibit high predictive power but also exhibit high susceptibility to significant changes when slight perturbations are introduced to the input. Conversely, robust features possess high predictive power and are resistant to slight changes in the input. Robust features are considered as fundamental aspects of the target class, such as the presence of wheels and windows in cars. Non-robust features are seemingly arbitrary patterns that are not easily discernible by humans but demonstrate strong predictive power during the training phase. The work of \cite {Ilyas.} illustrates that non-robust features play a significant role in the generation of adversarial examples and their ability to move between different classification models. These non-robust features are vulnerable to minor perturbations in the input, which can result in significant changes in the value of these highly predictive features.
+
+Some examples of defense methods against adversarial example include adversarial training \cite {Goodfellow.}, Defensive Distillation \cite {Papernot}, Gradient Obfuscation, Feature Squeezing \cite {Evans}, ML-LOO \cite {Yang}, Density Estimates \cite {Feinman}, Local Intrinsic Dimensionality \cite {Ma}, Mahalanobis Distance 
+ \cite {Lee}, and many more. In our research, we propose a method for identifying critical pixels in both normal and adversarial examples. This will aid in the generation and defense of attacks. 
+
+
+\subsection{Explainable AI}
+
+Explainable AI (XAI) plays a crucial role in the field of machine learning as it enables AI systems to be transparent and comprehensible. Its main objective is to establish confidence and effectively handle complex AI solutions. The role of Explainable Artificial Intelligence (XAI) is particularly important in supervised models as it enables a comprehensive explanation of the reasoning behind predictions. Prominent XAI techniques include LIME \cite {Ribeiro}, which provides localized explanations of predictions, DeepLIFT \cite {Shrikumar}, which tracks the contributions of individual neurons, and SHAP \cite {LundbergandS}, which employs Shapley values derived from game theory to evaluate the influence of each input on model decisions, particularly advantageous in anomaly identification.
+
+Our research focuses on DeepExplainer \cite{LundbergandS} that is extension of SHAP, a specialized tool developed exclusively for deep neural networks (DNNs). DeepSHAP integrates the Shapley value and DeepLIFT techniques to enhance computing efficiency and provide clear and intuitive explanations. It is widely used in various domains such as engineering \cite{Mangalathu}, aerospace \cite{Aouf}, medical \cite{Singh},  transportation \cite{Parsa}, manufacturing \cite{Huang}, security \cite{Warnecke}, and others due to its ability to analyze complex models. The DeepExplainer algorithm has various uses, including interpreting Deep Reinforcement Learning (DRL) models in power systems, improving the identification of cybersecurity threats, and assisting in the multiclassification process in manufacturing. Furthermore, it plays a role in self-guided navigation, quality control in manufacturing, and healthcare applications such as identifying fundus disorders, deciphering schizophrenia classifications, and enhancing medical decision systems for non-communicable diseases.
+
+DeepSHAP has proven to be crucial in detecting adversarial examples. It is used in image detection to differentiate between adversarial and normal samples, as well as for identifying word-level adversarial attacks. Our study expands the applicability of SHAP values beyond being just a general explainable artificial intelligence (XAI) indicator. Instead, we use SHAP values to specifically pinpoint crucial pixels, thus increasing our understanding of adversarial attack manipulations and strengthening the resilience of AI models.
+
+
 
 \section{Proposed Methodology:}
 
@@ -369,10 +480,13 @@ To substantiate the distinction between critical and non-critical pixels identif
 % For the testing phase, we opted for a simple neural network model. This choice was deliberate; a simpler model allows for clearer interpretation of results and a more straightforward evaluation of the effectiveness of XAI signatures. It serves as a preliminary testing ground, where we can assess the viability of our approach before scaling up to more complex models. This step is essential in ensuring that our methodology is sound and effective in a controlled environment before applying it to more intricate and real-world scenarios.
 % Evaluate the classification model's performance in correctly identifying adversarial attacks.
 
-\section{Case Studies:}
+\section{Experiments:}
 
-This section outlines various case studies to validate the methodology.
-
+In our evaluation we aimed to answer the following two research questions:
+\begin{itemize}
+    \item\textbf{RQ1:} How effective is SHapley Additive exPlanations (SHAP) analysis in identifying specific pixel-level vulnerabilities in deep learning models, and what insights does it provide for understanding the nature of these vulnerabilities?
+    \item\textbf{RQ2:} In what ways can the findings from SHAP-based fine-grained pixel analysis be applied to enhance the robustness of deep learning models against sophisticated adversarial attacks?
+\end{itemize}
 \subsection{Case Study 1: Evaluating Model Robustness Against Different Adversarial Attacks}
 
 The main objective of this case study is to evaluate the robustness of the MNIST classification model 
@@ -505,6 +619,7 @@ In conclusion, the comprehensive evaluation of the model's robustness provided b
         \bottomrule
     \end{tabular}
     }
+
     \caption{Class-Specific Performance Metrics under Adversarial Attacks: This table delineates the F1-Score, Precision, and Recall for each MNIST class (0 through 9) across a spectrum of adversarial attacks at varying levels of epsilon perturbations. The metrics provide insights into the differential impact of each attack (BIM, Deepfool, FGSM, and PGD) on the classifier's ability to robustly identify each digit, underscoring the nuanced vulnerabilities and resilience of the model on a class-by-class basis.}
 
     \label{table2}
@@ -656,14 +771,57 @@ This research conducted a thorough investigation into adversarial attack simulat
     \bibitem{Tianhang}Z. Tianhang, Q. Zhan, and Liu. "Adversarial attacks and defenses in deep learning Xue, “Engineering 6 no,” 2020.
     \bibitem{Wei}E. Wei, Z. S. Quan, A. Ahoud, and Li. "Adversarial attacks on deep-learning models in natural language processing: A. survey Chenliang, “ACM Transactions on Intelligent Systems and Technology TIST 11 no,” 2020.
 
+    \bibitem{ZhangS.}
+    Zhang, S., Chen, S., Liu, X., Hua, C., Wang, W., Chen, K., Zhang, J. and Wang, J., 2021. Detecting adversarial samples for deep learning models: a comparative study. IEEE Transactions on Network Science and Engineering, 9(1), pp.231-244.
 
+    \bibitem{Goodfellow.}
+    I. J. Goodfellow, J. Shlens, and C. Szegedy, “Explaining and harnessing
+    adversarial examples,” arXiv preprint arXiv:1412.6572, 2014.
 
+    \bibitem{Kurakin.}A.Kurakin,I.Goodfellow,andS.Bengio,“Adversarialmachinelearning at scale,” 2016.
+    \bibitem{Madry.}A. Madry, A. Makelov, L. Schmidt, D. Tsipras, and A. Vladu, “Towards deep learning models resistant to adversarial attacks,” arXiv preprint arXiv:1706.06083, 2017. 
 
+    \bibitem{Stiff}Stiff, Harald. "Explainable AI as a Defence Mechanism for Adversarial Examples." (2019)
+
+    \bibitem{Moosavi}S.-M. Moosavi-Dezfooli, A. Fawzi, and P. Frossard, “Deepfool: A simple and accurate method to fool deep neural networks,” in Proc.
+IEEE Conf. Comput. Vis. Pattern Recognit., 2016, pp. 2574–2582.
+
+\bibitem{Ilyas.}A. Ilyas, S. Santurkar, D. Tsipras, L. Engstrom, B. Tran, and A. Madry,
+“Adversarial examples are not bugs, they are features,” arXiv preprint
+arXiv:1905.02175, 2019.
+
+\bibitem{Papernot}
+N. Papernot, P. McDaniel, X. Wu, S. Jha, and A. Swami, “Distillation as a defense to adversarial perturbations against deep neural networks,” in 2016 IEEE Symposium on Security and Privacy (SP). IEEE, 2016, pp. 582–597.
+\bibitem{Evans}
+W. Xu, D. Evans, and Y. Qi, “Feature squeezing: Detecting adversarial
+examples in deep neural networks,” arXiv preprint arXiv:1704.01155,
+2017.
+
+\bibitem{Yang} P. Yang, J. Chen, C.-J. Hsieh, J.-L. Wang, and M. I. Jordan, “ML-LOO:
+Detecting adversarial examples with feature attribution,” in Proc. 34th AAAI Conf. Artif. Intell., 32nd Innov. Appl. Artif. Intell. Conf., and 10th AAAI Symp. Edu. Adv. Artif. Intell., 2020, pp. 6639–6647.
+\bibitem{Feinman} R. Feinman, R. R. Curtin, S. Shintre, and A. B. Gardner, “Detecting adversarial samples from artifacts,” CoRR, 2017, arXiv: 1703.00410.
+\bibitem{Ma} X. Ma et al., “Characterizing adversarial subspaces using local intrinsic dimensionality,” in Proc. Int. Conf. Learn. Representation, 2018.
+\bibitem{Lee} K. Lee et al., “A simple unified framework for detecting out-of-distribution samples and adversarial attacks,” in Adv. Neural Infor. Process. Syst. 31st: Ann. Conf. Neural Infor. Process. Syst., 2018, pp. 7167–7177.
+
+\bibitem{Ribeiro} M. T. Ribeiro, S. Singh, and C. Guestrin, “” why should i trust you?” explaining the predictions of any classifier,” in Proceedings of the 22nd ACM SIGKDD international conference on knowledge discovery and data mining, 2016, pp. 1135–1144.
+\bibitem{Shrikumar} A. Shrikumar, P. Greenside, and A. Kundaje, “Learning important features through propagating activation differences,” in International conference on machine learning. PMLR, 2017, pp. 3145–3153.
+\bibitem{LundbergandS} S.M.LundbergandS.-I.Lee,“Aunifiedapproachtointerpretingmodel predictions,” Advances in neural information processing systems, vol. 30, 2017.
+
+\bibitem{Singh} A. Singh, S. Sengupta, and V. Lakshminarayanan, “Explainable deep learning models in medical image analysis,” Journal of Imaging, vol. 6, no. 6, p. 52, 2020.
+
+\bibitem{Mangalathu} S. Mangalathu, S.-H. Hwang, and J.-S. Jeon, “Failure mode and effects analysis of rc members based on machine-learning-based shapley addi- tive explanations (shap) approach,” Engineering Structures, vol. 219, p. 110927, 2020.
+
+\bibitem{Aouf}L. He, N. Aouf, and B. Song, “Explainable deep reinforcement learning for uav autonomous path planning,” Aerospace science and technology, vol. 118, p. 107052, 2021.
+\bibitem{Parsa} A. B. Parsa, A. Movahedi, H. Taghipour, S. Derrible, and A. K. Mohammadian, “Toward safer highways, application of xgboost and shap for real-time accident detection and feature analysis,” Accident Analysis \& Prevention, vol. 136, p. 105405, 2020.
+\bibitem{Huang}  H. Wu, A. Huang, and J. W. Sutherland, “Layer-wise relevance prop-
+agation for interpreting lstm-rnn decisions in predictive maintenance,” The International Journal of Advanced Manufacturing Technology, vol. 118, no. 3, pp. 963, 2022.
+
+\bibitem{Warnecke} A. Warnecke, D. Arp, C. Wressnegger, and K. Rieck, “Evaluating explanation methods for deep learning in security,” in 2020 IEEE european symposium on security and privacy (EuroS\&P). IEEE, 2020, pp. 158.
 
     \bibitem{McInnes.}
 	L. McInnes, J. Healy, and J. Melville, “UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction,” ArXiv e- prints, Feb. 2018.
-   
-
+  
+ 
 \end{thebibliography}
 
 \end{document}
