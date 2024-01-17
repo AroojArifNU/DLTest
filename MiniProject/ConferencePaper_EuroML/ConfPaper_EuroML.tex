@@ -52,7 +52,7 @@
 
 \section{Introduction}
 
-The field of deep learning is currently experiencing a golden era and has become pivotal for modern computational applications. Deep learning is a type of machine learning that uses multiple layers to process data and build computational models. It has introduced various algorithms, including generative adversarial networks, convolutional neural networks, and model transfers. These algorithms have revolutionized the way we process information. Deep learning has shown significant progress in various domains, such as visual, audio, and text processing, social network analysis, and natural language processing. It has also successfully tackled challenges in machine learning, such as unsupervised and online learning. Deep learning's ability to handle massive and complex datasets has made it a critical tool for big data analysis. Compared to traditional machine learning approaches, its state-of-the-art performance has led to its widespread adoption in fields like image processing, computer vision, speech recognition, machine translation, medical imaging, and many others \cite {Saad, Md}. In the present scenario of widespread technological advancements and adoption, it has become essential to concentrate on the robustness of deep learning models. These models are increasingly utilized in safety-critical and socially significant applications such as autonomous driving, face recognition, and malware detection, where their reliability and performance are of utmost importance. The deep neural networks have shown to be vulnerable to both adversarial and natural image corruptions that can substantially reduce their efficiency. By exploring and enhancing the robustness of these models, we can ensure their effectiveness and reliability in real-world situations \cite {Numair, Aleksandar}.
+Deep learning is becoming increasingly important and is now a vital component of modern computational applications. It uses multiple layers to process data and create computational models, introducing various algorithms such as generative adversarial networks, convolutional neural networks, and model transfers. These algorithms have revolutionized the way we process information and have shown significant progress in domains such as visual, audio, and text processing, social network analysis, and natural language processing. It has also successfully addressed challenges in machine learning such as unsupervised and online learning. Its ability to handle massive and complex datasets has made it a critical tool for extensive data analysis. Compared to traditional machine learning approaches, its state-of-the-art performance has led to its widespread adoption in fields such as image processing, computer vision, speech recognition, machine translation, medical imaging, and many others.\cite {Saad, Md}. In today's world, with the rapid advancements and widespread adoption of technology, it has become crucial to focus on the strength and reliability of deep learning models. These models are increasingly being used in critical safety and socially significant applications like autonomous driving, face recognition, and malware detection, where their efficiency and dependability are of utmost importance. However, deep neural networks have been found to be susceptible to both adversarial and natural image detection that can significantly impact their performance. By exploring and improving the robustness of these models, we can ensure their effectiveness and reliability in real-world scenarios \cite {Numair, Aleksandar}.
 
 Adversarial attacks present a unique challenge for deep learning models. They exploit subtle weaknesses, causing misclassification of examples with imperceptible changes. Such attacks can have a severe impact on the reliability and safety of deep learning models, especially in safety-critical applications like autonomous driving. Adversarial examples can lead to incorrect decisions, potentially resulting in severe consequences. Therefore, it is crucial to analyze the robustness and reliability of deep learning models to ensure their safety in real-world deployments \cite {Samuel, Muhammad}. 
 Explainable Artificial Intelligence (XAI) is a critical component in addressing the challenges of deep learning. It helps to enhance the understanding and trustworthiness of AI by providing interpretable and human-understandable explanations of AI decisions. The techniques, tools, and algorithms used in XAI generate explanations that help build trustworthy and interpretable deep learning models. These explanations improve trust by providing insights into the model's decision-making process, addressing challenges of trust, transparency, bias understanding, and fairness, and promoting a more robust and impartial decision-making process \cite {Mohammed, Aha, Tamer}. 
@@ -192,11 +192,12 @@ Some examples of defense methods against adversarial example include adversarial
 
 \subsection{Explainable AI}
 
-Explainable AI (XAI) plays a crucial role in the field of machine learning as it enables AI systems to be transparent and comprehensible. Its main objective is to establish confidence and effectively handle complex AI solutions. The role of Explainable Artificial Intelligence (XAI) is particularly important in supervised models as it enables a comprehensive explanation of the reasoning behind predictions. Prominent XAI techniques include LIME \cite {Ribeiro}, which provides localized explanations of predictions, DeepLIFT \cite {Shrikumar}, which tracks the contributions of individual neurons, and SHAP \cite {LundbergandS}, which employs Shapley values derived from game theory to evaluate the influence of each input on model decisions, particularly advantageous in anomaly identification.
+Explainable AI (XAI) plays a crucial role in the field of machine learning as it enables AI systems to be transparent and comprehensible. Its main objective is to establish confidence and effectively handle complex AI solutions. The role of XAI is particularly important in supervised models as it enables a comprehensive explanation of the reasoning behind predictions. Prominent XAI techniques include LIME \cite {Ribeiro}, which provides localized explanations of predictions, DeepLIFT \cite {Shrikumar}, which tracks the contributions of individual neurons, and SHAP \cite {LundbergandS}, which employs Shapley values derived from game theory to evaluate the influence of each input on model decisions, particularly advantageous in anomaly identification.
 
-Our research focuses on DeepExplainer \cite{LundbergandS} that is extension of SHAP, a specialized tool developed exclusively for deep neural networks (DNNs). DeepSHAP integrates the Shapley value and DeepLIFT techniques to enhance computing efficiency and provide clear and intuitive explanations. It is widely used in various domains such as engineering \cite{Mangalathu}, aerospace \cite{Aouf}, medical \cite{Singh},  transportation \cite{Parsa}, manufacturing \cite{Huang}, security \cite{Warnecke}, and others due to its ability to analyze complex models. The DeepExplainer algorithm has various uses, including interpreting Deep Reinforcement Learning (DRL) models in power systems, improving the identification of cybersecurity threats, and assisting in the multiclassification process in manufacturing. Furthermore, it plays a role in self-guided navigation, quality control in manufacturing, and healthcare applications such as identifying fundus disorders, deciphering schizophrenia classifications, and enhancing medical decision systems for non-communicable diseases.
+Our research focuses on DeepExplainer \cite{LundbergandS} that is extension of SHAP, a specialized tool developed exclusively for deep neural networks (DNNs). DeepExplainer integrates the Shapley value and DeepLIFT techniques to enhance computing efficiency and provide clear and intuitive explanations. It is widely used in various domains such as engineering \cite{Mangalathu}, aerospace \cite{Aouf}, medical \cite{Singh},  transportation \cite{Parsa}, manufacturing \cite{Huang}, security \cite{Warnecke}, and others due to its ability to analyze complex models. 
 
-DeepSHAP has proven to be crucial in detecting adversarial examples. It is used in image detection to differentiate between adversarial and normal samples, as well as for identifying word-level adversarial attacks. Our study expands the applicability of SHAP values beyond being just a general explainable artificial intelligence (XAI) indicator. Instead, we use SHAP values to specifically pinpoint crucial pixels, thus increasing our understanding of adversarial attack manipulations and strengthening the resilience of AI models.
+DeepSHAP has proven to be crucial in detecting adversarial examples. It is used in image detection to differentiate between adversarial and normal samples, as well as for identifying word-level adversarial attacks. Our study expands the applicability of SHAP values beyond being just a general XAI indicator. Instead, we use SHAP values to specifically pinpoint crucial pixels, thus increasing our understanding of adversarial attack manipulations and strengthening the resilience of AI models.
+
 
 
 
@@ -209,59 +210,26 @@ DeepSHAP has proven to be crucial in detecting adversarial examples. It is used 
     \label{overview}
 \end{figure*}
    
-The goal of our suggested model, which is shown in Figure \ref {overview}, is to improve deep learning systems' 
-resistance to adversarial assaults. Using the MNIST dataset as a training dataset, a pre-trained Convolutional 
-Neural Network is used to focus on extraction of correct examples. The robustness of the model is then evaluated 
-by subjecting it to exhaustive adversarial assault simulations through a variety of methodologies. Subsequently, 
-a comprehensive SHAP analysis is conducted to gain insights into the specific impacts of individual pixels on the 
-model's decision-making process. In the last phase, XAI signatures are used to identify critical pixel for attack 
-generation nd detection. The implementation of this multi-stage strategy guarantees a thorough and resilient protection 
-against adversarial threats in machine learning models.
+Our research, illustrated in Figure. \ref{overview}, aims to improve the defense strategies of deep learning systems against complex attacks. We accomplish this by training Convolutional Neural Networks with the MNIST dataset and focusing on correctly identifying images. To test the strength of our model, we carry out a series of sophisticated simulated attacks to challenge the system's decision-making abilities in different scenarios. We then conduct a comprehensive analysis to determine the effect of each step size on the model's decision-making process, particularly during these simulated attacks. In the final phase, we use a specialized technique to identify the most critical pixels in attack generation and detection scenarios. Additionally, we employ a statistical method called the t-test to evaluate and confirm the significance of these identified critical points. This process ensures the accuracy and dependability of our findings. Our model's multi-stage, comprehensive approach protects against a wide range of adversarial threats in deep learning environments.
 
 
-\section{Stage 1: Data and Model Preparation}
+\subsection{Stage 1: Data and Model Preparation}
 
-During the initial stage of our inquiry, we employed a convolutional neural network (CNN) that had been pre-trained on 
-the MNIST dataset to classify digits. CNN's well-developed expertise in extracting features from picture data was essential 
-for our investigation. One crucial preprocessing step entailed the selection of cases that were effectively classified by the 
-model, resulting in the creation of a dataset consisting of precisely anticipated instances. The objective of this strategy was 
-to separate the impacts of adversarial perturbations on a model that is otherwise behaving appropriately.
+In the initial stage of our investigation, we used CNN, which had already been trained on the MNIST dataset, to classify digits. A crucial step prior to the study was to carefully select cases that the model could accurately classify, resulting in a dataset comprising only correctly predicted instances. This aimed to help us understand how adversarial perturbations impact a model performing well otherwise.
+We chose a dataset with a varied class distribution that accurately reflected real-world scenarios. The dataset consisted of 973 instances labeled as 0, 1133 as 1, 1016 as 2, 989 as 3, 969 as 4, 882 as 5, 937 as 6, 1005 as 7, 946 as 8, and 984 as 9. Although the digit frequencies were not perfectly uniform, we acknowledged this slight imbalance to ensure the integrity of our study. Rather than using a synthetically balanced environment, we wanted to test the model's ability to counter adversarial attacks in a real-world scenario. This approach allowed us to focus on the model's robustness in situations it would encounter in the real world.
 
-The dataset, after selection, exhibited a diverse class distribution: 973 instances with label 0, 1133 with label 1, 1016 with 
-label 2, 989 with label 3, 969 with label 4, 882 with label 5, 937 with label 6, 1005 with label 7, 946 with label 8, and 984 with 
-label 9. Although not perfectly balanced, this distribution mimics the natural frequency of digit occurrences in the actual world,
- providing a degree of scientific reliability to our study. The quality of our research depended on our acknowledging this little 
- imbalance. Instead of testing the model in an artificially balanced environment, it enabled us to seriously evaluate its resilience 
- to adversarial attacks in a real-world situation.
-
-By focusing on correctly classified cases, we made sure that the next study was all about how adversarial attacks affect a model 
-that is already good at what it does. The systematic methodology employed in the process of data selection established a well-defined 
-and practical foundation for our inquiry. This allowed us to thoroughly examine the ability of neural networks to withstand adversarial
- manipulations in a manner that closely mirrors real-world scenarios.
-
-\section{Stage 2: Adversarial Attack Simulation}
-
-By making adversarial examples, the goal of this step was to thoroughly test the model's stability. In order to learn how the neural 
-network model reacts when exposed to intentionally misleading settings, this evaluation is crucial.
-The choice of epsilon numbers \( \varepsilon = [0.03,0.04,0.05,0.1, 0.2, 0.25] \) was a key part of our method. These numbers were 
-picked to show a range of disturbance intensities:
-\begin{itemize}
-    \item \textbf{Lower Epsilon Values (\( \varepsilon = 0.03, 0.04, 0.05 \))}:Represent subtle but potentially effective perturbations, 
-    testing the model's sensitivity to minimal adversarial modifications.
-    
-    \item \textbf{Moderate Epsilon Value (\( \varepsilon = 0.1 \))}: Reports the model's performance in a moderately strong attack and 
-    does so in a fair way.
-    \item \textbf{Higher Epsilon Values (\( \varepsilon = 0.2, 0.25 \))}: Check to see how well the model can handle more direct and 
-    damaging attempts to change it.
-\end{itemize}
-
-Choosing these values let us fully study how the model behaved under different levels of adversarial intensity, which is important for 
-figuring out how robust it is overall. Utilized Foolbox, a Python library, to facilitate the generation of a wide range of adversarial attacks.
-Executed a series of adversarial attacks, including LinfBasicIterativeAttack (BIM), LinfFastGradientAttack (FGSM), LinfDeepFoolAttack, 
-and LinfProjectedGradientDescentAttack (PGD). Systematically collected and analyzed the adversarial examples generated from these attacks.
+To ensure that our study focused on how adversarial attacks impact a model already performing well, we focused on accurately classified cases. Our systematic methodology in data selection formed a well-defined foundation for our investigation, enabling us to examine the ability of neural networks to tolerate adversarial manipulations in a way that closely resembles real-world scenarios.
 
 
-\subsection{Inclusion of the UMAP visualization:}
+\subsection{Stage 2: Adversarial Attack Simulation}
+
+In the previous stage, we created adversarial examples to test how reliable the model is. Our objective was to evaluate the performance of the neural network model when it is exposed to misleading conditions deliberately. We chose a range of epsilon values, which were set to [0.03, 0.04, 0.05, 0.1, 0.2, 0.25], to create different levels of disturbance intensities.
+
+Through this approach, we could comprehensively examine how the model reacted to different degrees of adversarial intensity. This is essential to determine its overall robustness. We used Foolbox, a Python library, to aid in creating a broad range of adversarial attacks.
+
+We executed various types of adversarial attacks, including LinfBasicIterativeAttack (BIM), LinfFastGradientAttack (FGSM), LinfDeepFoolAttack, and LinfProjectedGradientDescentAttack (PGD). We systematically gathered and analyzed the adversarial examples created from these attacks.
+Figure. \ref{fig:umap} shows a UMAP visualization of the MNIST dataset, where each point represents a digit from 0 to 9. The colors represent the original digit classes, while the adversarial examples produced by PGD attacks are interspersed within these clusters. This visualization helps us understand how adversarial perturbations affect classification accuracy and identify vulnerabilities in the model. By gaining insights from this analysis, we can improve the model's defense and ensure its reliability against adversarial threats in practical scenarios.
+
 
 \begin{figure*}[!ht]
     \centering
@@ -285,101 +253,48 @@ and LinfProjectedGradientDescentAttack (PGD). Systematically collected and analy
 \end{figure*}
 
 
-In the analysis, we use a UMAP projection shown in Figure \ref{fig:umap} to evaluate the performance of our neural network model. This includes 
-its ability to handle adversarial examples generated by Projected Gradient Descent (PGD) attacks. The projection efficiently separates the 
-ten-digit classes into distinct color-coded clusters (digits 0 to 9), indicating the model's pattern recognition capabilities. 
-Figure \ref{fig:umap} also reveals the strategic placement of adversarial examples. These examples are positioned within and around the 
-digit clusters in a dispersed pattern, unlike the well-defined groupings of genuine digits. This pattern suggests that adversarial examples 
-can deceive the model and lead to classification errors. The inclusion of Figure \ref{fig:umap} in our analysis has a dual purpose. Firstly, 
-it visually represents the deceptive nature of adversarial examples, highlighting how they can seamlessly blend with genuine data and mislead 
-the model. Secondly, it emphasizes the need to enhance our model's ability to differentiate between authentic and adversarial data points.
-This visual evidence supports our findings and underscores the urgency of fortifying neural network architectures against adversarial intrusions.
- Ultimately, this can help in advancing security protocols within deep learning applications.
 
-
-
-
-\section{Stage 3: Extraction of XAI Signatures}
-
-\subsection{Exploring Model Decision-Making}
- The main objective of this stage is to comprehend how individual input features, particularly pixels, affect the model's predictions. 
- This process is crucial in order to distinguish the model's responses to both normal and adversarial inputs.
-Our approach involved:
-\begin{itemize}
-    \item \textbf{Dataset Segmentation:} We selected subsets from our dataset, comprising normal examples and those modified by adversarial 
-    attacks, specifically focusing on an epsilon value of 0.2.
-    \item \textbf{SHAP Deep Explainer Utilization:}We utilized SHAP Deep Explainer to generate XAI signatures, which expose the importance 
-    of each pixel in the model's predictions.
-
-    \item \textbf{SHAP Value Calculation:} SHAP values were calculated for the selected subsets to measure the impact of each input feature 
-    on the model's output in normal and adversarial scenarios.
-
-\end{itemize}
-
-The SHAP values computed showed notable differences in influence patterns between normal and adversarial examples. This analysis clarifies 
-how the model's decision-making process is altered under various input conditions.
+\subsection{Stage 3: Extraction of XAI Signatures}
+In this stage, we aimed to analyze the influence of input pixels on model predictions. We examined both standard and adversarial altered data. We used Deep Explainer to highlight the contribution of each pixel towards the model's output. By calculating SHAP values for specific subsets of our data, we could compare the effect of standard inputs versus adversarial inputs. This approach helped us identify significant differences in their influence on the model's predictions. It allowed us to gain valuable insights into the model's decision-making process when presented with adversarial conditions.
 
 \begin{figure}[h]
-    \centering
-    \begin{subfigure}{\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{paper_images/normal.png}
-        \caption{correct classifications}
-        \label{fig:correct_shap}
-    \end{subfigure}
-    \par\medskip % Adds space between the two subfigures
-    \begin{subfigure}{\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{paper_images/pgd.png}
-        \caption{pdg sample}
-        \label{fig:pgd}
-    \end{subfigure}
-    \begin{subfigure}{\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{paper_images/fgsm.png}
-        \caption{fgsm sample}
-        \label{fig:fgsm}
-    \end{subfigure}
-    \begin{subfigure}{\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{paper_images/deep.png}
-        \caption{deep sample}
-        \label{fig:deep}
-    \end{subfigure}
-    \begin{subfigure}{\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{paper_images/basic.png}
-        \caption{basic sample}
-        \label{fig:basic}
-    \end{subfigure}
-    \caption{SHAP heatmaps contrast the pixel influence on the model's decisions between normal and adversarial examples, underlining the adversarial impact.}
-    \label{fig:both_shap_figures}
+\centering
+\begin{subfigure}{\columnwidth}
+\centering
+\includegraphics[width=\linewidth]{paper_images/normal.png}
+\label{fig:correct_shap}
+\end{subfigure}
+\par\medskip
+\begin{subfigure}{\columnwidth}
+\centering
+\includegraphics[width=\linewidth]{paper_images/pgd.png}
+\label{fig:pgd}
+\end{subfigure}
+\begin{subfigure}{\columnwidth}
+\centering
+\includegraphics[width=\linewidth]{paper_images/fgsm.png}
+\label{fig:fgsm}
+\end{subfigure}
+\begin{subfigure}{\columnwidth}
+\centering
+\includegraphics[width=\linewidth]{paper_images/deep.png}
+\label{fig:deep}
+\end{subfigure}
+\begin{subfigure}{\columnwidth}
+\centering
+\includegraphics[width=\linewidth]{paper_images/basic.png}
+\label{fig:basic}
+\end{subfigure}
+\caption{SHAP heatmaps depicts the interpretability of a model's decision for a normally classified digit and its progressive alteration under various adversarial attacks (PGD, FGSM, deepfool and basic iterative method), highlighting the shift in influential pixels at a granular level. (a): Normal, (b): PGD, (c): FGSM, (d): Deep Fool, (e): BIM}
+\label{fig:both_shap_figures}
 \end{figure}
 
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{|p{1.5cm}|p{2.5cm}|p{2.5cm}|}
-    \hline
-    \textbf{Aspect} & \textbf{Attack Generation} & \textbf{Attack Detection} \\ \hline
-    \textbf{Objective} & Identify model vulnerabilities to change predictions. & Recognize changes in interpretation from original to adversarial
-     instances. \\ \hline
-    \textbf{Focus} & On influential features of adversarial examples. & On feature contribution differences between normal and adversarial 
-    examples. \\ \hline
-    \textbf{Methodology} & Analyze SHAP values of adversarial examples. & Compare SHAP values between normal and adversarial examples. \\ \hline
-    \textbf{SHAP Values Used} & From adversarial examples, indicating impactful features. & The difference in SHAP values between normal 
-    and adversarial examples. \\ \hline
-    \textbf{Purpose} & Craft adversarial examples exploiting vulnerabilities. & Detect and understand adversarial attacks' effects. \\ \hline
-    \textbf{Insight Gained} & Identifies model weaknesses and modification strategies. & Reveals decision-making changes due to attacks. \\ \hline
-   
-\end{tabular}
-    \caption{Key Differences Between Attack Generation and Detection Using SHAP Values}
-    \label{table:attack-gen-det}
-    \end{table}
-    
-    \section{Stage 4: Identification and Validation of Critical Pixels}
 
-    \subsection{SHAP Values for Critical Pixel Analysis}
+    
+\section{Stage 4: Identification and Validation of Critical Pixels}
+
+\subsection{SHAP Values for Critical Pixel Analysis}
     In Stage 4, we use the SHAP values that we extracted earlier to pinpoint and confirm the pixels that have a significant impact on the 
     model's predictions. This step is essential for gaining a deeper understanding of the model's behavior and developing effective strategies 
     to make it more resilient to adversarial attacks.
@@ -404,7 +319,7 @@ reference point, helping us to better interpret the changes observed in the adve
 Through this comprehensive methodology, we aim to provide a deep understanding of how pixel-level manipulations affect AI decision-making, 
 both in generating and detecting adversarial attacks, as well as understanding the inherent behavior of the model under normal conditions.
 
-\subsection{Statistical Validation of Critical Pixels}
+\subsubsection{Statistical Validation of Critical Pixels}
 To substantiate the distinction between critical and non-critical pixels identified in our analysis, we conducted a statistical t-test on the
  SHAP values. This test helps validate the significance of the differences observed in the SHAP values between critical and non-critical pixels.
   The implementation of a t-test ensures that the observed disparities are not due to random chance, thereby lending statistical rigor to our 
