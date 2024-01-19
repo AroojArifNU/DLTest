@@ -3,6 +3,11 @@
 % For better handling of math expressions
 \usepackage{amsmath}
 
+\usepackage[margin=1in]{geometry} % Adjust margins as needed
+\usepackage{lipsum} % Provides sample text. Remove this for your actual document.
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+
 % For better formatting of lists
 \usepackage{enumitem}
 \usepackage{amssymb}
@@ -25,13 +30,11 @@
 \usepackage{relsize, fullpage, url, array}
 \usepackage{lscape, afterpage}
 \usepackage{float,lscape}
-\usepackage{algorithm}
-\usepackage{algorithmic}  
-\usepackage[algo2e]{algorithm2e} 
+
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{tabularx}
-\usepackage{algorithmic}
+
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
@@ -319,6 +322,82 @@ reference point, helping us to better interpret the changes observed in the adve
 Through this comprehensive methodology, we aim to provide a deep understanding of how pixel-level manipulations affect AI decision-making, 
 both in generating and detecting adversarial attacks, as well as understanding the inherent behavior of the model under normal conditions.
 
+% \begin{algorithm}
+%     \caption{Modify Adversarial Images and Evaluate Model Accuracy}
+%     \begin{algorithmic}[1]
+%     \State \textbf{Input:} adversarial\_images, normal\_images, shap\_values, threshold\_percentile, model, correct\_labels
+%     \State \textbf{Output:} modified\_adversarial\_images, accuracy\_adversarial
+    
+%     \State threshold $\gets$ ComputeThreshold(shap\_values, threshold\_percentile)
+%     \State modified\_images $\gets$ ModifyImages(adversarial\_images, normal\_images, shap\_values, threshold)
+    
+%     \State predictions $\gets$ model.Predict(modified\_images)
+%     \State accuracy $\gets$ ComputeAccuracy(predictions, correct\_labels)
+    
+%     \State \textbf{for} $i = 0$ \textbf{to} 199
+%     \State \hspace{\algorithmicindent} PrintDetails(i, correct\_labels[i], predictions[i])
+%     \State \textbf{end for}
+    
+
+    
+%     \State Display(accuracy)
+    
+%     \end{algorithmic}
+%     \end{algorithm}
+    
+    
+%     \begin{algorithm}
+%         \caption{Image Modification and Model Accuracy Evaluation}
+%         \begin{algorithmic}[1]
+%         \State \textbf{Input:} images, evalMetrics, thresholdPercentile, model, trueLabels
+%         \State \textbf{Output:} modifiedImages, modelAccuracy
+        
+%         \State threshold $\gets$ ComputeThreshold(evalMetrics, thresholdPercentile)
+%         \State modifiedImages $\gets$ InitializeEmptySet()
+        
+%         \State \textbf{for each} (image, metric) \textbf{in} images \textbf{and} evalMetrics
+%         \State \hspace{\algorithmicindent} mask $\gets$ ComputeMask(metric, threshold)
+%         \State \hspace{\algorithmicindent} modifiedImage $\gets$ ApplyMask(image, mask)
+%         \State \hspace{\algorithmicindent} modifiedImages.add(modifiedImage)
+%         \State \textbf{end for}
+        
+%         \State predictions $\gets$ model.Predict(modifiedImages)
+%         \State modelAccuracy $\gets$ ComputeAccuracy(predictions, trueLabels)
+        
+%         \State \textbf{for each} (modifiedImage, prediction, label) \textbf{in} modifiedImages, predictions, trueLabels
+%         \State \hspace{\algorithmicindent} Display(modifiedImage, prediction, label)
+%         \State \textbf{end for}
+        
+        
+        % \State Display(modelAccuracy)
+        
+        % \end{algorithmic}
+        % \end{algorithm}
+        
+        
+        
+\begin{table*}[t]
+    \small
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \textbf{Threshold} & \textbf{FGSM} & \textbf{BIM} & \textbf{DeepFool} & \textbf{PGD} \\
+    \hline
+    No Modification & 0 & 0 & 0 & 0 \\
+    \hline
+    Threshold 1 & 2 & 3 & 1 & 4 \\
+    \hline
+    Threshold 2 & 5 & 7 & 2 & 8 \\
+    \hline
+    Threshold 3 & 9 & 12 & 4 & 13 \\
+    \hline
+    Threshold 4 & 15 & 18 & 7 & 20 \\
+    \hline
+    \end{tabular}
+    \caption{Understanding Model Vulnerability: Influence of Critical Pixel Modification on Attack Identification and Model Robustness}
+    \label{tab:model_robustness_attacks}
+    \end{table*}
+    
 \subsubsection{Statistical Validation of Critical Pixels}
 To substantiate the distinction between critical and non-critical pixels identified in our analysis, we conducted a statistical t-test on the
  SHAP values. This test helps validate the significance of the differences observed in the SHAP values between critical and non-critical pixels.
@@ -359,30 +438,30 @@ To substantiate the distinction between critical and non-critical pixels identif
         \label{fig:both_shap_figures}
     \end{figure}
     
-    \begin{table*}[t]
-        \centering
-        \begin{tabular}{|p{3cm}|p{6cm}|}
-        \hline
-        \textbf{SHAP Value Proximity to Zero} & \textbf{Interpretation} \\ \hline
-        Close to Zero & 
-        \begin{itemize}
-        \item Feature has minimal impact on the model's prediction.
-        \item Changes in the feature value do not significantly affect the prediction.
-        \item Feature is considered neutral or weak in terms of prediction influence.
-        \end{itemize}
-        \\ \hline
-        Far from Zero (Positive or Negative) & 
-        \begin{itemize}
-        \item Feature has a substantial impact on the model's prediction.
-        \item Variations in the feature value lead to significant changes in the prediction.
-        \item Feature is a strong influencer of the predicted outcome.
-        \item The magnitude of the SHAP value indicates the strength of the feature's influence.
-        \end{itemize}
-        \\ \hline
-        \end{tabular}
-        \caption{Interpretations of SHAP Values Based on Proximity to Zero}
-        \label{table:shap-value-interpretation}
-    \end{table*}
+    % \begin{table*}[t]
+    %     \centering
+    %     \begin{tabular}{|p{3cm}|p{6cm}|}
+    %     \hline
+    %     \textbf{SHAP Value Proximity to Zero} & \textbf{Interpretation} \\ \hline
+    %     Close to Zero & 
+    %     \begin{itemize}
+    %     \item Feature has minimal impact on the model's prediction.
+    %     \item Changes in the feature value do not significantly affect the prediction.
+    %     \item Feature is considered neutral or weak in terms of prediction influence.
+    %     \end{itemize}
+    %     \\ \hline
+    %     Far from Zero (Positive or Negative) & 
+    %     \begin{itemize}
+    %     \item Feature has a substantial impact on the model's prediction.
+    %     \item Variations in the feature value lead to significant changes in the prediction.
+    %     \item Feature is a strong influencer of the predicted outcome.
+    %     \item The magnitude of the SHAP value indicates the strength of the feature's influence.
+    %     \end{itemize}
+    %     \\ \hline
+    %     \end{tabular}
+    %     \caption{Interpretations of SHAP Values Based on Proximity to Zero}
+    %     \label{table:shap-value-interpretation}
+    % \end{table*}
     
     
 
@@ -415,6 +494,24 @@ The graph shows how the accuracy of the model decreases with the increasing inte
 This trend of decreasing robust accuracy is observed for all types of attacks.
 
 
+\begin{table}[ht]
+    \centering
+    \caption{Robust Accuracy for Perturbations}
+    \label{tab:robust_accuracy}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    Epsilon & PGD & BIM & FGSM & Deepfool \\
+    \hline
+    0.03 & 95.4\% & 95.4\% & 97.1\% & 97.1\% \\
+    0.04 & 91.2\% & 91.0\% & 95.5\% & 95.4\% \\
+    0.05 & 84.9\% & 84.7\% & 92.9\% & 92.7\% \\
+    0.1 & 22.5\% & 23.8\% & 69.5\% & 69.0\% \\
+    0.2 & 0.0\% & 0.0\% & 17.9\% & 17.6\% \\
+    0.25 & 0.0\% & 0.0\% & 6.6\% & 7.2\% \\
+    \hline
+    \end{tabular}
+    \end{table}
+    
 
 \begin{figure}[ht]
     \centering
