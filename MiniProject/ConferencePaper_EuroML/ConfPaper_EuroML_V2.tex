@@ -7,6 +7,7 @@
 \usepackage{lipsum} % Provides sample text. Remove this for your actual document.
 \usepackage{algorithm}
 \usepackage{algorithmicx}
+\usepackage{booktabs}
 
 % For better formatting of lists
 \usepackage{enumitem}
@@ -40,7 +41,7 @@
 \usepackage{xcolor}
 \usepackage{subcaption}
 
-\title{Uncovering Adversarial Vulnerabilities in Deep Learning: A Shapley Value-Based Approach for Detailed Pixel Analysis}
+\title{Critical Pixels:Strengthen Deep Models Against Adversarial Attacks with SHAP Gradient }
 \author{Arooj Arif}
 \date{\today} % You can also specify a date manually
 
@@ -50,7 +51,9 @@
 
 
 \begin{abstract}    
-    Adversarial attacks in the deep learning domain significantly threaten model transparency and robustness. Adversarial perturbations are unnoticeable for humans. Hence, it is necessary to develop methods of counteracting these attacks. In this research, we present a new way to use SHAP (SHapley Additive exPlanations) to analyze image pixels at a finer level. We thoroughly investigate four adversarial attacks, carefully studying their effects on model vulnerability by analyzing their impact at different epsilon values. Our approach focuses on identifying crucial pixels in image-based model, uncovering vulnerabilities, and enhancing model robustness through SHAP analysis. This extensive study provides valuable insights for the development of AI systems that are more secure and transparent. These findings have important implications in critical healthcare and autonomous driving areas. Our research solves existing problems with AI security and establishes new benchmarks for how AI systems can combine robustness with interpretability.
+    Adversarial perturbations pose a significant challenge to the reliability and transparency of deep learning models. These perturbations are usually invisible to human observers, requiring the development of sophisticated defense strategies. In our research, we looked closely at four different adversarial attacks. We carefully studied how these attacks impact the vulnerability of deep learning models, especially when considering different perturbation sizes. To investigate these attacks further, we used an extension of SHAP (SHapley Additive exPlanations), Gradient Explainer. With the help of SHAP signatures, we examine how attackers manipulate specific pixels in an image to confuse the model. We also figured out which features or characteristics of the data tend to impact the model's predictions positively and which have a negative impact. Our work has made deep learning models more robust and understandable. This is particularly important in critical areas like healthcare, aerospace, and self-driving cars, where having robust and transparent models is essential for safety and reliability. Our research highlights the importance of integrating robustness and interpretability in deep learning models to enhance their safety and protect them against the dynamic spectrum of security threats in the digital age. Our contributions signify a noteworthy enhancement in the defense mechanisms of deep learning models.
+
+
 \end{abstract}
 
 \section{Introduction}
@@ -68,16 +71,19 @@ We conducted a research to explore the challenges posed by adversarial attacks o
 
 This paper introduces several significant contributions to the field of AI, particularly in enhancing the robustness and transparency of deep learning models against adversarial threats:
 
+•	SHAP Gradient Explainer-based Pixel Analysis: Pioneering gradient explained-based pixel-level analysis for adversarial understanding.
+•	Comprehensive Model Evaluation: Assessing model robustness across various adversarial perturbations and UMAP visualization is used to improve the interpretability of adversarial impact.
+•	SHAP Value Comparison:  Analyze critical pixels on different thresholds to reveal subtle adversarial influences.
+•	Statistical Validation: Perform statistical validation to strengthen findings in adversarial robustness research.
+
 \begin{itemize}
-    \item \textbf{Novel Integration of SHAP-based XAI in Adversarial Analysis:} Our work pioneers the application of SHAP-based critical pixel analysis, offering a new perspective in understanding and mitigating these threats at a pixel level.
+    \item \textbf{SHAP Gradient Explainer-based Pixel Analysis:} Pioneering gradient explained-based pixel-level analysis for adversarial understanding.
     
-    \item \textbf{Comprehensive Evaluation of Model Behavior:} By employing the MNIST dataset across a range of adversarial intensities, our research provides a detailed assessment of model vulnerabilities, crucial for developing more resilient AI systems.
+    \item \textbf{Comprehensive Model Evaluation:} Assessing model robustness across various adversarial perturbations and UMAP visualization is used to improve the interpretability of adversarial impact.
     
-    \item \textbf{Insightful Analysis through Advanced Visualization:} Utilizing UMAP visualizations, our study reveals intricate patterns and impacts of adversarial attacks, enhancing the interpretability of complex model behaviors in a user-friendly manner.
+    \item \textbf{SHAP Value Comparison:} Analyze critical pixels on different thresholds to reveal subtle adversarial influences.
     
-    \item \textbf{In-depth Contrastive Analysis of SHAP Values:} Our research conducts a thorough comparison of SHAP values between normal and adversarial examples, shedding light on the subtle ways adversarial attacks influence model decision-making.
-    
-    \item \textbf{Statistical Validation of Model Vulnerabilities:} We introduce a rigorous statistical approach to validate the significance of identified vulnerabilities, thereby strengthening the reliability of our findings and setting a new standard in adversarial robustness research.
+    \item \textbf{Statistical Validation:} Perform statistical validation to strengthen findings in adversarial robustness research.
 
 \end{itemize}
 
@@ -195,11 +201,14 @@ Some examples of defense methods against adversarial example include adversarial
 
 \subsection{Explainable AI}
 
-Explainable AI (XAI) plays a crucial role in the field of machine learning as it enables AI systems to be transparent and comprehensible. Its main objective is to establish confidence and effectively handle complex AI solutions. The role of XAI is particularly important in supervised models as it enables a comprehensive explanation of the reasoning behind predictions. Prominent XAI techniques include LIME \cite {Ribeiro}, which provides localized explanations of predictions, DeepLIFT \cite {Shrikumar}, which tracks the contributions of individual neurons, and SHAP \cite {LundbergandS}, which employs Shapley values derived from game theory to evaluate the influence of each input on model decisions, particularly advantageous in anomaly identification.
+Explainable AI (XAI) plays a crucial role in the field of machine learning as it enables AI systems to be transparent and comprehensible. Its main objective is to establish confidence and effectively handle complex AI solutions. The role of XAI is particularly important in supervised models as it enables a comprehensive explanation of the reasoning behind predictions. Prominent XAI technique is SHAP, used for additive feature attribution. It involves explaining Shapley values, which are a way to assign credit to input features for the output of a model. SHAP combines the Shapley value method with the local interpretable model-agnostic explanations (LIME) \cite {Ribeiro} technique. Many explanation methods for deep learning models use additive feature attribution methods, such as LIME, DeepLIFT \cite {Shrikumar}, layer-wise relevance propagation, Shapley regression values, Shapley sampling values and quantitative Input Influence. There are several explainers in SHAP \cite {LundbergandS}, including the tree explainer, gradient explainer, kernel explainer, deep explainer and sampling explainer. The tree explainer is a fast and exact method for estimating SHAP values for tree models and ensembles of trees. The gradient explainer can explain a model using expected gradients. The kernel explainer uses a particular weighted linear regression to compute the importance of each feature. The deep explainer is an enhanced version of the DeepLIFT algorithm that approximates the conditional expectations of SHAP values using a selection of background samples. The sampling explainer is an extension of the Shapley sampling values explanation method \cite{ZhangK}. Our work centers around a thorough pixel-level examination using the Gradient Explainer method, providing a unique perspective on adversarial understanding.
 
-Our research focuses on DeepExplainer \cite{LundbergandS} that is extension of SHAP, a specialized tool developed exclusively for deep neural networks (DNNs). DeepExplainer integrates the Shapley value and DeepLIFT techniques to enhance computing efficiency and provide clear and intuitive explanations. It is widely used in various domains such as engineering \cite{Mangalathu}, aerospace \cite{Aouf}, medical \cite{Singh},  transportation \cite{Parsa}, manufacturing \cite{Huang}, security \cite{Warnecke}, and others due to its ability to analyze complex models. 
 
-DeepSHAP has proven to be crucial in detecting adversarial examples. It is used in image detection to differentiate between adversarial and normal samples, as well as for identifying word-level adversarial attacks. Our study expands the applicability of SHAP values beyond being just a general XAI indicator. Instead, we use SHAP values to specifically pinpoint crucial pixels, thus increasing our understanding of adversarial attack manipulations and strengthening the resilience of AI models.
+% It is widely used in various domains such as engineering \cite{Mangalathu}, aerospace \cite{Aouf}, medical \cite{Singh},  transportation \cite{Parsa}, manufacturing \cite{Huang}, security \cite{Warnecke}, and others due to its ability to analyze complex models. 
+
+% DeepSHAP has proven to be crucial in detecting adversarial examples. It is used in image detection to differentiate between adversarial and normal samples, as well as for identifying word-level adversarial attacks.
+
+Our study expands the applicability of SHAP values beyond being just a general XAI indicator. Instead, we use SHAP values to specifically pinpoint crucial pixels, thus increasing our understanding of adversarial attack manipulations and strengthening the resilience of AI models.
 
 
 
@@ -321,59 +330,7 @@ reference point, helping us to better interpret the changes observed in the adve
 
 Through this comprehensive methodology, we aim to provide a deep understanding of how pixel-level manipulations affect AI decision-making, 
 both in generating and detecting adversarial attacks, as well as understanding the inherent behavior of the model under normal conditions.
-
-% \begin{algorithm}
-%     \caption{Modify Adversarial Images and Evaluate Model Accuracy}
-%     \begin{algorithmic}[1]
-%     \State \textbf{Input:} adversarial\_images, normal\_images, shap\_values, threshold\_percentile, model, correct\_labels
-%     \State \textbf{Output:} modified\_adversarial\_images, accuracy\_adversarial
-    
-%     \State threshold $\gets$ ComputeThreshold(shap\_values, threshold\_percentile)
-%     \State modified\_images $\gets$ ModifyImages(adversarial\_images, normal\_images, shap\_values, threshold)
-    
-%     \State predictions $\gets$ model.Predict(modified\_images)
-%     \State accuracy $\gets$ ComputeAccuracy(predictions, correct\_labels)
-    
-%     \State \textbf{for} $i = 0$ \textbf{to} 199
-%     \State \hspace{\algorithmicindent} PrintDetails(i, correct\_labels[i], predictions[i])
-%     \State \textbf{end for}
-    
-
-    
-%     \State Display(accuracy)
-    
-%     \end{algorithmic}
-%     \end{algorithm}
-    
-    
-%     \begin{algorithm}
-%         \caption{Image Modification and Model Accuracy Evaluation}
-%         \begin{algorithmic}[1]
-%         \State \textbf{Input:} images, evalMetrics, thresholdPercentile, model, trueLabels
-%         \State \textbf{Output:} modifiedImages, modelAccuracy
-        
-%         \State threshold $\gets$ ComputeThreshold(evalMetrics, thresholdPercentile)
-%         \State modifiedImages $\gets$ InitializeEmptySet()
-        
-%         \State \textbf{for each} (image, metric) \textbf{in} images \textbf{and} evalMetrics
-%         \State \hspace{\algorithmicindent} mask $\gets$ ComputeMask(metric, threshold)
-%         \State \hspace{\algorithmicindent} modifiedImage $\gets$ ApplyMask(image, mask)
-%         \State \hspace{\algorithmicindent} modifiedImages.add(modifiedImage)
-%         \State \textbf{end for}
-        
-%         \State predictions $\gets$ model.Predict(modifiedImages)
-%         \State modelAccuracy $\gets$ ComputeAccuracy(predictions, trueLabels)
-        
-%         \State \textbf{for each} (modifiedImage, prediction, label) \textbf{in} modifiedImages, predictions, trueLabels
-%         \State \hspace{\algorithmicindent} Display(modifiedImage, prediction, label)
-%         \State \textbf{end for}
-        
-        
-        % \State Display(modelAccuracy)
-        
-        % \end{algorithmic}
-        % \end{algorithm}
-        
+ 
         
         
 \begin{table*}[t]
@@ -483,195 +440,190 @@ In our evaluation we aimed to answer the following two research questions:
 \end{itemize}
 \subsection{Case Study 1: Evaluating Model Robustness Against Different Adversarial Attacks}
 
-The main objective of this case study is to evaluate the robustness of the MNIST classification model 
-against different kinds of adversarial attacks such as Basic Iterative Method (BIM), Fast Gradient Sign Method (FGSM), 
-DeepFool, and Projected Gradient Descent (PGD). The focus of the study is to compare the performance of the MNIST model
-before and after being subjected to these adversarial attacks. The performance will be measured by the number of misclassifications
-that occur at different levels of perturbation, as measured by the epsilon values. The study aims to provide insights into the
-vulnerabilities of the MNIST model to different types of adversarial attacks and to determine the effectiveness of these attacks 
-at varying intensities. Figure \ref {fig:robust_accuracy_attacks} represents the model's accuracy against various types of attacks. 
-The graph shows how the accuracy of the model decreases with the increasing intensity of the perturbation, which is measured by epsilon.
-This trend of decreasing robust accuracy is observed for all types of attacks.
+During our experimentation phase, we conducted a thorough examination to test the strength of our model against a range of adversarial attacks, each with varying levels of perturbation. We aimed to understand the extent to which these attacks could potentially deceive or mislead our model. We used the MNIST dataset to train a Convolutional Neural Network (CNN), which achieved 98\% accuracy on testing examples. However, to test its robustness further, we chose examples that CNN had previously classified correctly and introduced four types of attacks: PGD, BIM, FastGradient, and Deepfool.
+
+The table \ref{tab:robust_accuracy} provides a detailed overview of our model's performance when subjected to different adversarial attacks. Each attack is characterised by varying levels of perturbation, which are quantified by epsilon values of 0.03, 0.04, 0.05, 0.1, 0.2, and 0.25. As the level of perturbation increases, the accuracy of the model decreases, highlighting its vulnerability to adversarial perturbations. The PGD and BIM attacks proved remarkably effective, reducing the model's accuracy to zero at high perturbation levels (epsilon values of 0.2 and 0.25). This observation emphasises the model's susceptibility to specific adversarial strategies.
+
+The performance of the model has been evaluated in detail in Table \ref{tab: metrics}. The table includes precision, recall, and F1-Score for each attack type at different epsilon values. These metrics offer a more detailed look at how well the model balances between minimizing false positives and false negatives under different adversarial conditions.
+
+Although the Fast Gradient Sign Method (FGSM) may appear to outperform other attack methods in specific scenarios, it is crucial to recognize that the metrics shown in the table are relatively moderate. This implies that, despite the model achieving some level of accuracy or recall, it still needs to attain optimal performance in adversarial circumstances.
+
 
 
 \begin{table}[ht]
     \centering
-    \caption{Robust Accuracy for Perturbations}
+    \caption{Robust Accuracy for Different Perturbations}
     \label{tab:robust_accuracy}
-    \begin{tabular}{|c|c|c|c|c|}
+    \begin{tabular}{|l|c|c|c|c|}
     \hline
-    Epsilon & PGD & BIM & FGSM & Deepfool \\
-    \hline
-    0.03 & 95.4\% & 95.4\% & 97.1\% & 97.1\% \\
-    0.04 & 91.2\% & 91.0\% & 95.5\% & 95.4\% \\
-    0.05 & 84.9\% & 84.7\% & 92.9\% & 92.7\% \\
-    0.1 & 22.5\% & 23.8\% & 69.5\% & 69.0\% \\
-    0.2 & 0.0\% & 0.0\% & 17.9\% & 17.6\% \\
-    0.25 & 0.0\% & 0.0\% & 6.6\% & 7.2\% \\
-    \hline
+    \textbf{L\ensuremath{_{\infty}}} & \textbf{PGD} & \textbf{BIM} & \textbf{FastGradient} & \textbf{Deepfool} \\ \hline
+     0.03        & 95.4\%       & 95.4\%       & 97.1\%               & 97.1\%           \\ \hline
+     0.04        & 91.2\%       & 91.0\%       & 95.5\%               & 95.4\%           \\ \hline
+     0.05        & 84.9\%       & 84.7\%       & 92.9\%               & 92.7\%           \\ \hline
+     0.1         & 22.5\%       & 23.8\%       & 69.5\%               & 69.0\%           \\ \hline
+     0.2         & 0.0\%        & 0.0\%        & 17.9\%               & 17.6\%           \\ \hline
+     0.25        & 0.0\%        & 0.0\%        & 6.6\%                & 7.2\%            \\ \hline
     \end{tabular}
     \end{table}
+
+   
+    
+    \begin{table}[htbp]
+    \centering
+    \caption{Metrics for Different Epsilon and Attack Types}
+    \begin{tabular}{cccccc}
+    \toprule
+    Epsilon & Attack Type & Precision & Recall & F1-Score \\
+    \midrule
+    0.03 & BIM & 0.954646 & 0.953601 & 0.953749 \\
+    \cmidrule(lr){2-5}
+    & Deepfool & 0.970903 & 0.9702 & 0.970362 \\
+    \cmidrule(lr){2-5}
+    & FGSM & 0.971445 & 0.970721 & 0.970891 \\
+    \cmidrule(lr){2-5}
+    & PGD & 0.954837 & 0.95386 & 0.954011 \\
+    \midrule
+    0.04 & BIM & 0.911803 & 0.909292 & 0.909065 \\
+    \cmidrule(lr){2-5}
+    & Deepfool & 0.954805 & 0.953713 & 0.953828 \\
+    \cmidrule(lr){2-5}
+    & FGSM & 0.955764 & 0.954631 & 0.95476 \\
+    \cmidrule(lr){2-5}
+    & PGD & 0.913378 & 0.911083 & 0.911041 \\
+    \midrule
+    0.05 & BIM & 0.849694 & 0.844652 & 0.843379 \\
+    \cmidrule(lr){2-5}
+    & Deepfool & 0.92858 & 0.926484 & 0.926312 \\
+    \cmidrule(lr){2-5}
+    & FGSM & 0.929736 & 0.927618 & 0.927463 \\
+    \cmidrule(lr){2-5}
+    & PGD & 0.851144 & 0.847073 & 0.846147 \\
+    \midrule
+    0.1 & BIM & 0.264287 & 0.237587 & 0.241945 \\
+    \cmidrule(lr){2-5}
+    & Deepfool & 0.686949 & 0.686049 & 0.67418 \\
+    \cmidrule(lr){2-5}
+    & FGSM & 0.694292 & 0.690916 & 0.679787 \\
+    \cmidrule(lr){2-5}
+    & PGD & 0.256003 & 0.226307 & 0.231078 \\
+    \midrule
+    0.2 & BIM & 0 & 0 & 0 \\
+    \cmidrule(lr){2-5}
+    & Deepfool & 0.180356 & 0.17113 & 0.163833 \\
+    \cmidrule(lr){2-5}
+    & FGSM & 0.185497 & 0.174777 & 0.165671 \\
+    \cmidrule(lr){2-5}
+    & PGD & 0 & 0 & 0 \\
+    \midrule
+    0.25 & BIM & 0 & 0 & 0 \\
+    \cmidrule(lr){2-5}
+    & Deepfool & 0.0644666 & 0.0686077 & 0.0622584 \\
+    \cmidrule(lr){2-5}
+    & FGSM & 0.0580293 & 0.0636508 & 0.0558428 \\
+    \cmidrule(lr){2-5}
+    & PGD & 0 & 0 & 0 \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:metrics}
+    \end{table}
+    
+    
+  
+        
+% \begin{table}[ht]
+%     \centering
+%     \caption{Robust Accuracy for Perturbations}
+%     \label{tab:robust_accuracy}
+%     \begin{tabular}{|c|c|c|c|c|}
+%     \hline
+%     Epsilon & PGD & BIM & FGSM & Deepfool \\
+%     \hline
+%     0.03 & 95.4\% & 95.4\% & 97.1\% & 97.1\% \\
+%     0.04 & 91.2\% & 91.0\% & 95.5\% & 95.4\% \\
+%     0.05 & 84.9\% & 84.7\% & 92.9\% & 92.7\% \\
+%     0.1 & 22.5\% & 23.8\% & 69.5\% & 69.0\% \\
+%     0.2 & 0.0\% & 0.0\% & 17.9\% & 17.6\% \\
+%     0.25 & 0.0\% & 0.0\% & 6.6\% & 7.2\% \\
+%     \hline
+%     \end{tabular}
+%     \end{table}
     
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=\linewidth]{paper_images/robust.png}
-    \caption{Relation between attacks (PGD, FGSM, BIM, Deepfool) success rate and Perturbation size}
-    \label{fig:robust_accuracy_attacks}
-\end{figure}
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=\linewidth]{paper_images/Result1.png}
+%     \caption{Assessing Model Robustness Across Various Epsilon Values Under Four Types of Attacks}
+%     \label{fig:robust_accuracy_attacks}
+% \end{figure}
 
-
-\begin{table}[ht]
-    \centering
-    \caption{Summary of Total Misclassifications for Various Adversarial Attacks}
-    \label{tab:misclassifications}
-    \begin{tabular}{|l|c|c|c|c|c|c|}
-    \hline
-    & \multicolumn{6}{c|}{\textbf{Epsilon}} \\ \cline{2-7} 
-    \multirow{-2}{*}{\textbf{Attack Type}} & \textbf{0.03} & \textbf{0.04} & \textbf{0.05} & \textbf{0.10} & \textbf{0.20} & \textbf{0.25} \\ \hline
-    BIM & 451 & 881 & 1508 & 7490 & 9834 & 9834 \\ \hline
-    FGSM & 284 & 440 & 702 & 2998 & 8070 & 9186 \\ \hline
-    Deepfool & 289 & 449 & 713 & 3045 & 8104 & 9130 \\ \hline
-    PGD & 451 & 881 & 1483 & 7616 & 9834 & 9834 \\ \hline
-    \end{tabular}
-\end{table}
+% \begin{table}[ht]
+%     \centering
+%     \caption{Summary of Total Misclassifications for Various Adversarial Attacks}
+%     \label{tab:misclassifications}
+%     \begin{tabular}{|l|c|c|c|c|c|c|}
+%     \hline
+%     & \multicolumn{6}{c|}{\textbf{Epsilon}} \\ \cline{2-7} 
+%     \multirow{-2}{*}{\textbf{Attack Type}} & \textbf{0.03} & \textbf{0.04} & \textbf{0.05} & \textbf{0.10} & \textbf{0.20} & \textbf{0.25} \\ \hline
+%     BIM & 451 & 881 & 1508 & 7490 & 9834 & 9834 \\ \hline
+%     FGSM & 284 & 440 & 702 & 2998 & 8070 & 9186 \\ \hline
+%     Deepfool & 289 & 449 & 713 & 3045 & 8104 & 9130 \\ \hline
+%     PGD & 451 & 881 & 1483 & 7616 & 9834 & 9834 \\ \hline
+%     \end{tabular}
+% \end{table}
 
 The findings emphasize the importance of implementing advanced defensive measures to enhance the robustness of machine learning models against 
 adversarial attacks. The observations made in this case study can help in the creation of such defenses, especially in addressing the weaknesses exposed by BIM and PGD when dealing with smaller perturbations, and the slower but eventual impact of FGSM and DeepFool when dealing with higher perturbations.
 
-\subsection{Critical Analysis of Class-Specific Metrics}
 
-In the field of adversarial machine learning, it's important to evaluate how well a model performs when faced with attacks. While overall metrics like robust accuracy and misclassification rates give a general idea of a model's performance, it's important to also examine class-specific metrics like F1-Score, Precision, and Recall. These metrics help to identify specific vulnerabilities in the model, especially in a security context where false positives and false negatives can have different implications. To get a more detailed understanding of the model's performance, we've compiled a table Table. \ref{table2} that shows the F1-Score, Precision, and Recall for each class under different types of attacks and perturbations. This table not only demonstrates the model's overall resilience but also highlights specific weaknesses in certain classes that may be overlooked in more general analyses.
+\subsection{Pixel-Level Analysis using Gradient Explainer}
+ 
+  This case study delves into a novel approach to bolster model robustness, integrating SHAP (SHapley Additive exPlanations) analysis with pixel categorization and manipulation. Unlike traditional applications of SHAP, our methodology ventures into pixel categorization, critical pixel thresholds, and their impact on model resilience. We investigate the interplay between critical pixels and model accuracy under adversarial challenges, focusing on scenarios where the model's performance is compromised. By employing 200 samples for each adversarial attack and correct image across six epsilon values, we evaluate over tens of thousands of data points. Our findings shed light on the intricate dynamics between critical pixels and model robustness, presenting new avenues for enhancing deep learning model defenses against adversarial attacks.
 
-As an example, high precision rate during an attack indicates that when a model predicts a specific class, it is likely accurate, although it may miss out on identifying all true instances (resulting in lower recall). On the other hand, high recall with low precision suggests a model that is prone to false alarms by classifying non-members as belonging to the targeted class. The F1-Score metric balances precision and recall to provide a single measure.
+  In response to this growing concern, our case study explores an innovative approach to bolster model robustness. While SHAP analysis and SHAP signatures have been pivotal in model explanation and enhancement, our study extends these concepts to encompass pixel categorization and manipulation. We introduce the concept of "critical pixels" those that exert a profound influence on model predictions. By setting critical pixel thresholds, we aim to achieve precision levels exceeding 70\%, 80\%, or 90\% within the SHAP signature.
 
-Upon careful analysis of the table, it has been observed that certain classes are more susceptible to specific types of attacks. This highlights the necessity of implementing targeted defensive strategies for these classes. For instance, classes that exhibit a significant drop in F1-Score when attacked with FGSM are particularly vulnerable to the perturbations caused by this method. This knowledge can inform the creation of tailored training data or the implementation of defense mechanisms specific to these classes.
-Furthermore, the variation in robustness between classes can guide the allocation of defense resources. Classes with lower robustness metrics represent weak points in the model's defenses and could benefit from focused defense measures.
-In conclusion, the comprehensive evaluation of the model's robustness provided by the detailed metrics, robust accuracy trends, and misclassification insights in the table is essential in developing effective defenses against adversarial attacks. This multifaceted assessment ensures that the model remains accurate and trustworthy in the face of ever-evolving adversarial challenges.
-
-    \begin{table}[ht]
-        \centering
-        \resizebox{\columnwidth}{!}{%
-        \begin{tabular}{cccccccccccccc}
-        \toprule
-        Epsilon & Class & \multicolumn{12}{c}{Metrics} \\
-        \cmidrule(lr){3-14}
-         & & \rotatebox{90}{F1-Score BIM} & \rotatebox{90}{F1-Score Deepfool} & \rotatebox{90}{F1-Score FGSM} & \rotatebox{90}{F1-Score PGD} & \rotatebox{90}{Precision BIM} & \rotatebox{90}{Precision Deepfool} & \rotatebox{90}{Precision FGSM} & \rotatebox{90}{Precision PGD} & \rotatebox{90}{Recall BIM} & \rotatebox{90}{Recall Deepfool} & \rotatebox{90}{Recall FGSM} & \rotatebox{90}{Recall PGD} \\
-        \midrule
-        0.03 & 0 & 0.9842 & 0.9872 & 0.9872 & 0.9842 & 0.9777 & 0.9817 & 0.9817 & 0.9777 & 0.9908 & 0.9928 & 0.9928 & 0.9908 \\
-        0.03 & 1 & 0.9690 & 0.9788 & 0.9792 & 0.9664 & 0.9454 & 0.9601 & 0.9609 & 0.9444 & 0.9938 & 0.9982 & 0.9982 & 0.9894 \\
-        0.03 & 2 & 0.9446 & 0.9675 & 0.9669 & 0.9442 & 0.9405 & 0.9694 & 0.9693 & 0.9396 & 0.9488 & 0.9656 & 0.9646 & 0.9488 \\
-        0.03 & 3 & 0.9612 & 0.9778 & 0.9783 & 0.9627 & 0.9588 & 0.9749 & 0.9749 & 0.9589 & 0.9636 & 0.9808 & 0.9818 & 0.9666 \\
-        0.03 & 4 & 0.9558 & 0.9717 & 0.9722 & 0.9573 & 0.9519 & 0.9692 & 0.9712 & 0.9548 & 0.9598 & 0.9742 & 0.9732 & 0.9598 \\
-        0.03 & 5 & 0.9557 & 0.9715 & 0.9726 & 0.9544 & 0.9349 & 0.9571 & 0.9582 & 0.9357 & 0.9773 & 0.9864 & 0.9875 & 0.9739 \\
-        0.03 & 6 & 0.9693 & 0.9796 & 0.9801 & 0.9693 & 0.9793 & 0.9860 & 0.9870 & 0.9783 & 0.9594 & 0.9733 & 0.9733 & 0.9605 \\
-        0.03 & 7 & 0.9455 & 0.9682 & 0.9682 & 0.9459 & 0.9498 & 0.9682 & 0.9663 & 0.9517 & 0.9413 & 0.9682 & 0.9701 & 0.9403 \\
-        0.03 & 8 & 0.9233 & 0.9464 & 0.9480 & 0.9234 & 0.9731 & 0.9807 & 0.9830 & 0.9720 & 0.8784 & 0.9144 & 0.9154 & 0.8795 \\
-        0.03 & 9 & 0.9289 & 0.9550 & 0.9560 & 0.9301 & 0.9351 & 0.9619 & 0.9619 & 0.9335 & 0.9227 & 0.9482 & 0.9502 & 0.9268 \\
-        0.04 & 0 & 0.9708 & 0.9826 & 0.9821 & 0.9718 & 0.9664 & 0.9766 & 0.9757 & 0.9693 & 0.9753 & 0.9887 & 0.9887 & 0.9743 \\
-        0.04 & 1 & 0.9432 & 0.9708 & 0.9716 & 0.9367 & 0.9071 & 0.9464 & 0.9479 & 0.9026 & 0.9823 & 0.9965 & 0.9965 & 0.9735 \\
-        0.04 & 2 & 0.8994 & 0.9461 & 0.9471 & 0.8980 & 0.8840 & 0.9424 & 0.9434 & 0.8822 & 0.9154 & 0.9498 & 0.9508 & 0.9144 \\
-        0.04 & 3 & 0.9192 & 0.9596 & 0.9611 & 0.9185 & 0.9124 & 0.9577 & 0.9597 & 0.9081 & 0.9262 & 0.9616 & 0.9626 & 0.9292 \\
-        0.04 & 4 & 0.9098 & 0.9568 & 0.9579 & 0.9116 & 0.8984 & 0.9529 & 0.9539 & 0.9028 & 0.9216 & 0.9607 & 0.9618 & 0.9205 \\
-        0.04 & 5 & 0.8995 & 0.9546 & 0.9546 & 0.9010 & 0.8550 & 0.9320 & 0.9320 & 0.8614 & 0.9490 & 0.9785 & 0.9785 & 0.9444 \\
-        0.04 & 6 & 0.9373 & 0.9698 & 0.9703 & 0.9402 & 0.9587 & 0.9804 & 0.9814 & 0.9579 & 0.9167 & 0.9594 & 0.9594 & 0.9232 \\
-        0.04 & 7 & 0.9073 & 0.9512 & 0.9513 & 0.9042 & 0.9141 & 0.9521 & 0.9494 & 0.9162 & 0.9005 & 0.9502 & 0.9532 & 0.8925 \\
-        0.04 & 8 & 0.8493 & 0.9163 & 0.9202 & 0.8527 & 0.9491 & 0.9704 & 0.9751 & 0.9447 & 0.7685 & 0.8679 & 0.8710 & 0.7770 \\
-        0.04 & 9 & 0.8548 & 0.9304 & 0.9314 & 0.8586 & 0.8729 & 0.9371 & 0.9390 & 0.8721 & 0.8374 & 0.9238 & 0.9238 & 0.8455 \\
-        0.05 & 0 & 0.9532 & 0.9750 & 0.9750 & 0.9559 & 0.9546 & 0.9686 & 0.9686 & 0.9549 & 0.9517 & 0.9815 & 0.9815 & 0.9568 \\
-        0.05 & 1 & 0.9095 & 0.9534 & 0.9542 & 0.9031 & 0.8583 & 0.9169 & 0.9177 & 0.8538 & 0.9673 & 0.9929 & 0.9938 & 0.9585 \\
-        0.05 & 2 & 0.8318 & 0.9189 & 0.9198 & 0.8318 & 0.8061 & 0.9118 & 0.9136 & 0.8105 & 0.8593 & 0.9262 & 0.9262 & 0.8543 \\
-        0.05 & 3 & 0.8496 & 0.9311 & 0.9321 & 0.8532 & 0.8215 & 0.9260 & 0.9279 & 0.8292 & 0.8797 & 0.9363 & 0.9363 & 0.8787 \\
-        0.05 & 4 & 0.8547 & 0.9300 & 0.9325 & 0.8589 & 0.8390 & 0.9143 & 0.9180 & 0.8481 & 0.8710 & 0.9463 & 0.9474 & 0.8700 \\
-        0.05 & 5 & 0.8297 & 0.9208 & 0.9214 & 0.8325 & 0.7735 & 0.8825 & 0.8827 & 0.7838 & 0.8946 & 0.9626 & 0.9637 & 0.8878 \\
-        0.05 & 6 & 0.8966 & 0.9533 & 0.9555 & 0.9047 & 0.9361 & 0.9701 & 0.9724 & 0.9402 & 0.8602 & 0.9370 & 0.9392 & 0.8719 \\
-        0.05 & 7 & 0.8319 & 0.9297 & 0.9294 & 0.8313 & 0.8443 & 0.9320 & 0.9285 & 0.8494 & 0.8199 & 0.9273 & 0.9303 & 0.8139 \\
-        0.05 & 8 & 0.7301 & 0.8671 & 0.8700 & 0.7372 & 0.8955 & 0.9566 & 0.9592 & 0.8739 & 0.6163 & 0.7928 & 0.7960 & 0.6374 \\
-        0.05 & 9 & 0.7467 & 0.8838 & 0.8847 & 0.7568 & 0.7680 & 0.9069 & 0.9089 & 0.7691 & 0.7266 & 0.8618 & 0.8618 & 0.7449 \\
-        0.1 & 0 & 0.5609 & 0.8876 & 0.8888 & 0.5961 & 0.7279 & 0.9032 & 0.9078 & 0.7781 & 0.4563 & 0.8726 & 0.8705 & 0.4830 \\
-        0.1 & 1 & 0.3045 & 0.8518 & 0.8484 & 0.1693 & 0.3256 & 0.7599 & 0.7550 & 0.1887 & 0.2860 & 0.9691 & 0.9682 & 0.1536 \\
-        0.1 & 2 & 0.2387 & 0.6409 & 0.6450 & 0.2272 & 0.2046 & 0.6216 & 0.6259 & 0.1887 & 0.2864 & 0.6614 & 0.6654 & 0.2854 \\
-        0.1 & 3 & 0.2356 & 0.6673 & 0.6743 & 0.2389 & 0.2168 & 0.6361 & 0.6414 & 0.2248 & 0.2578 & 0.7017 & 0.7108 & 0.2548 \\
-        0.1 & 4 & 0.3187 & 0.7195 & 0.7239 & 0.3181 & 0.2971 & 0.6844 & 0.6897 & 0.2896 & 0.3437 & 0.7585 & 0.7616 & 0.3529 \\
-        0.1 & 5 & 0.2421 & 0.6843 & 0.6859 & 0.2167 & 0.2023 & 0.5861 & 0.5885 & 0.1805 & 0.3016 & 0.8220 & 0.8268 & 0.2799 \\
-        0.1 & 6 & 0.3469 & 0.7821 & 0.7838 & 0.3541 & 0.3495 & 0.7862 & 0.7897 & 0.3592 & 0.3445 & 0.7781 & 0.7816 & 0.3487 \\
-        0.1 & 7 & 0.2639 & 0.7425 & 0.7388 & 0.2636 & 0.2443 & 0.7002 & 0.6962 & 0.2442 & 0.2850 & 0.7899 & 0.7849 & 0.2852 \\
-        0.1 & 8 & 0.1718 & 0.5624 & 0.5684 & 0.1669 & 0.1545 & 0.5486 & 0.5554 & 0.1630 & 0.1908 & 0.5767 & 0.5836 & 0.1823 \\
-        0.1 & 9 & 0.1869 & 0.6064 & 0.6067 & 0.1825 & 0.1791 & 0.5892 & 0.5903 & 0.1749 & 0.2007 & 0.6307 & 0.6312 & 0.1960 \\
-        0.15 & 0 & 0.1935 & 0.7615 & 0.7528 & 0.1575 & 0.1092 & 0.4804 & 0.4791 & 0.1029 & 0.4565 & 0.9307 & 0.9198 & 0.0896 \\
-        0.15 & 1 & 0.0709 & 0.6661 & 0.6512 & 0.0337 & 0.0471 & 0.4160 & 0.4070 & 0.0240 & 0.0512 & 0.9329 & 0.9247 & 0.0160 \\
-        0.15 & 2 & 0.0679 & 0.4026 & 0.3763 & 0.0367 & 0.0379 & 0.2362 & 0.2215 & 0.0195 & 0.0349 & 0.7530 & 0.7172 & 0.0295 \\
-        0.15 & 3 & 0.0761 & 0.5076 & 0.4773 & 0.0381 & 0.0407 & 0.2717 & 0.2545 & 0.0238 & 0.0371 & 0.6646 & 0.6317 & 0.0250 \\
-        0.15 & 4 & 0.1186 & 0.5514 & 0.5331 & 0.0652 & 0.0781 & 0.2929 & 0.2822 & 0.0485 & 0.1094 & 0.6452 & 0.6279 & 0.0863 \\
-        0.15 & 5 & 0.0650 & 0.4053 & 0.3756 & 0.0365 & 0.0364 & 0.2327 & 0.2200 & 0.0190 & 0.0345 & 0.7612 & 0.7270 & 0.0501 \\
-        0.15 & 6 & 0.1199 & 0.5737 & 0.5454 & 0.0700 & 0.0716 & 0.3386 & 0.3220 & 0.0521 & 0.1091 & 0.6117 & 0.5798 & 0.0883 \\
-        0.15 & 7 & 0.0862 & 0.4992 & 0.4735 & 0.0435 & 0.0453 & 0.2627 & 0.2486 & 0.0272 & 0.0418 & 0.6993 & 0.6636 & 0.0306 \\
-        0.15 & 8 & 0.0392 & 0.2970 & 0.2852 & 0.0233 & 0.0235 & 0.1733 & 0.1641 & 0.0142 & 0.0213 & 0.5872 & 0.5625 & 0.0186 \\
-        0.15 & 9 & 0.0418 & 0.2780 & 0.2645 & 0.0248 & 0.0247 & 0.1542 & 0.1460 & 0.0136 & 0.0224 & 0.6013 & 0.5675 & 0.0203 \\
-        0.2 & 0 & 0.0703 & 0.6920 & 0.6672 & 0.0430 & 0.0385 & 0.4683 & 0.4532 & 0.0262 & 0.0273 & 0.9781 & 0.9657 & 0.0159 \\
-        0.2 & 1 & 0.0247 & 0.4637 & 0.4494 & 0.0125 & 0.0140 & 0.3394 & 0.3267 & 0.0065 & 0.0073 & 0.9782 & 0.9684 & 0.0035 \\
-        0.2 & 2 & 0.0262 & 0.2206 & 0.2057 & 0.0121 & 0.0126 & 0.1392 & 0.1307 & 0.0062 & 0.0066 & 0.8852 & 0.8351 & 0.0029 \\
-        0.2 & 3 & 0.0277 & 0.3064 & 0.2876 & 0.0141 & 0.0147 & 0.1912 & 0.1797 & 0.0071 & 0.0074 & 0.8694 & 0.8184 & 0.0036 \\
-        0.2 & 4 & 0.0414 & 0.3921 & 0.3736 & 0.0219 & 0.0226 & 0.2323 & 0.2189 & 0.0107 & 0.0111 & 0.8492 & 0.8054 & 0.0052 \\
-        0.2 & 5 & 0.0237 & 0.2087 & 0.1929 & 0.0115 & 0.0119 & 0.1276 & 0.1192 & 0.0058 & 0.0061 & 0.8889 & 0.8524 & 0.0030 \\
-        0.2 & 6 & 0.0464 & 0.4479 & 0.4291 & 0.0242 & 0.0250 & 0.2796 & 0.2648 & 0.0118 & 0.0122 & 0.8348 & 0.7989 & 0.0061 \\
-        0.2 & 7 & 0.0330 & 0.2947 & 0.2750 & 0.0166 & 0.0171 & 0.1900 & 0.1779 & 0.0084 & 0.0087 & 0.8596 & 0.8159 & 0.0042 \\
-        0.2 & 8 & 0.0167 & 0.1629 & 0.1540 & 0.0083 & 0.0085 & 0.1239 & 0.1170 & 0.0054 & 0.0057 & 0.7417 & 0.7070 & 0.0036 \\
-        0.2 & 9 & 0.0149 & 0.1434 & 0.1339 & 0.0076 & 0.0077 & 0.1121 & 0.1052 & 0.0050 & 0.0053 & 0.7470 & 0.7096 & 0.0029 \\
-        0.25 & 0 & 0.0175 & 0.3467 & 0.3191 & 0.0090 & 0.0088 & 0.2839 & 0.2619 & 0.0049 & 0.0047 & 0.9914 & 0.9714 & 0.0024 \\
-        0.25 & 1 & 0.0092 & 0.1963 & 0.1750 & 0.0049 & 0.0048 & 0.1289 & 0.1161 & 0.0025 & 0.0024 & 0.9883 & 0.9725 & 0.0013 \\
-        0.25 & 2 & 0.0076 & 0.1060 & 0.0940 & 0.0032 & 0.0031 & 0.0708 & 0.0633 & 0.0017 & 0.0016 & 0.9912 & 0.9881 & 0.0010 \\
-        0.25 & 3 & 0.0082 & 0.1311 & 0.1175 & 0.0034 & 0.0033 & 0.0900 & 0.0804 & 0.0018 & 0.0017 & 0.9849 & 0.9747 & 0.0010 \\
-        0.25 & 4 & 0.0142 & 0.1885 & 0.1677 & 0.0059 & 0.0057 & 0.1228 & 0.1106 & 0.0029 & 0.0028 & 0.9634 & 0.9715 & 0.0015 \\
-        0.25 & 5 & 0.0065 & 0.1045 & 0.0923 & 0.0030 & 0.0029 & 0.0702 & 0.0620 & 0.0016 & 0.0015 & 0.9906 & 0.9888 & 0.0010 \\
-        0.25 & 6 & 0.0176 & 0.2197 & 0.1954 & 0.0075 & 0.0073 & 0.1170 & 0.1040 & 0.0027 & 0.0026 & 0.9635 & 0.9732 & 0.0014 \\
-        0.25 & 7 & 0.0134 & 0.1649 & 0.1473 & 0.0057 & 0.0056 & 0.0943 & 0.0842 & 0.0023 & 0.0022 & 0.9705 & 0.9731 & 0.0013 \\
-        0.25 & 8 & 0.0044 & 0.0710 & 0.0645 & 0.0020 & 0.0019 & 0.0429 & 0.0387 & 0.0010 & 0.0010 & 0.9621 & 0.9569 & 0.0005 \\
-        0.25 & 9 & 0.0040 & 0.0644 & 0.0576 & 0.0018 & 0.0017 & 0.0382 & 0.0343 & 0.0009 & 0.0008 & 0.9648 & 0.9571 & 0.0004 \\              
-        \bottomrule
-    \end{tabular}
-    }
-
-    \caption{Class-Specific Performance Metrics under Adversarial Attacks: This table delineates the F1-Score, Precision, and Recall for each MNIST class (0 through 9) across a spectrum of adversarial attacks at varying levels of epsilon perturbations. The metrics provide insights into the differential impact of each attack (BIM, Deepfool, FGSM, and PGD) on the classifier's ability to robustly identify each digit, underscoring the nuanced vulnerabilities and resilience of the model on a class-by-class basis.}
-
-    \label{table2}
-    \end{table}
-
-  \subsection{Pixel-Level Analysis for Enhancing AI Security Against Adversarial Attacks}
+  Our experimental design encompasses both normal and adversarial images, comprising 200 samples for each attack and correct image across six epsilon values. This meticulous dataset design allows for a comprehensive evaluation of model behavior under varying adversarial conditions. Notably, we exclusively select adversarial examples that confound the model, ensuring our focus on scenarios where model accuracy is compromised.
   
-  \subsubsection{Analysis of Individual Pixels}
+  The results of our study reveal the intricate relationship between critical pixels and model robustness. By modifying critical pixels in adversarial images, we investigate whether such alterations can resuscitate model accuracy. Simultaneously, we analyze the impact of critical pixel modifications in regular images, exploring whether such changes detrimentally affect model accuracy.
+  
+  Our findings suggest that critical pixels indeed play a pivotal role in influencing model behavior under adversarial conditions. The interplay between these critical pixels and model robustness is nuanced, with critical pixel manipulation serving as a potential avenue for model defense. However, our study also underscores the delicate balance between critical pixel alterations and model performance in regular images, revealing the need for a nuanced approach to model enhancement.
+  
+%   \begin{figure}
+%     \centering
+%     \includegraphics[width=0.9\linewidth]{paper_images/correctinf.png}
+%     \caption{Degradation of Model Accuracy with Increased Critical Pixel Thresholds on Normal Images}
+%     \label{Degradation}
+% \end{figure}
+%   \begin{figure*}
+%     \centering
+%     \includegraphics[width=\linewidth]{paper_images/critical_adv.png}
+%     \caption{Recovery of Model Accuracy through Critical Pixel Manipulation in Adversarial Images (Epsilon = 0.25)}
+%     \label{Recovery}
+% \end{figure*}
 
-  We first applied the SHAP values analysis to individual examples, focusing on the difference between normal 
-  and adversarial images. By examining a specific instance (index 3 in our dataset), we gained detailed insights 
-  into how individual pixels influenced the AI model's decision-making process. The visualization of these critical pixels (Figure \ref{fig:individual_analysis}) reveals that certain pixels have a more pronounced impact on the model's response to adversarial attacks. This individual analysis allows us to pinpoint exact vulnerabilities in the AI model for a given input.
-  
-  \subsubsection{Aggregate Analysis across Multiple Examples}
-  
-  In contrast, our aggregate analysis involved averaging SHAP values across a set of images to identify commonly influential pixels. 
-  This approach provided a broader view, highlighting general patterns and shared vulnerabilities across multiple examples.
-   The resulting heatmaps (Figure \ref{fig:aggregate_analysis}) depict a more generalized perspective, essential for understanding overarching weaknesses in the model's interpretability regarding adversarial attacks.
-  
-  \subsubsection{Implications of the Findings}
-  
-  ß
-  \begin{figure}[h]
+\begin{figure}
     \centering
-    \begin{subfigure}{.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{paper_images/individual.png}
-        \caption{Individual Pixel Analysis. This image demonstrates the critical pixels identified in a single example, highlighting their influence on the AI model's decision-making process in response to an adversarial attack.}
-        \label{fig:individual_analysis}
-    \end{subfigure}
-    \par\medskip % Adds space between the two subfigures
-    \begin{subfigure}{.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{paper_images/aggregate.png}
-        \caption{Aggregate Pixel Analysis. This heatmap represents the average influence of pixels across multiple examples, revealing common patterns and vulnerabilities in the AI model's interpretation of images.}
-        \label{fig:aggregate_analysis}
-    \end{subfigure}
-    \caption{Comparative Visualization of Individual and Aggregate Pixel Analysis.}
-    \label{fig:pixel_analysis}
+    \includegraphics[width=0.7\linewidth]{deepexplainer/correctinf.png}
+    \caption{Pixel Importance Deep}
 \end{figure}
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.7\linewidth]{deepexplainer/deepadv.png}
+    \caption{Pixel Importance Deep}
+\end{figure*}
+
+
+
+Figure.\ref{Degradation} represents the impact on model accuracy when modifying normal image pixels based on different levels of influence and thresholds. The expectation is that the accuracy would decrease from 100\% as critical pixels are altered.
+Figure.\ref{Recovery} represents the impact on model accuracy when modifying adversarial image pixels to restore accuracy. The plot specifically deals with adversarial examples generated with an epsilon value of 0.25, and the goal is to observe how the accuracy increases from 0\% upwards.
+ 
+In Figure.\ref{Degradation}, the observed trend is an expected decrease in model accuracy as the threshold for critical pixel influence increases. This decrease is pronounced within the 'absolute' influence type, suggesting that indiscriminate alteration of pixels deemed critical—without considering the nature of their influence—can significantly degrade model performance. Notably, the transition from the 80\% to the 90\% threshold underscores the sensitivity of the model to pixel-level changes, particularly for pixels with a 'positive' influence, which seems to play a substantial role in maintaining the model's high accuracy on standard images.
+
+Figure.\ref{Recovery} offers insights into the recovery of accuracy for adversarial images by modifying critical pixels, with an emphasis on samples generated with an epsilon value of 0.25. The model's response to pixel manipulation varies across different attack types, which implies that the efficacy of such defensive measures is contingent on the attack's characteristics. It's particularly interesting that for the 'absolute' influence type, a broader definition of critical pixels (as seen at the 70\% threshold) aids in mitigating the effects of simpler attacks like BIM and FGSM. However, for more complex attacks such as Deepfool and PGD, even high precision in identifying critical pixels does not significantly bolster the model's resilience.
+
+These plots collectively underscore the complexity inherent in enhancing model robustness through pixel manipulation. While adjusting critical pixels shows promise as a line of defense, its success is clearly attack-dependent. The findings advocate for a strategic approach to applying SHAP-based pixel modifications, where the type of pixel influence—be it absolute, positive, or negative—must be carefully considered to avoid diminishing model accuracy or failing to recover it in the face of adversarial challenges.
+
+The case study, therefore, highlights the importance of a multifaceted defense strategy that incorporates pixel-level interventions alongside other techniques to construct a robust defense against a spectrum of adversarial strategies. Given that the analysis is based on a fixed epsilon value, further research should encompass a wider array of attack intensities to ensure broader applicability and resilience of the proposed defense mechanisms.
+  
 
   \subsection{Case Study 3: Validation of Identified Critical Pixels}
     In Section VI, we discussed the critical pixels identified through our methodology for both attack generation and detection. To determine their significance, we conducted a rigorous statistical validation using a two-sample t-test. This validation step is crucial to highlight the critical role played by these pixels in shaping the decision-making process of our machine learning model.
@@ -682,59 +634,18 @@ In conclusion, the comprehensive evaluation of the model's robustness provided b
     The validation of our study primarily depends on the comparison of two groups using statistical analysis. We used the two-sample t-test, a well-known method for identifying significant differences between two sets of data. Our results were significant with a computed t-statistic of 11.5968 and an extremely low p-value of $1.34 \times 10^{-30}$. Figures \ref{fig:bar_chart} and \ref{fig:histograms} show the statistical indicators that confirm the crucial role of critical pixels in our model's behavior. These pixels influence both the generation and detection of adversarial attacks.
     
  
-        \begin{figure*}
+        \begin{figure}
             \centering
-            \includegraphics[width=\linewidth]{paper_images/Mean_SHAP_Values.png}
-            \caption{Original image}
-        \end{figure*}
+            \includegraphics[width=0.9\linewidth]{deepexplainer/ttest.png}
+            \caption{Pixel Importance Deep}
+        \end{figure}
      
-        
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.9\linewidth]{deepexplainer/ttest2.png}
+            \caption{Pixel Importance Deep}
+        \end{figure}
 
-
-
-        
-            \begin{figure*}
-                \centering
-                \includegraphics[width=\linewidth]{paper_images/correct absolute threshold.png}
-                \caption{correct absolute threshold}
-                \label{fig:fgsm_c}
-            \end{figure*}
-            \par\medskip % Adds space between the two subfigures
-            \begin{figure*}
-                \centering
-                \includegraphics[width=\linewidth]{paper_images/correct negatice threshold.png}
-                \caption{correct negatice threshold}
-                \label{fig:deep_c}
-            \end{figure*}
-            \begin{figure*}
-                \centering
-                \includegraphics[width=\linewidth]{paper_images/correct positive threshold.png}
-                \caption{correct positive threshold}
-                \label{fig:fgsm}
-            \end{figure*}
-         
-        
-
-        
-            \begin{figure*}
-                \centering
-                \includegraphics[width=\linewidth]{paper_images/aadversarial absolute threshold.png}
-                \caption{absolute adversarial threshold}
-                \label{fig:deep}
-            \end{figure*}
-            \begin{figure*}
-                \centering
-                \includegraphics[width=\linewidth]{paper_images/negative adversarial threshold.png}
-                \caption{negative adversarial threshold}
-                \label{fig:deep}
-            \end{figure*}
-            \begin{figure*}
-                \centering
-                \includegraphics[width=\linewidth]{paper_images/positve adversarial threshold.png}
-                \caption{positve adversarial threshold}
-                \label{fig:deep}
-            \end{figure*}
-     
         
 % \section{Future Directions}
 
@@ -824,21 +735,77 @@ Detecting adversarial examples with feature attribution,” in Proc. 34th AAAI C
 \bibitem{Shrikumar} A. Shrikumar, P. Greenside, and A. Kundaje, “Learning important features through propagating activation differences,” in International conference on machine learning. PMLR, 2017, pp. 3145–3153.
 \bibitem{LundbergandS} S.M.LundbergandS.-I.Lee,“Aunifiedapproachtointerpretingmodel predictions,” Advances in neural information processing systems, vol. 30, 2017.
 
-\bibitem{Singh} A. Singh, S. Sengupta, and V. Lakshminarayanan, “Explainable deep learning models in medical image analysis,” Journal of Imaging, vol. 6, no. 6, p. 52, 2020.
+\bibitem{ZhangK}Zhang, K., Xu, P. and Zhang, J., 2020, October. Explainable AI in deep reinforcement learning models: A shap method applied in power system emergency control. In 2020 IEEE 4th Conference on Energy Internet and Energy System Integration (EI2) (pp. 711-716). IEEE.
 
-\bibitem{Mangalathu} S. Mangalathu, S.-H. Hwang, and J.-S. Jeon, “Failure mode and effects analysis of rc members based on machine-learning-based shapley addi- tive explanations (shap) approach,” Engineering Structures, vol. 219, p. 110927, 2020.
 
-\bibitem{Aouf}L. He, N. Aouf, and B. Song, “Explainable deep reinforcement learning for uav autonomous path planning,” Aerospace science and technology, vol. 118, p. 107052, 2021.
-\bibitem{Parsa} A. B. Parsa, A. Movahedi, H. Taghipour, S. Derrible, and A. K. Mohammadian, “Toward safer highways, application of xgboost and shap for real-time accident detection and feature analysis,” Accident Analysis \& Prevention, vol. 136, p. 105405, 2020.
-\bibitem{Huang}  H. Wu, A. Huang, and J. W. Sutherland, “Layer-wise relevance prop-
-agation for interpreting lstm-rnn decisions in predictive maintenance,” The International Journal of Advanced Manufacturing Technology, vol. 118, no. 3, pp. 963, 2022.
+% \bibitem{Singh} A. Singh, S. Sengupta, and V. Lakshminarayanan, “Explainable deep learning models in medical image analysis,” Journal of Imaging, vol. 6, no. 6, p. 52, 2020.
 
-\bibitem{Warnecke} A. Warnecke, D. Arp, C. Wressnegger, and K. Rieck, “Evaluating explanation methods for deep learning in security,” in 2020 IEEE european symposium on security and privacy (EuroS\&P). IEEE, 2020, pp. 158.
+% \bibitem{Mangalathu} S. Mangalathu, S.-H. Hwang, and J.-S. Jeon, “Failure mode and effects analysis of rc members based on machine-learning-based shapley addi- tive explanations (shap) approach,” Engineering Structures, vol. 219, p. 110927, 2020.
+
+% \bibitem{Aouf}L. He, N. Aouf, and B. Song, “Explainable deep reinforcement learning for uav autonomous path planning,” Aerospace science and technology, vol. 118, p. 107052, 2021.
+% \bibitem{Parsa} A. B. Parsa, A. Movahedi, H. Taghipour, S. Derrible, and A. K. Mohammadian, “Toward safer highways, application of xgboost and shap for real-time accident detection and feature analysis,” Accident Analysis \& Prevention, vol. 136, p. 105405, 2020.
+% \bibitem{Huang}  H. Wu, A. Huang, and J. W. Sutherland, “Layer-wise relevance prop-
+% agation for interpreting lstm-rnn decisions in predictive maintenance,” The International Journal of Advanced Manufacturing Technology, vol. 118, no. 3, pp. 963, 2022.
+
+% \bibitem{Warnecke} A. Warnecke, D. Arp, C. Wressnegger, and K. Rieck, “Evaluating explanation methods for deep learning in security,” in 2020 IEEE european symposium on security and privacy (EuroS\&P). IEEE, 2020, pp. 158.
 
     \bibitem{McInnes.}
 	L. McInnes, J. Healy, and J. Melville, “UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction,” ArXiv e- prints, Feb. 2018.
   
  
 \end{thebibliography}
+% Indicate the start of the appendix
+\appendix
+
+% Change the title for the following sections to Appendix if needed
+\renewcommand{\thesection}{Appendix \Alph{section}}
+
+% \section{Figures}
+% % ... (appendix content)
+
+\subsection{Additional Figures}
+
+        
+% \begin{figure*}
+%     \centering
+%     \includegraphics[width=\linewidth]{paper_images/correct absolute threshold.png}
+%     \caption{correct absolute threshold}
+%     \label{fig:fgsm_c}
+% \end{figure*}
+% \par\medskip % Adds space between the two subfigures
+% \begin{figure*}
+%     \centering
+%     \includegraphics[width=\linewidth]{paper_images/correct negatice threshold.png}
+%     \caption{correct negatice threshold}
+%     \label{fig:deep_c}
+% \end{figure*}
+% \begin{figure*}
+%     \centering
+%     \includegraphics[width=\linewidth]{paper_images/correct positive threshold.png}
+%     \caption{correct positive threshold}
+%     \label{fig:fgsm}
+% \end{figure*}
+
+
+
+
+% \begin{figure*}
+%     \centering
+%     \includegraphics[width=\linewidth]{paper_images/aadversarial absolute threshold.png}
+%     \caption{absolute adversarial threshold}
+%     \label{fig:deep}
+% \end{figure*}
+% \begin{figure*}
+%     \centering
+%     \includegraphics[width=\linewidth]{paper_images/negative adversarial threshold.png}
+%     \caption{negative adversarial threshold}
+%     \label{fig:deep}
+% \end{figure*}
+% \begin{figure*}
+%     \centering
+%     \includegraphics[width=\linewidth]{paper_images/positve adversarial threshold.png}
+%     \caption{positve adversarial threshold}
+%     \label{fig:deep}
+% \end{figure*}
 
 \end{document}
