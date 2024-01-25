@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.6)  25 JAN 2024 22:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.6)  25 JAN 2024 22:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -609,4 +609,85 @@ Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
-(microtype)             stretch: 20, shrink: 20, step: 1,
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 48.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-ptm.cfg
+File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
+) (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count331
+\scratchdimen=\dimen290
+\scratchbox=\box116
+\nofMPsegments=\count332
+\nofMParguments=\count333
+\everyMPshowfont=\toks36
+\MPscratchCnt=\count334
+\MPscratchDim=\dimen291
+\MPnumerator=\count335
+\makeMPintoPDFobject=\count336
+\everyMPtoPDFconversion=\toks37
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+<UMAP/Adversarial Examples.png, id=1, 1354.3398pt x 855.6768pt>
+File: UMAP/Adversarial Examples.png Graphic file (type png)
+<use UMAP/Adversarial Examples.png>
+Package pdftex.def Info: UMAP/Adversarial Examples.png  used on input line 61.
+(pdftex.def)             Requested size: 452.9679pt x 286.18674pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}
+
+
+] (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 82.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 82.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+) [2 <./UMAP/Adversarial Examples.png>] [3]
+
+pdfTeX warning: pdflatex (file ./Model/EuroML_V2.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Model/EuroML_V2.pdf, id=30, 2023.56pt x 896.59969pt>
+File: Model/EuroML_V2.pdf Graphic file (type pdf)
+<use Model/EuroML_V2.pdf>
+Package pdftex.def Info: Model/EuroML_V2.pdf  used on input line 223.
+(pdftex.def)             Requested size: 452.9679pt x 200.70015pt.
+[4]
+<UMAP/UMAP_Original Dataset.png, id=34, 867.24pt x 867.24pt>
+File: UMAP/UMAP_Original Dataset.png Graphic file (type png)
+<use UMAP/UMAP_Original Dataset.png>
+Package pdftex.def Info: UMAP/UMAP_Original Dataset.png  used on input line 243.
+(pdftex.def)             Requested size: 113.24197pt x 113.23477pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--244
+[]\OT1/ptm/m/n/9 (+20) (a) |Orig-i-nal MNIST digit
+ []
+
+<UMAP/UMAP_Combined_BIM.png, id=35, 867.24pt x 867.24pt>
+File: UMAP/UMAP_Combined_BIM.png Graphic file (type png)
+<use UMAP/UMAP_Combined_BIM.png>
+Package pdftex.def Info: UMAP/UMAP_Combined_BIM.png  used on input line 250.
+(pdftex.def)             Requested size: 113.24197pt x 113.23477pt.
+<UMAP/UMAP_Combined_DeepFool.png, id=36, 867.24pt x 867.24pt>
+File: UMAP/UMAP_Combined_DeepFool.png Graphic file (type png)
+<use UMAP/UMAP_Combined_DeepFool.png>
+Package pdftex.def Info: UMAP/UMAP_Combined_DeepFool.png  used on input line 
