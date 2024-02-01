@@ -41,7 +41,7 @@
 \usepackage{xcolor}
 \usepackage{subcaption}
 
-\title{Critical Pixels:Strengthen Deep Models Against Adversarial Attacks with SHAP Gradient }
+\title{Pixel-Level Robustness Testing in Deep Learning: A Comparative Analysis of Adversarial and Normal Inputs}
 \author{Arooj Arif}
 \date{\today} % You can also specify a date manually
 
@@ -51,33 +51,35 @@
 
 
 \begin{abstract}    
-    Adversarial perturbations pose a significant challenge to the reliability and transparency of deep learning models. These perturbations are usually invisible to human observers, requiring the development of sophisticated defense strategies. In our research, we looked closely at four different adversarial attacks. We carefully studied how these attacks impact the vulnerability of deep learning models, especially when considering different perturbation sizes. To investigate these attacks further, we used an extension of SHAP (SHapley Additive exPlanations), Gradient Explainer. With the help of SHAP signatures, we examine how attackers manipulate specific pixels in an image to confuse the model. We also figured out which features or characteristics of the data tend to impact the model's predictions positively and which have a negative impact. Our work has made deep learning models more robust and understandable. This is particularly important in critical areas like healthcare, aerospace, and self-driving cars, where having robust and transparent models is essential for safety and reliability. Our research highlights the importance of integrating robustness and interpretability in deep learning models to enhance their safety and protect them against the dynamic spectrum of security threats in the digital age. Our contributions signify a noteworthy enhancement in the defense mechanisms of deep learning models.
+    
+    This paper delves into the critical challenge of adversarial perturbations in deep learning models, emphasizing the paramount importance of model reliability and transparency in high-stakes scenarios. Our research specifically targets four distinct adversarial attacks, scrutinizing their varied impacts on model robustness and the models' responses to diverse perturbation intensities. By employing the SHAP (SHapley Additive exPlanations) Deep Explainer, our study meticulously dissects adversarial strategies at the pixel level, thereby unraveling the nuanced ways attackers manipulate model perception. The pixel-based analysis undertaken is pivotal, not only for validating our models' responses to adversarial interference but also for comprehending the inherent vulnerabilities that such attacks exploit. Our investigation also evaluates how various data traits influence model accuracy, providing a comprehensive understanding of factors affecting model robustness. Through the application of a t-test, our research robustly validates the influential significance of identified pixels, thereby cementing their critical role in fortifying deep learning models against digital threats. The outcomes of this study significantly enhance the interpretability and defense capabilities of deep learning models. While our initial findings stem from experiments on the MNIST dataset, the methodologies and insights we present bear far-reaching implications across various domains. Our research stands as a pivotal contribution towards fortifying deep learning models against the dynamically evolving landscape of digital threats, thus ensuring their enduring reliability in both present and future technological landscapes.
 
 
 \end{abstract}
-
+\begin{figure*}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{UMAP/Adversarial Examples.png}
+    \caption{Overview of the Proposed Model}
+    \label{overview}
+\end{figure*}
+   
 \section{Introduction}
 
-Deep learning is becoming increasingly important and is now a vital component of modern computational applications. It uses multiple layers to process data and create computational models, introducing various algorithms such as generative adversarial networks, convolutional neural networks, and model transfers. These algorithms have revolutionized the way we process information and have shown significant progress in domains such as visual, audio, and text processing, social network analysis, and natural language processing. It has also successfully addressed challenges in machine learning such as unsupervised and online learning. Its ability to handle massive and complex datasets has made it a critical tool for extensive data analysis. Compared to traditional machine learning approaches, its state-of-the-art performance has led to its widespread adoption in fields such as image processing, computer vision, speech recognition, machine translation, medical imaging, and many others.\cite {Saad, Md}. In today's world, with the rapid advancements and widespread adoption of technology, it has become crucial to focus on the strength and reliability of deep learning models. These models are increasingly being used in critical safety and socially significant applications like autonomous driving, face recognition, and malware detection, where their efficiency and dependability are of utmost importance. However, deep neural networks have been found to be susceptible to both adversarial and natural image detection that can significantly impact their performance. By exploring and improving the robustness of these models, we can ensure their effectiveness and reliability in real-world scenarios \cite {Numair, Aleksandar}.
+As technology rapidly advances and becomes more integral to our daily lives, the emphasis on the strength and reliability of deep learning models has never been more crucial.These models are increasingly being used in critical safety and socially significant applications like autonomous driving, face recognition, and malware detection, where their efficiency and dependability are of utmost importance. Yet, a key vulnerability lies in deep neural networks' susceptibility to adversarial attacks and natural image perturbations, which can notably degrade their performance. By exploring and improving the robustness of these models, we can ensure their effectiveness and reliability in real-world scenarios \cite {Numair, Aleksandar}.
 
-Adversarial attacks present a unique challenge for deep learning models. They exploit subtle weaknesses, causing misclassification of examples with imperceptible changes. Such attacks can have a severe impact on the reliability and safety of deep learning models, especially in safety-critical applications like autonomous driving. Adversarial examples can lead to incorrect decisions, potentially resulting in severe consequences. Therefore, it is crucial to analyze the robustness and reliability of deep learning models to ensure their safety in real-world deployments \cite {Samuel, Muhammad}. 
-Explainable Artificial Intelligence (XAI) is a critical component in addressing the challenges of deep learning. It helps to enhance the understanding and trustworthiness of AI by providing interpretable and human-understandable explanations of AI decisions. The techniques, tools, and algorithms used in XAI generate explanations that help build trustworthy and interpretable deep learning models. These explanations improve trust by providing insights into the model's decision-making process, addressing challenges of trust, transparency, bias understanding, and fairness, and promoting a more robust and impartial decision-making process \cite {Mohammed, Aha, Tamer}. 
+Adversarial attacks pose significant challenges to these models, exploiting subtle yet critical vulnerabilities. They exploit subtle weaknesses, causing misclassification of examples with imperceptible changes. Such attacks can have a severe impact on the reliability and safety of deep learning models, especially in safety-critical applications like autonomous driving. Adversarial examples can lead to incorrect decisions, potentially resulting in severe consequences. Therefore, it is crucial to analyze the robustness and reliability of deep learning models to ensure their safety in real-world deployments \cite {Samuel, Muhammad}.  To mitigate these challenges, Explainable Artificial Intelligence (XAI) emerges as a pivotal solution, enhancing model transparency and decision-making processes. It helps to enhance the understanding and trustworthiness of AI by providing interpretable and human-understandable explanations of AI decisions. The techniques, tools, and algorithms used in XAI generate explanations that help build trustworthy and interpretable deep learning models. These explanations improve trust by providing insights into the model's decision-making process, addressing challenges of trust, transparency, bias understanding, and fairness, and promoting a more robust and impartial decision-making process \cite {Mohammed, Aha, Tamer}. 
 
-Despite recent advancements in deep learning models, research has identified gaps and shortcomings in making these models robust against adversarial attacks. It has been observed that there is an overly disproportionate focus on adversarial machine learning compared to non-adversarial robustness. Additionally, there is a significant gap in model performance when faced with naturally-induced image corruptions or alterations, which can result in performance degradation similar to that seen in adversarial conditions. This vulnerability to natural image corruptions suggests that understanding model performance on natural data should be prioritized before focusing on resilience to adversarial attack scenarios \cite {Numair, Tianhang, Wei}. 
+In this study, we venture into a novel exploration of XAI. Existing research predominantly employs SHAP values for adversarial detection  \cite{Fidel, LinY, Stiff, E.Mosca, Tcydenova}, but typically neglects the distinct impacts of positive versus negative SHAP values on model decisions. My work aims to fill this gap by specifically investigating how positive and negative SHAP values differently influence model behavior. This approach is not about outperforming existing detection methods, but about gaining a deeper understanding of model vulnerabilities through a detailed analysis of SHAP value impacts.Our approach uniquely evaluates deep learning model robustness against adversarial attacks, diverging from traditional methods that primarily focus on SHAP values as defensive mechanisms. Contrasting with existing methods that primarily use SHAP values for defensive mechanisms, our research employs pixel-level analysis to understand the impact of influential pixels on model robustness. This approach provides a more granular understanding of how specific pixel manipulations affect the model's performance, offering a novel perspective in evaluating the robustness of deep learning.
 
-We conducted a research to explore the challenges posed by adversarial attacks on deep learning models. Our primary focus was on understanding and quantifying the impacts of different pixels. To achieve this, we used SHAP (SHapley Additive exPlanations) within the realm of Explainable Artificial Intelligence (XAI) to unravel the complex dynamics of how deep learning models respond to adversarial manipulations. Our goal was not only to identify vulnerabilities but also to enhance the robustness and transparency of these models. The stakes are high in critical applications such as healthcare and autonomous systems. Therefore, our research strives to fortify these models against adversarial threats while simultaneously improving their interpretability and trustworthiness. Through this work, we aim to bridge the existing gap between robustness and transparency in AI, offering novel insights and methodologies that could significantly advance the field.
+% We conducted a research to explore the challenges posed by adversarial attacks on deep learning models. Our primary focus was on understanding and quantifying the impacts of different pixels. To achieve this, we used SHAP (SHapley Additive exPlanations) within the realm of Explainable Artificial Intelligence (XAI) to unravel the complex dynamics of how deep learning models respond to adversarial manipulations. Our goal was not only to identify vulnerabilities but also to enhance the robustness and transparency of these models. The stakes are high in critical applications such as healthcare and autonomous systems. Therefore, our research strives to fortify these models against adversarial threats while simultaneously improving their interpretability and trustworthiness. Through this work, we aim to bridge the existing gap between robustness and transparency in AI, offering novel insights and methodologies that could significantly advance the field.
 
 \section{Contributions of the Paper}
 
 This paper introduces several significant contributions to the field of AI, particularly in enhancing the robustness and transparency of deep learning models against adversarial threats:
 
-•	SHAP Gradient Explainer-based Pixel Analysis: Pioneering gradient explained-based pixel-level analysis for adversarial understanding.
-•	Comprehensive Model Evaluation: Assessing model robustness across various adversarial perturbations and UMAP visualization is used to improve the interpretability of adversarial impact.
-•	SHAP Value Comparison:  Analyze critical pixels on different thresholds to reveal subtle adversarial influences.
-•	Statistical Validation: Perform statistical validation to strengthen findings in adversarial robustness research.
 
 \begin{itemize}
-    \item \textbf{SHAP Gradient Explainer-based Pixel Analysis:} Pioneering gradient explained-based pixel-level analysis for adversarial understanding.
+    \item \textbf{SHAP Gradient Explainer-based Pixel Analysis:} Pioneering Deep explainer-based pixel-level analysis for adversarial understanding.
     
     \item \textbf{Comprehensive Model Evaluation:} Assessing model robustness across various adversarial perturbations and UMAP visualization is used to improve the interpretability of adversarial impact.
     
@@ -118,9 +120,8 @@ The process used to create adversarial samples is called an adversarial attack m
     \hat{y}'&= \arg\max_i (F(x')_i),
 \end{align}
 
-The perturbation \( \|d\| < \epsilon \) must have an absolute value less than epsilon, where epsilon represents the maximum perturbation size. The distance metric, denoted by  \( \|\cdot\| \) , is used to measure the perturbation, which can be quantified by three norms: \( l_0 \), \( l_2 \), and 
-\( l_{\infty} \). The \( l_0 \) norm counts the number of altered non-zero elements, or the number of pixels that have been modified by the adversarial attack in the original image. The \( l_2 \) norm refers to the conventional Euclidean distance, which is obtained by summing the squares of the modified elements and then taking the square root. The \( l_{\infty} \) norm represents the highest value among all the elements of the perturbation. Recently, Wang et al. (34) used a novel distance metric that relies on Just Noticeable Distortion (JND) to more accurately assess the perceptual similarity and provide adversarial instances that are more visually realistic. By default, this article uses the 
-\( l_{\infty} \) norm to quantify the magnitude of the disturbance.
+The perturbation \( \|d\| < \epsilon \) must have an absolute value less than epsilon, where epsilon represents the maximum perturbation size. 
+According to the research \cite {Ilyas.}, the existence of adversarial examples in a dataset is an intrinsic property. The authors introduce the concept of robust and non-robust characteristics to classify dataset features. Non-robust features exhibit high predictive power but also exhibit highly vulnerable to significant changes when slight perturbations are introduced to the input. Conversely, robust features possess high predictive power and are resistant to slight changes in the input. Robust features are considered as fundamental aspects of the target class, such as the presence of wheels and windows in cars. Non-robust features are seemingly arbitrary patterns that are not easily noticable by humans but demonstrate strong predictive power during the training phase. The work of \cite {Ilyas.} illustrates that non-robust features play a significant role in the generation of adversarial examples and their ability to move between different classification models. These non-robust features are vulnerable to minor perturbations in the input, which can result in significant changes in the value of these highly predictive features.
 
 Several techniques for generating adversarial examples have been developed in recent years. Some of the most prominent options that we utilize for our assessment include:
 
@@ -171,12 +172,13 @@ The perturbed image is then clipped to the range of [0,1] using the function \(\
 
 \subsubsection{DeepFool}
 
-DeepFool \cite {Moosavi} is an algorithm that aims to generate adversarial examples with minimal perturbation. The algorithm minimizes the \(L_2\) norm and iteratively applies small perturbations to an input image using a linear neural network. 
-
-The objective of DeepFool is to find the smallest perturbation required to change the classification of an input image. The algorithm computes the perturbation by solving the following optimization problem:
+DeepFool \cite {Moosavi} is an algorithm that aims to generate adversarial examples with minimal perturbation. The algorithm minimizes the \(L_2\) norm and iteratively applies small perturbations to an input image using a linear neural network. The objective of DeepFool is to find the smallest perturbation required to change the classification of an input image. The algorithm computes the perturbation by solving the following optimization problem:
 
 \begin{equation}
-r^*(x_0) = \arg\min_r \|r\| \quad \text{s.t.} \quad \text{sign}(f(x_0 + r)) \neq \text{sign}(f(x_0)),
+r^*(x_0) = \arg\min_r \|r\| \quad \text{s.t.}
+\end{equation}
+\begin{equation} 
+\quad \text{sign}(f(x_0 + r)) \neq \text{sign}(f(x_0)),
 \end{equation}
 
 The solution to this problem can be approximated using the gradient of the neural network. When the gradient is not available, DeepFool uses an approximation based on the linearization of the neural network. The perturbation is computed as follows:
@@ -188,20 +190,23 @@ r^*(x_0) = \frac{|f(x_0)|}{\|w\|^2} w.
 DeepFool can also be used to generate targeted adversarial examples. In this case, the algorithm solves the following optimization problem:
 
 \begin{equation}
-\arg\min_{r_i} \|r_i\|^2 \quad \text{s.t.} \quad f(x_i) + \nabla f(x_i)^T r_i = 0.
+\arg\min_{r_i} \|r_i\|^2 \quad \text{s.t.} 
+\end{equation}
+\begin{equation}
+\quad f(x_i) + \nabla f(x_i)^T r_i = 0.
 \end{equation}
 
 DeepFool has been shown to be effective in generating adversarial examples with comparable accuracy to FGSM but with less perturbation.
 
-According to the research \cite {Ilyas.}, the existence of adversarial examples in a dataset is an intrinsic property. The authors introduce the concept of robust and non-robust characteristics to classify dataset features. Non-robust features exhibit high predictive power but also exhibit high susceptibility to significant changes when slight perturbations are introduced to the input. Conversely, robust features possess high predictive power and are resistant to slight changes in the input. Robust features are considered as fundamental aspects of the target class, such as the presence of wheels and windows in cars. Non-robust features are seemingly arbitrary patterns that are not easily discernible by humans but demonstrate strong predictive power during the training phase. The work of \cite {Ilyas.} illustrates that non-robust features play a significant role in the generation of adversarial examples and their ability to move between different classification models. These non-robust features are vulnerable to minor perturbations in the input, which can result in significant changes in the value of these highly predictive features.
+
 
 Some examples of defense methods against adversarial example include adversarial training \cite {Goodfellow.}, Defensive Distillation \cite {Papernot}, Gradient Obfuscation, Feature Squeezing \cite {Evans}, ML-LOO \cite {Yang}, Density Estimates \cite {Feinman}, Local Intrinsic Dimensionality \cite {Ma}, Mahalanobis Distance 
- \cite {Lee}, and many more. In our research, we propose a method for identifying critical pixels in both normal and adversarial examples. This will aid in the generation and defense of attacks. 
+ \cite {Lee}, SHAP signatures \cite{Fidel, LinY, Stiff, E.Mosca, Tcydenova} and many more. In our research, we propose a method for identifying critical pixels in both normal and adversarial examples. This will aid in the generation and defense of attacks. 
 
 
 \subsection{Explainable AI}
 
-Explainable AI (XAI) plays a crucial role in the field of machine learning as it enables AI systems to be transparent and comprehensible. Its main objective is to establish confidence and effectively handle complex AI solutions. The role of XAI is particularly important in supervised models as it enables a comprehensive explanation of the reasoning behind predictions. Prominent XAI technique is SHAP, used for additive feature attribution. It involves explaining Shapley values, which are a way to assign credit to input features for the output of a model. SHAP combines the Shapley value method with the local interpretable model-agnostic explanations (LIME) \cite {Ribeiro} technique. Many explanation methods for deep learning models use additive feature attribution methods, such as LIME, DeepLIFT \cite {Shrikumar}, layer-wise relevance propagation, Shapley regression values, Shapley sampling values and quantitative Input Influence. There are several explainers in SHAP \cite {LundbergandS}, including the tree explainer, gradient explainer, kernel explainer, deep explainer and sampling explainer. The tree explainer is a fast and exact method for estimating SHAP values for tree models and ensembles of trees. The gradient explainer can explain a model using expected gradients. The kernel explainer uses a particular weighted linear regression to compute the importance of each feature. The deep explainer is an enhanced version of the DeepLIFT algorithm that approximates the conditional expectations of SHAP values using a selection of background samples. The sampling explainer is an extension of the Shapley sampling values explanation method \cite{ZhangK}. Our work centers around a thorough pixel-level examination using the Gradient Explainer method, providing a unique perspective on adversarial understanding.
+Explainable AI (XAI) plays a crucial role in the field of deep learning as it enables AI systems to be transparent and comprehensible. Its main objective is to establish confidence and effectively handle complex AI solutions. The role of XAI is particularly important in supervised models as it enables a comprehensive explanation of the reasoning behind predictions. Prominent XAI technique is SHAP, used for additive feature attribution. It involves explaining Shapley values, which are a way to assign credit to input features for the output of a model. SHAP combines the Shapley value method with the local interpretable model-agnostic explanations (LIME) \cite {Ribeiro} technique. Many explanation methods for deep learning models use additive feature attribution methods, such as LIME, DeepLIFT \cite {Shrikumar}, layer-wise relevance propagation, Shapley regression values, Shapley sampling values and quantitative Input Influence. There are several explainers in SHAP \cite {LundbergandS}, including the tree explainer, gradient explainer, kernel explainer, deep explainer and sampling explainer. The tree explainer is a fast and exact method for estimating SHAP values for tree models and ensembles of trees. The gradient explainer can explain a model using expected gradients. The kernel explainer uses a particular weighted linear regression to compute the importance of each feature. The deep explainer is an enhanced version of the DeepLIFT algorithm that approximates the conditional expectations of SHAP values using a selection of background samples. The sampling explainer is an extension of the Shapley sampling values explanation method \cite{ZhangK}. Our work centers around a thorough pixel-level examination using the Deep Explainer method, providing a unique perspective on adversarial understanding.
 
 
 % It is widely used in various domains such as engineering \cite{Mangalathu}, aerospace \cite{Aouf}, medical \cite{Singh},  transportation \cite{Parsa}, manufacturing \cite{Huang}, security \cite{Warnecke}, and others due to its ability to analyze complex models. 
@@ -211,50 +216,59 @@ Explainable AI (XAI) plays a crucial role in the field of machine learning as it
 Our study expands the applicability of SHAP values beyond being just a general XAI indicator. Instead, we use SHAP values to specifically pinpoint crucial pixels, thus increasing our understanding of adversarial attack manipulations and strengthening the resilience of AI models.
 
 
-
-
 \section{Proposed Methodology:}
 
 \begin{figure*}[!ht]
     \centering
-    \includegraphics[width=1\textwidth]{paper_images/model.pdf}
+    \includegraphics[width=\linewidth]{Model/EuroML_V2.pdf}
     \caption{Overview of the Proposed Model}
     \label{overview}
 \end{figure*}
    
-Our research, illustrated in Figure. \ref{overview}, aims to improve the defense strategies of deep learning systems against complex attacks. We accomplish this by training Convolutional Neural Networks with the MNIST dataset and focusing on correctly identifying images. To test the strength of our model, we carry out a series of sophisticated simulated attacks to challenge the system's decision-making abilities in different scenarios. We then conduct a comprehensive analysis to determine the effect of each step size on the model's decision-making process, particularly during these simulated attacks. In the final phase, we use a specialized technique to identify the most critical pixels in attack generation and detection scenarios. Additionally, we employ a statistical method called the t-test to evaluate and confirm the significance of these identified critical points. This process ensures the accuracy and dependability of our findings. Our model's multi-stage, comprehensive approach protects against a wide range of adversarial threats in deep learning environments.
+Our research, depicted in Figure. \ref{overview}, focuses on robustness testing and a comprehensive SHAP pixel analysis. We employed a CNN model and the MNIST dataset for training, with a primary focus on achieving accurate image identification. Afterward, we exposed our model to complex simulated attacks to gauge its robustness. Subsequently, we carried out an extensive analysis of the influence of various step sizes on its decision-making mechanism.
+
+In the final phase, we identify critical pixels in both normal and adversarial examples, examining their influence on model accuracy, whether positive or negative. This aspect, often overlooked in the literature, forms a key part of our study. To validate our findings, we employ the t-test. Our model rigorously explores the effects of various perturbation sizes in adversarial attacks on deep learning models and analyzes pixel shifts in both adversarial and normal images.
 
 
 \subsection{Stage 1: Data and Model Preparation}
 
-In the initial stage of our investigation, we used CNN, which had already been trained on the MNIST dataset, to classify digits. A crucial step prior to the study was to carefully select cases that the model could accurately classify, resulting in a dataset comprising only correctly predicted instances. This aimed to help us understand how adversarial perturbations impact a model performing well otherwise.
-We chose a dataset with a varied class distribution that accurately reflected real-world scenarios. The dataset consisted of 973 instances labeled as 0, 1133 as 1, 1016 as 2, 989 as 3, 969 as 4, 882 as 5, 937 as 6, 1005 as 7, 946 as 8, and 984 as 9. Although the digit frequencies were not perfectly uniform, we acknowledged this slight imbalance to ensure the integrity of our study. Rather than using a synthetically balanced environment, we wanted to test the model's ability to counter adversarial attacks in a real-world scenario. This approach allowed us to focus on the model's robustness in situations it would encounter in the real world.
-
-To ensure that our study focused on how adversarial attacks impact a model already performing well, we focused on accurately classified cases. Our systematic methodology in data selection formed a well-defined foundation for our investigation, enabling us to examine the ability of neural networks to tolerate adversarial manipulations in a way that closely resembles real-world scenarios.
-
-
-\subsection{Stage 2: Adversarial Attack Simulation}
-
-In the previous stage, we created adversarial examples to test how reliable the model is. Our objective was to evaluate the performance of the neural network model when it is exposed to misleading conditions deliberately. We chose a range of epsilon values, which were set to [0.03, 0.04, 0.05, 0.1, 0.2, 0.25], to create different levels of disturbance intensities.
-
-Through this approach, we could comprehensively examine how the model reacted to different degrees of adversarial intensity. This is essential to determine its overall robustness. We used Foolbox, a Python library, to aid in creating a broad range of adversarial attacks.
-
-We executed various types of adversarial attacks, including LinfBasicIterativeAttack (BIM), LinfFastGradientAttack (FGSM), LinfDeepFoolAttack, and LinfProjectedGradientDescentAttack (PGD). We systematically gathered and analyzed the adversarial examples created from these attacks.
-Figure. \ref{fig:umap} shows a UMAP visualization of the MNIST dataset, where each point represents a digit from 0 to 9. The colors represent the original digit classes, while the adversarial examples produced by PGD attacks are interspersed within these clusters. This visualization helps us understand how adversarial perturbations affect classification accuracy and identify vulnerabilities in the model. By gaining insights from this analysis, we can improve the model's defense and ensure its reliability against adversarial threats in practical scenarios.
-
+In the initial phase, we utilized a CNN model to train on the MNIST dataset for digit classification. To ensure a well-rounded investigation, creating a dataset comprising only correctly predicted examples. The correctly classified examples consisted of 973 instances labeled as 0, 1133 as 1, 1016 as 2, 989 as 3, 969 as 4, 882 as 5, 937 as 6, 1005 as 7, 946 as 8, and 984 as 9. Next, we employed the Foolbox Python library to execute various adversarial attacks, including BIM, FGSM, DeepFool, and PGD. While generating adversarial examples it is crucial to investigat attack paprameter such as distance metric. The distance metric is used to measure the perturbation, which can be quantified by three norms: \( l_0 \), \( l_2 \), and 
+\( l_{\infty} \). The \( l_0 \) norm counts the number of altered non-zero elements, or the number of pixels that have been modified by the adversarial attack in the original image. The \( l_2 \) norm refers to the conventional Euclidean distance, which is obtained by summing the squares of the modified elements and then taking the square root. The \( l_{\infty} \) norm represents the highest value among all the elements of the perturbation. By default, in this paper we uses the 
+\( l_{\infty} \) norm to quantify the magnitude of the disturbance. Figure. \ref{fig:umap}(a) provides a UMAP visualization of the MNIST dataset, with each point representing a digit from 0 to 9. Original digit classes are color-coded, while the PGD attack-generated adversarial examples are intermixed within these clusters, as depicted in \ref{fig:umap}(b). This visual representation aids in understanding how adversarial perturbations impact classification accuracy and identifying model vulnerabilities. By deriving insights from this analysis, we aim to enhance the model's robustness and ensure its reliability against adversarial threats in real-world scenarios.
 
 \begin{figure*}[!ht]
     \centering
-    \begin{subfigure}{.50\textwidth}
+    \begin{subfigure}{.25\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{paper_images/1.png}
+        \includegraphics[width=\linewidth]{UMAP/UMAP_Original Dataset.png}
         \caption{Original MNIST digit classes}
         \label{fig:umap_original}
     \end{subfigure}%
     \hfill
-    \begin{subfigure}{.50\textwidth}
+    \begin{subfigure}{.25\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{paper_images/2.png}
+        \includegraphics[width=\linewidth]{UMAP/UMAP_Combined_BIM.png}
+        \caption{Original and PGD attack}
+        \label{fig:umap_pgd}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.25\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{UMAP/UMAP_Combined_DeepFool.png}
+        \caption{Original and PGD attack}
+        \label{fig:umap_pgd}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.25\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{UMAP/UMAP_Combined_FGSM.png}
+        \caption{Original and PGD attack}
+        \label{fig:umap_pgd}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.25\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{UMAP/UMAP_Combined_PGD.png}
         \caption{Original and PGD attack}
         \label{fig:umap_pgd}
     \end{subfigure}
@@ -264,137 +278,73 @@ Figure. \ref{fig:umap} shows a UMAP visualization of the MNIST dataset, where ea
     \label{fig:umap}
 \end{figure*}
 
+\subsection{Stage 2: Model robustness against Attacks}
+We systematically collected and analyzed the resulting adversarial examples, subsequently subjecting them to model testing to evaluate its robustness under deliberately misleading conditions. To create varying levels of perturbation, we selected a range of epsilon values set at [0.03, 0.04, 0.05, 0.1, 0.2, 0.25]. This approach allowed us to comprehensively investigate how the model responded to different levels of adversarial intensity, a critical factor in assessing its overall robustness.
 
 
 \subsection{Stage 3: Extraction of XAI Signatures}
-In this stage, we aimed to analyze the influence of input pixels on model predictions. We examined both standard and adversarial altered data. We used Deep Explainer to highlight the contribution of each pixel towards the model's output. By calculating SHAP values for specific subsets of our data, we could compare the effect of standard inputs versus adversarial inputs. This approach helped us identify significant differences in their influence on the model's predictions. It allowed us to gain valuable insights into the model's decision-making process when presented with adversarial conditions.
 
-\begin{figure}[h]
-\centering
-\begin{subfigure}{\columnwidth}
-\centering
-\includegraphics[width=\linewidth]{paper_images/normal.png}
-\label{fig:correct_shap}
-\end{subfigure}
-\par\medskip
-\begin{subfigure}{\columnwidth}
-\centering
-\includegraphics[width=\linewidth]{paper_images/pgd.png}
-\label{fig:pgd}
-\end{subfigure}
-\begin{subfigure}{\columnwidth}
-\centering
-\includegraphics[width=\linewidth]{paper_images/fgsm.png}
-\label{fig:fgsm}
-\end{subfigure}
-\begin{subfigure}{\columnwidth}
-\centering
-\includegraphics[width=\linewidth]{paper_images/deep.png}
-\label{fig:deep}
-\end{subfigure}
-\begin{subfigure}{\columnwidth}
-\centering
-\includegraphics[width=\linewidth]{paper_images/basic.png}
-\label{fig:basic}
-\end{subfigure}
-\caption{SHAP heatmaps depicts the interpretability of a model's decision for a normally classified digit and its progressive alteration under various adversarial attacks (PGD, FGSM, deepfool and basic iterative method), highlighting the shift in influential pixels at a granular level. (a): Normal, (b): PGD, (c): FGSM, (d): Deep Fool, (e): BIM}
-\label{fig:both_shap_figures}
-\end{figure}
+In this stage of our research, we employed the Deep Explainer, a specialized component within the SHAP (SHapley Additive exPlanations) framework, tailored for deep learning models. Deep Explainer operates by approximating SHAP values, which quantify the contribution of each input feature, or in this case, each pixel, to the model's prediction for a given instance. Deep Explainer works by using a reference set of 'background' data points to approximate how the absence or presence of features in the input data influences the model’s output. In our study, it systematically analyzed the input pixels of an image, comparing how each pixel's presence or alteration (especially in adversarial cases) affects the model's output. By aggregating these effects, Deep Explainer provided a detailed map of pixel-level contributions to the final prediction. By calculating these SHAP values for specific subsets of our data, this approach helped us identify significant differences in their influence on the model's predictions. It allowed us to gain valuable insights into the model's decision-making process when presented with adversarial examples.
+
+In this stage of our research, we outlined our approach for investigating the influence of individual input pixels on the model's predictive behavior under normal and adversarial conditions. Central to our methodology was the application of the SHapley Additive exPlanations (SHAP) framework, with a specific focus on the Deep Explainer module, designed to elucidate the contributions of individual features in deep learning models.
+
+The process commenced with the selection of background data for the SHAP analysis. We chose a subset of 3000 instances of correctly and adversairial classified examples within our dataset. To rigorously assess the model's behavior under adversarial attacks, we incorporated a range of attack methodologies including Basic Iterative Method (BIM), Fast Gradient Sign Method (FGSM), DeepFool, and Projected Gradient Descent (PGD). For each attack type, we established a systematic approach to calculate and store SHAP values. This involved creating a multidimensional structure indexed by attack type and epsilon value, the latter of which was predetermined to reflect various intensities of adversarial perturbation. Within this framework, for each attack type and epsilon level, we curated a batch of up to 200  adversarial examples. These examples were then preprocessed to conform to the input requirements of the SHAP Deep Explainer. It involved converting the examples into a format amenable to analysis, such as NumPy arrays, ensuring compatibility with the underlying computational framework of SHAP. Employing the Deep Explainer, we computed SHAP values for these examples, facilitating a detailed and granular analysis of pixel-level contributions to the model’s output. This computation was instrumental in discerning the influence of individual pixels on the model's decision-making process, especially when subjected to varying adversarial conditions.
+
+
+
+% \begin{figure}[h]
+% \centering
+% \begin{subfigure}{\columnwidth}
+% \centering
+% \includegraphics[width=\linewidth]{paper_images/normal.png}
+% \label{fig:correct_shap}
+% \end{subfigure}
+% \par\medskip
+% \begin{subfigure}{\columnwidth}
+% \centering
+% \includegraphics[width=\linewidth]{paper_images/pgd.png}
+% \label{fig:pgd}
+% \end{subfigure}
+% \begin{subfigure}{\columnwidth}
+% \centering
+% \includegraphics[width=\linewidth]{paper_images/fgsm.png}
+% \label{fig:fgsm}
+% \end{subfigure}
+% \begin{subfigure}{\columnwidth}
+% \centering
+% \includegraphics[width=\linewidth]{paper_images/deep.png}
+% \label{fig:deep}
+% \end{subfigure}
+% \begin{subfigure}{\columnwidth}
+% \centering
+% \includegraphics[width=\linewidth]{paper_images/basic.png}
+% \label{fig:basic}
+% \end{subfigure}
+% \caption{SHAP heatmaps depicts the interpretability of a model's decision for a normally classified digit and its progressive alteration under various adversarial attacks (PGD, FGSM, deepfool and basic iterative method), highlighting the shift in influential pixels at a granular level. (a): Normal, (b): PGD, (c): FGSM, (d): Deep Fool, (e): BIM}
+% \label{fig:both_shap_figures}
+% \end{figure}
 
 
 
     
-\section{Stage 4: Identification and Validation of Critical Pixels}
+\section{Stage 4: Pixels Level}
 
-\subsection{SHAP Values for Critical Pixel Analysis}
-    In Stage 4, we use the SHAP values that we extracted earlier to pinpoint and confirm the pixels that have a significant impact on the 
-    model's predictions. This step is essential for gaining a deeper understanding of the model's behavior and developing effective strategies 
-    to make it more resilient to adversarial attacks.
-    The process involves:
+We have implemented approach to modify both normal and adversarial images using SHAP values. This process is essential for understanding how different pixels influence a deep learning model predictions, especially under adversarial conditions. Let me detail this process:
 
- \subsubsection{Attack Generation Pixel Analysis}
-We first analyze the SHAP values for adversarial image pixels. This step is crucial to identify which pixels, when altered, are most effective 
-in generating successful adversarial attacks. By understanding the pixels that significantly influence the model's erroneous decisions, we can 
-uncover how adversarial perturbations are guided and how they can be strategically crafted.
+\subsection{Modification of Normal Images:}
 
-\subsubsection{Attack Detection Pixel Analysis}
-Subsequently, we focus on detecting these adversarial manipulations by examining the differences in SHAP values between normal and adversarial
-images. This comparison highlights the pixels where the largest deviations occur, signaling potential areas of the image being exploited by 
-adversarial attacks. This analysis is vital for developing robust detection mechanisms that can identify and counteract these manipulative 
-changes.
+ For each normal image, SHAP values are computed to determine the influence of each pixel on the model's prediction. A threshold is applied to these SHAP values to identify pixels with the most significant influence. This threshold is varied (70\%, 80\%, and 90\%) to assess different levels of influence. Influential pixels (those exceeding the threshold in their absolute, positve and negative SHAP value) are modified. This modification typically involves reducing the pixel intensity, which allows for an investigation into how such alterations affect the model's prediction accuracy.
 
-\subsubsection{Original Image Pixel Importance}
-Alongside these analyses, we also scrutinize the SHAP values of original, unmanipulated images. This examination is essential to establish a 
-baseline of the model’s interpretation of unperturbed images. Understanding the importance of pixels in the original context provides a 
-reference point, helping us to better interpret the changes observed in the adversarial context.
+\subsection{Modification of Adversarial Images:}
+For each adversarial image, its corresponding normal (unperturbed) image is also considered. SHAP values for the adversarial image are calculated. Similar to the normal images, a threshold is applied to the SHAP values. The influence types are 'absolute', 'positive' and 'negative' determine how the threshold is computed and applied. For pixels in the adversarial image that exceed the threshold, they are replaced with their counterparts from the normal image. This step is crucial as it helps in understanding how reverting the most influential pixels to their original state affects the model's performance. After modifying the images (both normal and adversarial), these images are fed into the model to obtain predictions. The model's accuracy is then evaluated by comparing these predictions against the true labels. The accuracy data, along with other parameters like image index, attack type, epsilon value, threshold level, and influence type, are compiled into a DataFrame. This structured data allows for a comprehensive analysis of how the model's accuracy is impacted by the modifications made to both normal and adversarial images.
 
-Through this comprehensive methodology, we aim to provide a deep understanding of how pixel-level manipulations affect AI decision-making, 
-both in generating and detecting adversarial attacks, as well as understanding the inherent behavior of the model under normal conditions.
- 
-        
-        
-\begin{table*}[t]
-    \small
-    \centering
-    \begin{tabular}{|c|c|c|c|c|}
-    \hline
-    \textbf{Threshold} & \textbf{FGSM} & \textbf{BIM} & \textbf{DeepFool} & \textbf{PGD} \\
-    \hline
-    No Modification & 0 & 0 & 0 & 0 \\
-    \hline
-    Threshold 1 & 2 & 3 & 1 & 4 \\
-    \hline
-    Threshold 2 & 5 & 7 & 2 & 8 \\
-    \hline
-    Threshold 3 & 9 & 12 & 4 & 13 \\
-    \hline
-    Threshold 4 & 15 & 18 & 7 & 20 \\
-    \hline
-    \end{tabular}
-    \caption{Understanding Model Vulnerability: Influence of Critical Pixel Modification on Attack Identification and Model Robustness}
-    \label{tab:model_robustness_attacks}
-    \end{table*}
+It provides detailed insights into which pixels significantly affect the model's predictions, under both normal and adversarial conditions. By comparing the model's performance on modified versus original images, you can gauge the model's vulnerability to specific types of pixel-level perturbations. Understanding how pixel modifications affect accuracy can guide efforts to enhance the model's robustness against adversarial attacks.
+
     
 \subsubsection{Statistical Validation of Critical Pixels}
-To substantiate the distinction between critical and non-critical pixels identified in our analysis, we conducted a statistical t-test on the
- SHAP values. This test helps validate the significance of the differences observed in the SHAP values between critical and non-critical pixels.
-  The implementation of a t-test ensures that the observed disparities are not due to random chance, thereby lending statistical rigor to our 
-  findinßgs and confirming the reliability of our pixel importance assessments.
 
 
-    
-    \begin{figure}[h]
-        \centering
-        \begin{subfigure}{\columnwidth}
-            \centering
-            \includegraphics[width=\linewidth]{paper_images/fgsm_c.png}
-            \caption{FGSM}
-            \label{fig:fgsm_c}
-        \end{subfigure}
-        \par\medskip % Adds space between the two subfigures
-        \begin{subfigure}{\columnwidth}
-            \centering
-            \includegraphics[width=\linewidth]{paper_images/deep_c.png}
-            \caption{Deepfool}
-            \label{fig:deep_c}
-        \end{subfigure}
-        \begin{subfigure}{\columnwidth}
-            \centering
-            \includegraphics[width=\linewidth]{paper_images/basic_c.png}
-            \caption{Basic Iterative Method}
-            \label{fig:fgsm}
-        \end{subfigure}
-        \begin{subfigure}{\columnwidth}
-            \centering
-            \includegraphics[width=\linewidth]{paper_images/pgd_c.png}
-            \caption{PGD}
-            \label{fig:deep}
-        \end{subfigure}
-     
-        \caption{Visualization of critical pixels in adversarial samples.}
-        \label{fig:both_shap_figures}
-    \end{figure}
-    
+In our validation phase, we employed a one-sample t-test to confirm the statistical significance of pixel influences identified using SHAP values. The t-test assessed whether these influences, especially the positively impactful ones, significantly deviated from a null hypothesis of zero influence. A high t-statistic indicated a substantial deviation, implying meaningful pixel impact. The associated p-value, nearly zero, underscored the statistical significance of these influences. This rigorous statistical validation enhances the credibility of our findings, confirming that the identified pixels have a genuine and statistically substantiated impact on the model's decision-making process, strengthening our research's scientific validity.
     % \begin{table*}[t]
     %     \centering
     %     \begin{tabular}{|p{3cm}|p{6cm}|}
@@ -600,16 +550,46 @@ adversarial attacks. The observations made in this case study can help in the cr
 %     \label{Recovery}
 % \end{figure*}
 
-\begin{figure}
+% \begin{figure}[ht]
+%     \centering
+%     \begin{minipage}{0.25\textwidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{deepexplainer/correctinf.png}
+%         \caption{Pixel Importance Deep}
+%     \end{minipage}\hfill
+%     \begin{minipage}{0.25\textwidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{gradient/correctinf.png}
+%         \caption{Pixel Importance Gradient}
+%     \end{minipage}
+% \end{figure}
+
+  \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{deepexplainer/correctinf.png}
-    \caption{Pixel Importance Deep}
+    \includegraphics[width=1\linewidth]{comapre_explainer/correctgradanddeep.png}
+    \caption{Represents the impact on model accuracy when modifying normal image pixels based on different levels of influence and thresholds. The expectation is that the accuracy would decrease from 100\% as critical pixels are altered}
+    \label{Degradation}
 \end{figure}
-\begin{figure*}
+
+\begin{figure*}[ht]
     \centering
-    \includegraphics[width=0.7\linewidth]{deepexplainer/deepadv.png}
-    \caption{Pixel Importance Deep}
+    \begin{minipage}{1\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{comapre_explainer/advgradanddeep_70.png}
+        \caption{Pixel Importance Deep}
+    \end{minipage}\hfill
+    \begin{minipage}{1\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{comapre_explainer/advgradanddeep_80.png}
+        \caption{Pixel Importance Deep}
+    \end{minipage}\hfill
+    \begin{minipage}{1\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{comapre_explainer/advgradanddeep_90.png}
+        \caption{Pixel Importance Gradient}
+    \end{minipage}
 \end{figure*}
+
 
 
 
@@ -687,8 +667,8 @@ This research conducted a thorough investigation into adversarial attack simulat
 
 \begin{thebibliography}{01}
 
-    \bibitem{Saad}S. Saad, Y. Yilin, T. Haiman, T. Yudong, P. R. Maria, S. Mei-Ling, C. Shu-Ching, and S. Iyengar. "A survey on deep learning: A. Sundaraja, “ACM Computing Surveys CSUR 51 no,” 2018.
-    \bibitem{Md} Z. Md, M. T. Tarek, Y. Chris, W. Stefan, S. Paheding, S. N. Mst, H. Mahmudul, C. V. E. Brian, 
+    % \bibitem{Saad}S. Saad, Y. Yilin, T. Haiman, T. Yudong, P. R. Maria, S. Mei-Ling, C. Shu-Ching, and S. Iyengar. "A survey on deep learning: A. Sundaraja, “ACM Computing Surveys CSUR 51 no,” 2018.
+    % \bibitem{Md} Z. Md, M. T. Tarek, Y. Chris, W. Stefan, S. Paheding, S. N. Mst, H. Mahmudul, C. V. E. Brian, 
     \bibitem{Numair}S. Numair, S. Ilya, and U. Mathias, “A systematic review of robustness in deep learning for computer vision Mind the gap,” 2021.
     \bibitem{Aleksandar}M. Aleksandar, S. Ludwig, T. Dimitris, and V. Adrian, “Towards deep learning models resistant to adversarial attacks,” 2017.
     \bibitem{Samuel}H. Samuel and N. Peyman, “Opportunities and challenges in deep learning adversarial robustness A survey,” 2020.
@@ -696,8 +676,24 @@ This research conducted a thorough investigation into adversarial attack simulat
     \bibitem{Mohammed}B. Mohammed, “Peeking inside the blackbox a survey on explainable artificial intelligence XAI,” 2018.
     \bibitem{Aha}Aha. "DARPA’s explainable artificial intelligence (XAI) program David, “AI magazine 40 no,” 2019.
     \bibitem{Tamer}A. Tamer, E.-S. Shaker, M. Khan, M. A.-M. Jose, C. Roberto, G. Riccardo, D. S. Javier, D.-R. Natalia, and H. Francisco, “Explainable Artificial Intelligence XAI What we know and what is left to attain Trustworthy Artificial Intelligence,” 2023.
-    \bibitem{Tianhang}Z. Tianhang, Q. Zhan, and Liu. "Adversarial attacks and defenses in deep learning Xue, “Engineering 6 no,” 2020.
-    \bibitem{Wei}E. Wei, Z. S. Quan, A. Ahoud, and Li. "Adversarial attacks on deep-learning models in natural language processing: A. survey Chenliang, “ACM Transactions on Intelligent Systems and Technology TIST 11 no,” 2020.
+
+
+    \bibitem{Fidel} Fidel, G., Bitton, R.,  Shabtai, A. (2020, July). When explainability meets adversarial learning: Detecting adversarial examples using shap signatures. In 2020 international joint conference on neural networks (IJCNN) (pp. 1-8). IEEE.
+
+    \bibitem{LinY} Lin, Y. C., Yu, F. (2023, May). DeepSHAP Summary for Adversarial Example Detection. In 2023 IEEE/ACM International Workshop on Deep Learning for Testing and Testing for Deep Learning (DeepTest) (pp. 17-24). IEEE.
+
+    \bibitem{Stiff}S tiff, H. (2019). Explainable AI as a Defence Mechanism for Adversarial Examples.
+
+    \bibitem{E.Mosca} E. Mosca, L. Huber, M. A. K uhn, and G. Groh, “Detecting word-
+    level adversarial text attacks via shapley additive explanations,” in
+    Proceedings of the 7th Workshop on Representation Learning for NLP,
+    2022, pp. 156–166.
+    \bibitem{Tcydenova} E. Tcydenova, T. W. Kim, C. Lee, and J. H. Park, “Detection of adversar-
+    ial attacks in ai-based intrusion detection systems using explainable ai,”
+    HUMAN-CENTRIC COMPUTING AND INFORMATION SCIENCES,
+    vol. 11, 2021.
+
+
 
     \bibitem{ZhangS.}
     Zhang, S., Chen, S., Liu, X., Hua, C., Wang, W., Chen, K., Zhang, J. and Wang, J., 2021. Detecting adversarial samples for deep learning models: a comparative study. IEEE Transactions on Network Science and Engineering, 9(1), pp.231-244.
